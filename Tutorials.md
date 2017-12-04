@@ -11,7 +11,7 @@
 
 ## 1. Accounts & Wallets
 
-**Notice** This tutorial is geared towards use on a **private testnet**, but can be adapted by advanced users to the public testnet if you so choose. 
+**Notice** This tutorial is geared towards use on a **private testnet**, but will work on public testnet with minor modifications. 
 
 #### What you'll learn
 
