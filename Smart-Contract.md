@@ -297,7 +297,7 @@ Before getting started with an EOS Smart Contract be sure to do all the followin
 
 **Build the latest built**
 
-Make sure you have the latest built in your enviornment, you will need that in order to access `eoscpp` and `eosc`, the tools that are necessary for you to get started. Instructions on getting the latest built can be found in the [Environment](Environment) section.
+Make sure you have the latest built in your enviornment, you will need that in order to access `eoscpp` and `eosc`, the tools that are necessary for you to get started. Instructions on getting the latest built can be found in the [Environment](https://github.com/EOSIO/eos/wiki/Local-Environment) section.
 
 Once you have the latest eosio/eos code installed, make sure that ${CMAKE_INSTALL_PREFIX}/bin is in your path, or you will have to install it by running the following command.
 
