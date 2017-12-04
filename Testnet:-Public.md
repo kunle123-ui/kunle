@@ -64,7 +64,7 @@ $ eosc -H ${http_endpoint} -p 80 ${options} ${subcommand}
 You're golden, instructions below 
 
 1. An `eos-walletd` and `eosc` binary from recent `eosd` build, see [Local Environment](https://github.com/EOSIO/eos/wiki/Local-Environment)
-2. Connect to [Public Testnet](https://github.com/EOSIO/eos/wiki/Testnet:-Public])
+2. Connect to [Public Testnet](https://github.com/EOSIO/eos/wiki/Testnet:-Public)
 3. [Import your private key](https://github.com/EOSIO/eos/wiki/Command%20Reference#import-key-to-wallet) with `eosc`
 
 ## I DO NOT Have a Key in the Testnet Genesis Block
