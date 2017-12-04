@@ -73,7 +73,7 @@ Options:
   -f,--force-unique           force the transaction to be unique. this will consume extra bandwidth and remove any protections against accidently issuing the same transaction multiple times
   ```
 
-## eos-walletd
+### eos-walletd
 
 An EOS wallet daemon that loads wallet related plugins, such as the HTTP interface and RPC API
 
