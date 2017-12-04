@@ -79,7 +79,7 @@ Wallets:
 
 It's important to notice the asterisk (*) after each listed wallet, which means that the respective wallet is unlocked. When using `create wallet` the resulting wallet is unlocked by default for your convenience.
 
-Now go ahead and lock that second wallet using `wallet lock`
+Lock that second wallet using `wallet lock`
 
 ```bash
 $ eosc wallet lock -n periwinkle
@@ -126,7 +126,7 @@ Wonderful, the _periwinkle_ wallet is followed by an asterisk, so it is now unlo
 
 _**Note:** Interacting with the 'default' wallet using the wallet command does not require the `-n` parameter_
 
-Go ahead and restart `eos-walletd` now, and then go back to where you were calling `eosc` and run the following command
+Restart `eos-walletd` now, and then go back to where you were calling `eosc` and run the following command
 
 ```bash
 $ eosc wallet list
@@ -134,7 +134,9 @@ Wallets:
 []
 ```
 
-It will return an empty list. In order to access a wallet, you first need to open it. Run the following commands.
+Interesting, where did the wallet go?
+
+Wallets first need to be opened, and because you shut down `eosd`, the wallet wasn't open. Run the following commands.
 
 ```bash
 $ eosc wallet open
@@ -149,7 +151,9 @@ That's better.
 
 _**Note:** If you wanted to open a named wallet, you would run `$ eosc wallet open -n periwinkle`, see a pattern forming? ;)_
 
-You'll notice in the last response that the default wallet is locked by default. Go head and unlock it now, because you'll need it in the subsequent steps. Run the `wallet unlock` command and paste your _default_ wallet's master password when the password prompt appears.
+You'll notice in the last response that the default wallet is locked by default. Unlock it now, you'll need it in the subsequent steps. 
+
+Run the `wallet unlock` command and paste your _default_ wallet's master password when the password prompt appears.
 
 ```bash
 $ eosc wallet unlock
@@ -268,7 +272,9 @@ $ eosc wallet keys
 ]
 ```
 
-As a reminder, your public keys start with `EOS...`. Which key is assigned owner and active is inconsequential. As a reminder, your owner key equates to full control of your account, whereas your active key equates to full access over funds in your account. 
+As a reminder, your public keys start with `EOS...`. The keys above are arbitrary until you have added them to an authority, which one you decide to user for active and owner are inconsequential until you have created your account.
+
+_Reminder,_ your owner key equates to full control of your account, whereas your active key equates to full access over funds in your account. 
 
 With all you've just learned, replace the placeholders in the following command and press enter. 
 
