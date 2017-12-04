@@ -18,8 +18,6 @@
     + [3.5.3 Clear data-dir](#353-clear-data-dir)
 * [4 Creating and launching a single-node testnet](#4-creating-and-launching-a-single-node-testnet)
 * [5 Troubleshooting Guide](#5-troubleshooting-guide)
-  - [5.1. Problem](#51-problem)
-  - [5.2. Solution](#52-solution)
     
 
 ## 1. Getting the code 
