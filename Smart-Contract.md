@@ -1114,7 +1114,7 @@ When you are creating your smart contract for the first time, it is recommended 
 The concept is the same, so for the following guide, debugging on the private testnet will be covered.
 
 
-If you haven't set up your own local eosd, please follow the [setup guide](Environment). By default, your local eosd will just run in a private testnet unless you modify the config.ini file to connect with public testnet (or official testnet) nodes as described in the following [guide](Testnet%3A%20Public).
+If you haven't set up your own local eosd, please follow the [setup guide](https://github.com/EOSIO/eos/wiki/Local-Environment). By default, your local eosd will just run in a private testnet unless you modify the config.ini file to connect with public testnet (or official testnet) nodes as described in the following [guide](Testnet%3A%20Public).
 
 ### 8.1. Method
 The main method used to debug smart contract is **Caveman Debugging**, where we utilize the printing functionality to inspect the value of a variable and check the flow of the contract. Printing in smart contract can be done through the Print API ([C](https://github.com/EOSIO/eos/blob/master/contracts/eoslib/print.h) and [C++](https://github.com/EOSIO/eos/blob/master/contracts/eoslib/print.hpp)). The C++ API is the wrapper for C API, so most often we will just use the C++ API.
