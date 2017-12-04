@@ -216,7 +216,7 @@ $ cd build
 $ cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=.. -DLLVM_TARGETS_TO_BUILD= -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=WebAssembly -DCMAKE_BUILD_TYPE=Release ../
 $ make -j4 install
 ```
-Your environment is set up. Now you can [build EOS and run a node](Environment#2-building-eos)</a>. 
+Your environment is set up. Now you can [build EOS and run a node](Local-Environment#4-creating-and-launching-a-single-node-testnet)</a>. 
 
 ### 2.2.3 MacOS Sierra 10.12.6 
 
