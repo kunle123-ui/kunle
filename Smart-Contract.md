@@ -129,7 +129,7 @@ By means of confirmation, you should see the transaction in transaction history 
 
 ## 2 Smart Contract Files 
 
-To keep things simple we have created a tool called **[eoscpp](Programs#eoscpp)**  which can be used to bootstrap a new contract. The eoscpp too will create the 3 smart contract files with the basic skeleton for you to get started.
+To keep things simple we have created a tool called **[eoscpp](https://github.com/EOSIO/eos/wiki/Programs-&-Tools#eoscpp)**  which can be used to bootstrap a new contract. The eoscpp too will create the 3 smart contract files with the basic skeleton for you to get started.
 
 ```base
 $ eoscpp -n ${contract}
