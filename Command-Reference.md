@@ -16,7 +16,6 @@
 | Wallet - Lock | $ eosc wallet lock -n ${wallet_name} | [View](#lock-wallet) |
 | Wallet - Unlock | $ eosc wallet unlock -n ${wallet_name} --password ${password} | [View](#unlock-wallet) |
 | Wallet - Open | $ eosc wallet open | [View](#open-wallet) |
-| Wallet - Open | $ eosc wallet open | [View](#open-wallet) |
 | Account - Create keys | $ eosc create key | [View](#create-keys) |
 | Account - Create account | $ eosc create account ${control_account} ${account_name} ${owner_public_key} ${active_public_key} | [View](#create-account) |
 | Account - See servants | $ eosc get servants ${account_name} | [View](#account-servants) |
