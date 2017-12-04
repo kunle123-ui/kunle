@@ -298,7 +298,7 @@ Now that the **@inita** account's keys are loaded, execute the `create account` 
 
 If all goes well, `eosc` will return a json object with a transaction ID, similar to the following
 
-```json
+```
 {
   "transaction_id": "6acd2ece68c4b86c1fa209c3989235063384020781f2c67bbb80bc8d540ca120",
   "processed": {
