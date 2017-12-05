@@ -13,7 +13,7 @@
 
 #### What you'll learn
 
-You'll learn how to create and manage wallets, their keys and then use this wallet to interact with the blockchain through `eosc`. 
+You'll learn how to create and manage wallets, their keys and then use this wallet to interact with the blockchain through `eosc`.
 
 #### Who this Tutorial is For
 
