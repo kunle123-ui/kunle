@@ -71,11 +71,3 @@ You're golden, instructions below
 ## I DO NOT Have a Key in the Testnet Genesis Block
 
 If you do not have a genesis allocation, [please apply for an account](https://goo.gl/forms/ileHa9h6E7MLLgey1) through the faucet
-
-## External Links
-### Wallets
-Online test wallets you can use to help you with development:
-* name [link]
-
-### Faucet
-Initial tokens for testing (provided by a "faucet") are given to you when you sign up for a Public Testnet account. You can also request tokens from other developers, and give yours to them. When done with testing, please return your tokens to the Testnet faucet account using the instructions here [link].
