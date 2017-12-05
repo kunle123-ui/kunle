@@ -66,7 +66,7 @@ You're golden, instructions below
 1. An `eos-walletd` and `eosc` binary from recent `eosd` build, see [Local Environment](https://github.com/EOSIO/eos/wiki/Local-Environment)
 2. Connect to [Public Testnet](https://github.com/EOSIO/eos/wiki/Testnet:-Public)
 3. [Import your private key](https://github.com/EOSIO/eos/wiki/Command%20Reference#import-key-to-wallet) with `eosc`
-4. Find your account name(s) assigned in genesis by entering the ETH address or EOS Public Key you believe is included in the snapshot into the (Account Name Lookup)[https://eosio.github.io/genesis/tools/account-name/index.html] tool
+4. Find your account name(s) assigned in genesis by entering the ETH address or EOS Public Key you believe is included in the snapshot into the [Account Name Lookup](https://eosio.github.io/genesis/tools/account-name/index.html) tool
 
 ## I DO NOT Have a Key in the Testnet Genesis Block
 
