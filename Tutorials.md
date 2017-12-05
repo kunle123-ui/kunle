@@ -1,5 +1,3 @@
-# Tutorials
-
 - [1. Accounts & Wallets](#1-accounts--wallets)
   * [1.1 Creating and Managing Wallets](#11-creating-and-managing-wallets)
   * [1.2 Generating and Importing EOS Keys](#12-generating-and-importing-eos-keys)
