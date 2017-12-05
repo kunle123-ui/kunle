@@ -1,5 +1,3 @@
-# Public Testnet: Dawn 2.0
-
 * [Overview](#overview)
 * [Differences between Testnet and Mainnet](#differences-between-testnet-and-mainnet)
 * [Nodes](#nodes)
