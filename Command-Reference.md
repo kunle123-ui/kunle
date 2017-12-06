@@ -1,6 +1,6 @@
 ## eosc command
 
-| Action | Syntax | Example |
+| Action | Syntax | Example 
 |--|--|--|
 | Get ALL commands | $ eosc | [View](#all-command) |
 | Get ALL subcommands | $ eosc ${command} | [View](#all-subcommand) |
@@ -20,10 +20,12 @@
 | Account - Create account | $ eosc create account ${control_account} ${account_name} ${owner_public_key} ${active_public_key} | [View](#create-account) |
 | Account - See servants | $ eosc get servants ${account_name} | [View](#account-servants) |
 | Account - Check balance | $ eosc get account ${account_name} | [View](#check-account-balance) |
+| Permission - Create/Modify | eosc set account permission ${permission} ${account} ${permission_json} ${account_authority} | [View](#create-or-modify-permissions) |
 | Contract - Deploy | $ eosc set contract ../${contract}.wast ../${contract}.abi | [View](#deploy-contract) |
 | Contract - Query ABI | $ eosc get code --a ${contract}.abi ${contract} | [View](#query-contract-abi) |
 | Contract - Push Message | $ eosc push message ${contract} ${action} ${param} -S ${scope_1} -S ${scope_2} -p ${account}@active | [View](#push-message-to-contract) |
 | Contract - Query table | $ eosc get table ${field} ${contract} ${table} | [View](#querying-contract) |
+
 
 ## eosd command
 
@@ -42,6 +44,7 @@
 ## Examples
 ### All command
 eosc contains documentation for all of its commands. For a list of all commands known to eosc, simply run it with no arguments:
+
 ```
 $ eosc
 ERROR: RequiredError: Subcommand required
@@ -70,6 +73,7 @@ Subcommands:
   
 ### All subcommand  
 To get help with any particular subcommand, run it with no arguments as well:
+
 ```
 $ eosc create
 ERROR: RequiredError: Subcommand required
@@ -95,16 +99,19 @@ Positionals:
 ### Connect to node
 
 This will connect you to your local node
+
 ```
 $ eosc -H localhost -p 8889
 ```
 
 You can also adjust the node param to connect to a different node, e.g. the public testnet
+
 ```
 $ eosc -H test1.eos.io -p 80
 ```
 
 ### Query blockchain state
+
 ```base
 $ eosc get info
 {
@@ -179,6 +186,7 @@ $ eosc get transaction eb4b94b72718a369af09eb2e7885b3f494dd1d8a20278a6634611d5ed
 
 ### Get Transaction by account
 We can also query list of transactions performed by certain account starting from recent one
+
 ```
 $ eosc get transactions inita
 [
@@ -193,6 +201,7 @@ $ eosc get transactions inita
   ...
 ]
 ```
+
 ### Transfer EOS
 
 ```
@@ -247,6 +256,7 @@ $ eosc transfer inita tester 1000
 ### Create wallet 
 
 Create wallet without specifying a name, the wallet will be created with the name 'default'
+
 ```base
 $ eosc wallet create
 Creating wallet: default
@@ -256,6 +266,7 @@ Without password imported keys will not be retrievable.
 ```
 
 You can name the wallet adding the ```-n ${wallet_name}``` in the command
+
 ```base
 $ eosc wallet create -n second-wallet
 Creating wallet: second-wallet
@@ -431,6 +442,63 @@ $ eosc get account tester
   ]
 }
 ```
+
+### Create or Modify Permissions
+To modify permissions of an account, you must have the authority over the account and the permission of which you are modifying. The `set account permission` command is subject to change so it's associated Class is not fully documented. 
+
+The first example associates a new key to the active permissions of an account
+
+```bash
+$ eosc set account permission test active '{"threshold" : 1, "keys" : [{"permission":{"key":"EOS8X7Mp7apQWtL6T2sfSZzBcQNUqZB7tARFEm9gA9Tn9nbMdsvBB","permission":"active"},"weight":1}], "accounts" : [{"permission":{"account":"acc2","permission":"active"},"weight":50}]}' owner
+```
+
+This second example modifes the same account permission, but removes the *key* set in the last example, and grants active authority of the **@test** to another *account**. 
+
+```bash
+$ eosc set account permission test active '{"threshold" : 1, "keys" : [], "accounts" : [{"permission":{"account":"sandwich","permission":"active"},"weight":1},{"permission":{"account":"acc1","permission":"active"},"weight":50}]}' owner
+```
+
+The third example demonstrates how to setup permissions for multisig
+
+```bash
+$ eosc set account permission test active '{"threshold" : 100, "keys" : [{"permission":{"key":"EOS8X7Mp7apQWtL6T2sfSZzBcQNUqZB7tARFEm9gA9Tn9nbMdsvBB","permission":"active"},"weight":25}], "accounts" : [{"permission":{"account":"@sandwich","permission":"active"},"weight":75}]}' owner
+```
+
+The JSON object used in this command is actually composed of two different types of objects
+
+*The authority JSON object ...*
+
+```javascript
+{
+  "threshold"       : 100,    /*An integer that defines cumulative signature weight required for authorization*/
+  "keys"            : [],     /*An array made up of individual permissions defined with an EOS PUBLIC KEY*/
+  "accounts"        : []      /*An array made up of individual permissions defined with an EOS ACCOUNT*/
+}
+```
+
+*...which includes one or more permissions objects*
+
+```javascript
+/*Set Permission with Key*/
+{
+  "permission" : {
+    "key"           : "EOS8X7Mp7apQWtL6T2sfSZzBcQNUqZB7tARFEm9gA9Tn9nbMdsvBB",
+    "permission"    : "active"
+  },
+  weight            : 25      /*Set the weight of a signature from this permission*/
+}
+
+/*Set Permission with Account*/
+{
+  "permission" : {
+    "account"       : "sandwich",
+    "permission"    : "active"
+  },
+  weight            : 75      /*Set the weight of a signature from this permission*/
+}
+```
+
+*You can read more about some practical uses of permissions [here]()*
 
 ### Deploy Contract
 To upload a contract to the blockchain, you must first hold an account and a wallet that holds the account unlocked.
@@ -663,10 +731,13 @@ $ eosc get table inita currency account
 
 ### Skip signatures
 If you have eosd running in your local, as an easy way for developers to test functionality without dealing with keys, eosd can be run so that Transaction signatures are not required.
+
 ```
 $ eosd --skip-transaction-signatures
 ```
+
 And then for any operation that requires signing, use the -s option
+
 ```
 $ eosc ${command} ${subcommand} -s ${param}
 ```
@@ -674,21 +745,18 @@ $ eosc ${command} ${subcommand} -s ${param}
 ### Using Separate Wallet App
 
 Instead of using the wallet functionality built-in to eosd, you can also use a separate wallet app which can be found inside programs/eos-walletd. By default, port 8888 is used by eosd, so choose another port for the wallet app.
+
 ```
 $ eos-walletd --http-server-endpoint 127.0.0.1:8887
 ```
+
 Then for any operation that requires signing, use the –wallet-host and –wallet-port option
+
 ```
 $ eosc --wallet-host 127.0.0.1 --wallet-port 8887 ${command} ${subcommand} ${param}
 ```
 
-
-
-
-
-
 ## Error Examples
-
 
 ```
 status_code == 200: Error
