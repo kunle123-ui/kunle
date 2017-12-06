@@ -20,7 +20,7 @@
 | Account - Create account | $ eosc create account ${control_account} ${account_name} ${owner_public_key} ${active_public_key} | [View](#create-account) |
 | Account - See servants | $ eosc get servants ${account_name} | [View](#account-servants) |
 | Account - Check balance | $ eosc get account ${account_name} | [View](#check-account-balance) |
-| Permission - Create/Modify | eosc set account permission ${permission} ${account} ${permission_json} ${account_authority} | [View](#create-or-modify-permissions) |
+| Permission - Create/Modify | $ eosc set account permission ${permission} ${account} ${permission_json} ${account_authority} | [View](#create-or-modify-permissions) |
 | Contract - Deploy | $ eosc set contract ../${contract}.wast ../${contract}.abi | [View](#deploy-contract) |
 | Contract - Query ABI | $ eosc get code --a ${contract}.abi ${contract} | [View](#query-contract-abi) |
 | Contract - Push Message | $ eosc push message ${contract} ${action} ${param} -S ${scope_1} -S ${scope_2} -p ${account}@active | [View](#push-message-to-contract) |
