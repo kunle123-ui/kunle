@@ -452,7 +452,7 @@ The first example associates a new key to the active permissions of an account
 $ eosc set account permission test active '{"threshold" : 1, "keys" : [{"permission":{"key":"EOS8X7Mp7apQWtL6T2sfSZzBcQNUqZB7tARFEm9gA9Tn9nbMdsvBB","permission":"active"},"weight":1}], "accounts" : [{"permission":{"account":"acc2","permission":"active"},"weight":50}]}' owner
 ```
 
-This second example modifes the same account permission, but removes the *key* set in the last example, and grants active authority of the **@test** account to another *account*. 
+This second example modifies the same account permission, but removes the *key* set in the last example, and grants active authority of the **@test** account to another *account*. 
 
 ```bash
 $ eosc set account permission test active '{"threshold" : 1, "keys" : [], "accounts" : [{"permission":{"account":"sandwich","permission":"active"},"weight":1},{"permission":{"account":"acc1","permission":"active"},"weight":50}]}' owner
