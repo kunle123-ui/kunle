@@ -11,7 +11,6 @@ Welcome to the EOS.IO wiki. This resource is intended as a guide for developers 
   * [Connecting Local EOSD with Public Testnet](Testnet%3A%20Public#connecting-local-eosd-with-public-testnet)
   * [Connecting Local EOSC with Public Testnet](Testnet%3A%20Public#connecting-local-eosc-with-public-testnet)
   * [Testnet Accounts](Testnet%3A%20Public#accounts-on-testnet)
-  * [External Links](Testnet%3A%20Public#external-links)
 - [Programs & Tools](Programs-&-Tools)
   * [eosd](Programs-&-Tools#eosd)
   * [eosc](Programs-&-Tools#eosc)
