@@ -5,7 +5,7 @@
   * [4.1 Default Account Configuration (Single-Sig)](#41-default-account-configuration-single-sig)
   * [4.2 Multi-sig Account & Custom Permissions](#42-multi-sig-account--custom-permissions)
 
-An **account** is human readable identifier that is stored on the blockchain. Every transaction has it's permissions evaluated under the configured authority of an account. Each named permission has a threshold that must be met for a transactions signed under that authority to be considered valid. Transactions are signed by utilizing a **client** that has a loaded and unlocked wallet. A wallet is a local file that contains keys. These keys may or maybe not be permissioned to an account authority on the blockchain.
+An **account** is human readable identifier that is stored on the blockchain. Every transaction has it's permissions evaluated under the configured authority of an account. Each named permission has a threshold that must be met for a transactions signed under that authority to be considered valid. Transactions are signed by utilizing a **client** that has a loaded and unlocked wallet. A wallet is software that protects and makes use of your keys. These keys may or maybe not be permissioned to an account authority on the blockchain.
 
 ## 1. Wallets
 
