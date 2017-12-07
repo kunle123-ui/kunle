@@ -1,7 +1,4 @@
-# Doxygen Guide for EOS
-<br/>
-
-## Index
+**Table of Contents**
 - [Introduction](#introduction)
 - [How to generate/update the EOS documentation](#how-to-generateupdate-the-eos-documentation)
 - [How to view the EOS documentation](#how-to-view-the-eos-documentation)
@@ -23,7 +20,8 @@
   * [throws](#throws)
   * [tparam](#tparam)
 
-<br/><br/>
+<br/>
+<br/>
 ## Introduction
 Doxygen is a documentation generator; A tool for writing software reference documentation. The documentation is written within code, and is thus relatively easy to keep up to date.
 
