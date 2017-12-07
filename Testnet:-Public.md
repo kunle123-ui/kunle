@@ -81,8 +81,6 @@ Once you have your account name, you can choose how you would like to interact w
 
 ## Web Wallet (End Users)
 
-A user friendly prototype of an EOS web wallet.
-
 - Visit the [Testnet Web Wallet](https://t1wallet.eos.io/)
 - Create an account
 - Login
