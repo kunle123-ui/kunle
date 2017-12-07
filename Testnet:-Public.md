@@ -24,7 +24,7 @@ There are several differences between the Public Testnet and the public Mainnet.
 The Testnet consists of block-producing nodes and non-producing nodes. 
 
 ## Public Testnet Endpoints
-There are currently two Public Testnet.
+There are currently two Public Testnets.
 - Testnet1
     - HTTP Endpoint: testnet1.eos.io
     - P2P Endpoint: t1p2pXX.eos.io where XX is ranging from 01-21
@@ -70,14 +70,34 @@ $ eosc -H ${http_endpoint} -p 80 ${options} --wallet-host ${wallet_endpoint} --w
 
 ## I Have a Key in the Testnet Genesis Block
 
-You're golden, instructions below 
+You're golden, first you'll need your account name.
 
-1. A wallet
-    - [Testnet Web Wallet](https://t1wallet.eos.io/)
-    - Local Wallet, `eos-walletd` and `eosc` binary from recent `eosd` build, see [Local Environment](https://github.com/EOSIO/eos/wiki/Local-Environment)
+- Find your account name(s) assigned in genesis by entering the ETH address or EOS Public Key you believe is included in the snapshot into the [Account Name Lookup](https://eosio.github.io/genesis/tools/account-name/index.html) tool
+- If your address is not included in the snapshot, [apply for a faucet account](https://goo.gl/forms/ileHa9h6E7MLLgey1)
+- Get your EOS public key ready
+    - If you're in the snapshot, this is the EOS public key you registered
+    - If you applied for testnet, this is the EOS public key you submitted in the faucet account application
+
+Once you have your account name, you can choose how you would like to interact with EOS. 
+
+### Web Wallet (End Users)
+
+A user friendly prototype of an EOS web wallet.
+
+- Visit the [Testnet Web Wallet](https://t1wallet.eos.io/)
+- Create an account
+- Login
+- Click on 'Accounts' in the sidebar
+- In the _Account_ input enter the account you acquired in the previous steps.
+- In the EOS _Active Key_ and _Owner Key_ fields enter your EOS public key(s)
+- Click "Add Account" 
+
+### Command Line (Developers)
+
+1. You'll need the `eos-walletd` and `eosc` binary from recent `eosd` build, see [Local Environment](https://github.com/EOSIO/eos/wiki/Local-Environment)
 2. Connect to [Public Testnet](https://github.com/EOSIO/eos/wiki/Testnet:-Public)
-3. [Import your private key](https://github.com/EOSIO/eos/wiki/Command%20Reference#import-key-to-wallet) with `eosc`
-4. Find your account name(s) assigned in genesis by entering the ETH address or EOS Public Key you believe is included in the snapshot into the [Account Name Lookup](https://eosio.github.io/genesis/tools/account-name/index.html) tool
+3. [Import your private key to the wallet](https://github.com/EOSIO/eos/wiki/Command%20Reference#import-key-to-wallet) with `eosc` 
+4. Learn how to `eosc` by either figuring it out yourself with the [command reference](https://github.com/EOSIO/eos/wiki/Command-Reference) or be guided through the process with a [tutorial](https://github.com/EOSIO/eos/wiki/Tutorials#1-accounts--wallets). The choice is yours. 
 
 ## I DO NOT Have a Key in the Testnet Genesis Block
 
