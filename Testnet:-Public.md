@@ -55,6 +55,17 @@ You can connect your local eosc with public testnet by using the http endpoint a
 ```bash
 $ eosc -H ${http_endpoint} -p 80 ${options} ${subcommand}
 ```
+Furthermore, public testnet does not provide any wallet functionality. In order to be able to sign transaction/ push transaction/ wallet operation, you will need to connect your local wallet with eosc when you are connecting to public testnet.
+To do so, ensure that you have your local wallet running.
+```
+$ eos-walletd
+# this will create a data-dir folder inside your current working directory, this data-dir folder will contain your private keys encrypted with the wallet password
+```
+Then specify your local wallet endpoint and port when using eosc, unless you override it, wallet_endpoint will be `localhost` and wallet_port will be `8888`.
+```
+$ eosc -H ${http_endpoint} -p 80 ${options} --wallet-host ${wallet_endpoint} --wallet-port ${wallet_port} ${subcommand}
+```
+
 # Accounts on Testnet
 
 ## I Have a Key in the Testnet Genesis Block
