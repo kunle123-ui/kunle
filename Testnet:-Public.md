@@ -68,8 +68,6 @@ $ eosc -H ${http_endpoint} -p 80 ${options} --wallet-host ${wallet_endpoint} --w
 
 # Accounts on Testnet
 
-## I Have a Key in the Testnet Genesis Block
-
 You're golden, before you begin first you'll need your account name and EOS public key handy.
 
 - Discover your account name
@@ -81,7 +79,7 @@ You're golden, before you begin first you'll need your account name and EOS publ
 
 Once you have your account name, you can choose how you would like to interact with EOS. 
 
-### Web Wallet (End Users)
+## Web Wallet (End Users)
 
 A user friendly prototype of an EOS web wallet.
 
@@ -93,13 +91,10 @@ A user friendly prototype of an EOS web wallet.
 - In the EOS _Active Key_ and _Owner Key_ fields enter your EOS public key(s)
 - Click "Add Account" 
 
-### Command Line (Developers)
+## Command Line (Developers)
 
 1. You'll need the `eos-walletd` and `eosc` binary from recent `eosd` build, see [Local Environment](https://github.com/EOSIO/eos/wiki/Local-Environment)
 2. Connect to [Public Testnet](https://github.com/EOSIO/eos/wiki/Testnet:-Public)
 3. [Import your private key to the wallet](https://github.com/EOSIO/eos/wiki/Command%20Reference#import-key-to-wallet) with `eosc` 
 4. Learn how to `eosc` by either figuring it out yourself with the [command reference](https://github.com/EOSIO/eos/wiki/Command-Reference) or be guided through the process with a [tutorial](https://github.com/EOSIO/eos/wiki/Tutorials#1-accounts--wallets). The choice is yours. 
 
-## I DO NOT Have a Key in the Testnet Genesis Block
-
-If you do not have a genesis allocation, [please apply for an account](https://goo.gl/forms/ileHa9h6E7MLLgey1) through the faucet
