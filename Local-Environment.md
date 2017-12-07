@@ -451,6 +451,7 @@ When running `eosd` you should get log messages similar to below. It means the b
 
 ## 5. Troubleshooting Guide
 
-*You get an error such as `St9exception: content of memory does not match data expected by executable` when trying to start `eosd`*
-
-Try restarting `eosd` with `--resync`
+1. *You get an error such as `St9exception: content of memory does not match data expected by executable` when trying to start `eosd`*
+> Try restarting `eosd` with `--resync`
+2. How do I find which version of `eosd` I'm running or connecting to?
+> Use `eosc -H ${eosd_host} -p ${eosd_port} get info` and you will see the version number in the field called `server_version`
