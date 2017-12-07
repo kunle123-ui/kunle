@@ -112,16 +112,17 @@ $ eosc -H test1.eos.io -p 80
 
 ### Query blockchain state
 
-```base
+```bash
 $ eosc get info
 {
- "head_block_num": 25048,
- "last_irreversible_block_num": 25027,
- "head_block_id": "000061d8ae49d6af614e02779e19261959f22d6d9f37906ed5db2dabd88be142",
- "head_block_time": "2017-07-25T17:44:48",
- "head_block_producer": "initi",
- "recent_slots": "1110000000000000000000000000000000000000000000000000000000000011",
- "participation_rate": "0.07812500000000000"
+  "server_version": "7451e092",
+  "head_block_num": 6980,
+  "last_irreversible_block_num": 6963,
+  "head_block_id": "00001b4490e32b84861230871bb1c25fb8ee777153f4f82c5f3e4ca2b9877712",
+  "head_block_time": "2017-12-07T09:18:48",
+  "head_block_producer": "initp",
+  "recent_slots": "1111111111111111111111111111111111111111111111111111111111111111",
+  "participation_rate": "1.00000000000000000"
 }
 ```
 
