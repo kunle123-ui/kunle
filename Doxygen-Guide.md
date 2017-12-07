@@ -2,11 +2,11 @@
 <br/>
 
 ## Index
-- [Introduction](#Introduction)
-- [How to generate/update the EOS documentation](#How-to-generate/update-the-EOS-documentation)
-- [How to view the EOS documentation](#How-to-view-the-EOS-documentation)
-- [How to create doxygen style EOS documentation](#How-to-create-doxygen-style-EOS-documentation)
-- [Doxygen Command List](#Doxygen-Command-List)
+- [Introduction](#introduction)
+- [How to generate/update the EOS documentation](#how-to-generateupdate-the-eos-documentation)
+- [How to view the EOS documentation](#how-to-view-the-eos-documentation)
+- [How to create doxygen style EOS documentation](#how-to-create-doxygen-style-eos-documentation)
+- [Doxygen Command List](#doxygen-command-list)
   * [brief](#@brief)
   * [class](#class)
   * [defgroup](#defgroup)
