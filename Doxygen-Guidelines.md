@@ -20,8 +20,6 @@
   * [throws](#throws)
   * [tparam](#tparam)
 
-<br/>
-<br/>
 
 ## Introduction
 Doxygen is a documentation generator; A tool for writing software reference documentation. The documentation is written within code, and is thus relatively easy to keep up to date.
@@ -31,8 +29,8 @@ Doxygen can cross reference documentation and code, so that the reader of a docu
 Doxygen supports most Unix-like systems, macOS, and Windows.
 It can be downloaded from git, ftp or from the web as source, installer or as zipped version from below location:
 http://www.stack.nl/~dimitri/doxygen/download.html
-<br/>
-<br/>
+
+
 ## How to generate/update the EOS documentation
 After downloading and installing doxygen, it needs to be run in order to analyze all source code comments and build the corresponding documentation.
 
@@ -43,7 +41,6 @@ To generate the documentation you point doxygen to the configuration file as a p
 ```
 doxygen <config-file>
 ```
-<br/>
 An alphabetical index of the tags that are supported in the configuration file is situated here:
 https://www.stack.nl/~dimitri/doxygen/manual/config.html
 
@@ -55,8 +52,7 @@ So to generate or update the EOS documentation from command line, navigate to th
 ```
 doxygen eos.doxygen
 ```
-<br/>
-<br/>
+
 
 ## How to view the EOS documentation
 
@@ -64,8 +60,7 @@ The EOS doxygen configuration file is set up, so that the documentation will be 
 
 The generated HTML documentation can be viewed via browser, whereas the document root is the index.html file in the docs subfolder of the EOS repository. A direct link can be found here:
 https://eosio.github.io/eos/
-<br/>
-<br/>
+
 
 ## How to create doxygen style EOS documentation
 
@@ -100,9 +95,7 @@ Doxygen picks up information in all allowed standard comment blocks, such as in 
  * @return Description of the return value
  */
 ```
-<br/>
 When using C++ style single line comments, doxygen  parses only comments with additional slashes, such as:
-
 ```
 /// <A short one line description>
 ///
@@ -113,7 +106,6 @@ When using C++ style single line comments, doxygen  parses only comments with ad
 /// @param  ...
 /// @return Description of the return value
 ```
-<br/>
 Ordinarily comments are being placed **BEFORE** the actual item, however in certain cases such as
 documenting the members of a file, struct, union, class or enum as well as the parameters of a function, it is sometimes desired to place the documentation block **AFTER** the member.
 
@@ -126,7 +118,6 @@ int var; /**< Detailed description after the member */
 ```
 int var; ///< Detailed description after the member
 ```
-<br/>
 Special commands such as param and return in the above examples start either with a backslash (\) or an at-sign (@), so both of the following choices are equivalent:
 
 ```
@@ -139,8 +130,6 @@ Special commands such as param and return in the above examples start either wit
    \brief  A short description
 */
 ```
-<br/>
-<br/>
 
 ## Doxygen Command List
 
@@ -148,22 +137,22 @@ The list of commands recognised by doxygen is quite exhaustive; (An alphabetical
 
 However in the EOS documentation we are currently using a small subset of the above list. Below is a full list of commands used in the EOS documentation with explanation:
 
-Note:<br/>
-\<sharp\> braces are used for single word arguments<br/>
-(round) braces are used for arguments that extends until the end of the line<br/>
-{curly} braces are used for arguments that extends until the next paragraph<br/>
-[square] brackets are used for optinal arguments<br/>
+Note:
+- \<sharp\> braces are used for single word arguments
+- (round) braces are used for arguments that extends until the end of the line
+- {curly} braces are used for arguments that extends until the next paragraph
+- [square] brackets are used for optinal arguments
 
-<br/>
 
 #### @brief
-Usage: @brief { brief description }<br/><br/>
+Usage: @brief { brief description }
+
 Starts a paragraph that serves as a brief description. For classes and files the brief description will be used in lists and at the start of the documentation page. For class and file members, the brief description will be placed at the declaration of the member and prepended to the detailed description. A brief description may span several lines (although it is advised to keep it brief!). A brief description ends when a blank line or another sectioning command is encountered. If multiple @brief commands are present they will be joined.
 
-<br/>
 
 #### @class
-Usage: @class \<name\> [\<header-file\>] [\<header-name\>]<br/><br/>
+Usage: @class \<name\> [\<header-file\>] [\<header-name\>]
+
 Indicates that a comment block contains documentation for a class with name \<name\>. Optionally a header file and a header name can be specified. If the header-file is specified, a link to a verbatim copy of the header will be included in the HTML documentation. The \<header-name\> argument can be used to overwrite the name of the link that is used in the class documentation to something other than \<header-file\>. With the \<header-name\> argument you can also specify how the include statement should look like, by adding either quotes or sharp brackets around the name. Sharp brackets are used if just the name is given.
 
 Example:
@@ -180,17 +169,17 @@ class Test
 */
 ```
 
-<br/>
 
 #### @defgroup
-Usage: @defgroup \<name\> (group title)<br/><br/>
+Usage: @defgroup \<name\> (group title)
+
 Indicates that a comment block contains documentation for a group of classes, files or namespaces. This can be used to categorize classes, files or namespaces, and document those categories. You can also use groups as members of other groups, thus building a hierarchy of groups.
 The \<name\> argument should be a single-word identifier.
 
-<br/>
 
 #### @file
-Usage: @file [\<name\>]<br/><br/>
+Usage: @file [\<name\>]
+
 Indicates that a comment block contains documentation for a source or header file with name \<name\>. The file name may include (part of) the path if the file-name alone is not unique. If the file name is omitted (i.e. the line after @file is left blank) then the documentation block that contains the @file command will belong to the file it is located in.
 Important:
 The documentation of global functions, variables, typedefs, and enums will only be included in the output if the file they are in is documented as well.
@@ -208,22 +197,22 @@ Example:
 extern int globalValue;
 ```
 
-<br/>
 
 #### @ingroup
-Usage: @ingroup (\<groupname\> [\<groupname\> \<groupname\>])<br/><br/>
+Usage: @ingroup (\<groupname\> [\<groupname\> \<groupname\>])
+
 If the @ingroup command is placed in a comment block of a class, file or namespace, then it will be added to the group or groups identified by \<groupname\>.
 
-<br/>
 
 #### @note
-Usage: @note { text }<br/><br/>
+Usage: @note { text }
+
 Starts a paragraph where a note can be entered. The paragraph will be indented. The text of the paragraph has no special internal structure. All visual enhancement commands may be used inside the paragraph. Multiple adjacent @note commands will be joined into a single paragraph. Each note description will start on a new line. Alternatively, one @note command may mention several notes. The @note command ends when a blank line or some other sectioning command is encountered.
 
-<br/>
 
 #### @param
-Usage: @param [(dir)] \<parameter-name\> { parameter description }<br/><br/>
+Usage: @param [(dir)] \<parameter-name\> { parameter description }
+
 Starts a parameter description for a function parameter with name \<parameter-name\>, followed by a description of the parameter. The existence of the parameter is checked and a warning is given if the documentation of this (or any other) parameter is missing or not present in the function declaration or definition.
 The @param command has an optional attribute, (dir), specifying the direction of the parameter. Possible values are "[in]", "[in,out]", and "[out]", note the [square] brackets in this description. When a parameter is both input and output, [in,out] is used as attribute. Here is an example for the function memcpy:
 ```
@@ -236,7 +225,6 @@ The @param command has an optional attribute, (dir), specifying the direction of
 */
 void memcpy(void *dest, const void *src, size_t n);
 ```
-<br/>
 
 The parameter description is a paragraph with no special internal structure. All visual enhancement commands may be used inside the paragraph.
 Multiple adjacent @param commands will be joined into a single paragraph. Each parameter description will start on a new line. The @paramdescription ends when a blank line or some other sectioning command is encountered.
@@ -250,52 +238,52 @@ void setPosition(double x,double y,double z,double t)
 }
 ```
 
-<br/>
 
 #### @pre
-Usage: @pre { description of the precondition }<br/><br/>
+Usage: @pre { description of the precondition }
+
 Starts a paragraph where the precondition of an entity can be described. The paragraph will be indented. The text of the paragraph has no special internal structure. All visual enhancement commands may be used inside the paragraph. Multiple adjacent @pre commands will be joined into a single paragraph. Each precondition will start on a new line. Alternatively, one @pre command may mention several preconditions. The @pre command ends when a blank line or some other sectioning command is encountered.
 
-<br/>
 
 #### @ref
-Usage: @ref \<name\> ["(text)"]<br/><br/>
+Usage: @ref \<name\> ["(text)"]
+
 Creates a reference to a named section, subsection, page or anchor. For HTML documentation the reference command will generate a link to the section. For a section or subsection the title of the section will be used as the text of the link. For an anchor the optional text between quotes will be used or \<name\> if no text is specified. For documentation the reference command will generate a section number for sections or the text followed by a page number if \<name\> refers to an anchor.
 
-<br/>
 
 #### @return
-Usage: @return { description of the return value }<br/><br/>
+Usage: @return { description of the return value }
+
 Starts a return value description for a function. The text of the paragraph has no special internal structure. All visual enhancement commands may be used inside the paragraph. Multiple adjacent @return commands will be joined into a single paragraph. The @return description ends when a blank line or some other sectioning command is encountered.
 
-<br/>
 
 #### @section
-Usage: @section \<section-name\> (section title)<br/><br/>
+Usage: @section \<section-name\> (section title)
+
 Creates a section with name \<section-name\>. The title of the section should be specified as the second argument of the @section command. This command only works inside related page documentation and not in other documentation blocks!
 
-<br/>
 
 #### @see
-Usage: @see { references }<br/><br/>
+Usage: @see { references }
+
 Starts a paragraph where one or more cross-references to classes, functions, methods, variables, files or URL may be specified. Two names joined by either :: or # are understood as referring to a class and one of its members. One of several overloaded methods or constructors may be selected by including a parenthesized list of argument types after the method name.
 Equivalent to @sa.
 
-<br/>
 
 #### @subsection
-Usage: @subsection \<subsection-name\> (subsection title)<br/><br/>
+Usage: @subsection \<subsection-name\> (subsection title)
+
 Creates a subsection with name \<subsection-name\>. The title of the subsection should be specified as the second argument of the @subsection command. This command only works inside a section of a related page documentation block and not in other documentation blocks!
 
-<br/>
 
 #### @throws
-Usage: @throws \<exception-object\> { exception description }<br/><br/>
+Usage: @throws \<exception-object\> { exception description }
+
 Starts an exception description for an exception object with name \<exception-object\>. Followed by a description of the exception. The existence of the exception object is not checked. The text of the paragraph has no special internal structure. All visual enhancement commands may be used inside the paragraph. Multiple adjacent @throws commands will be joined into a single paragraph. Each exception description will start on a new line. The @throws description ends when a blank line or some other sectioning command is encountered. Equivalent to @throw.
 
-<br/>
 
 #### @tparam
-Usage: @tparam \<template-parameter-name\> { description }<br/><br/>
+Usage: @tparam \<template-parameter-name\> { description }
+
 Starts a template parameter for a class or function template parameter with name \<template-parameter-name\>, followed by a description of the template parameter.
 Otherwise similar to @param.
