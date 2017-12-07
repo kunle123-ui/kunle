@@ -76,8 +76,8 @@ You're golden, before you begin first you'll need your account name and EOS publ
     - Find your account name(s) assigned in genesis by entering the ETH address or EOS Public Key you believe is included in the snapshot into the [Account Name Lookup](https://eosio.github.io/genesis/tools/account-name/index.html) tool
     - If your address is not included in the snapshot, [apply for a faucet account](https://goo.gl/forms/ileHa9h6E7MLLgey1)
 - Get your EOS public key ready
-    - If you're in the snapshot, this is the EOS public key you registered
-    - If you applied for testnet, this is the EOS public key you submitted in the faucet account application
+    - _If you're in the snapshot,_ your EOS Public Key is the key you registered with the EOSCrowdsale contract
+    - _If you applied for an account through the faucet,_ your EOS public key is the key you submitted in the faucet account application
 
 Once you have your account name, you can choose how you would like to interact with EOS. 
 
