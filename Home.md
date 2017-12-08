@@ -77,4 +77,4 @@ Welcome to the EOS.IO wiki. This resource is intended as a guide for developers 
   * Software
   * Guides
 - [Command Reference](Command%20Reference)
-- [Doxygen Guidelines](Doxygen-Guidelines.md)
+- [Doxygen Guidelines](Doxygen%20Guidelines)
