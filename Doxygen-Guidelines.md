@@ -53,7 +53,8 @@ So to generate or update the EOS documentation from command line, navigate to th
 doxygen build/eos.doxygen
 ```
 If you don't have build/eos.doxygen, you will need to build EOS first. Check this [guide](Local-Environment#2-building-eos) for the steps.
-After the above command is executed, you will be able to find the updated documents at build/docs/html
+
+After the above command is executed, you will be able to find the updated documents inside `build/docs/html`
 
 
 ## How to view the EOS documentation
