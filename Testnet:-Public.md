@@ -68,7 +68,7 @@ $ eosc -H ${http_endpoint} -p 80 ${options} --wallet-host ${wallet_endpoint} --w
 
 # Accounts on Testnet
 
-You're golden, before you begin first you'll need your account name and EOS public key handy.
+Before you begin first you'll need your account name and EOS public key handy.
 
 - Discover your account name
     - Find your account name(s) assigned in genesis by entering the ETH address or EOS Public Key you believe is included in the snapshot into the [Account Name Lookup](https://eosio.github.io/genesis/tools/account-name/index.html) tool
