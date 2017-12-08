@@ -47,11 +47,12 @@ https://www.stack.nl/~dimitri/doxygen/manual/config.html
 
 For the EOS repository the configuration file is situated in the root directory of the repository (eos.doxygen).
 
-So to generate or update the EOS documentation from command line, navigate to the root folder of the EOS repository and trigger the document generation as follows
+So to generate or update the EOS documentation from command line, navigate to the build folder of the EOS repository and trigger the document generation as follows
 
 ```
 doxygen eos.doxygen
 ```
+If you can't see build folder in your EOS repo, you need to build EOS first. Check this [guide](Local-Environment#2-building-eos) for the steps.
 
 
 ## How to view the EOS documentation
