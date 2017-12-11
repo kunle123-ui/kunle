@@ -29,10 +29,6 @@ The following is the list of currently available Public Testnets:
     - HTTP Endpoint: testnet1.eos.io
     - P2P Endpoint: t1p2pXX.eos.io where XX is ranging from 01-21
     - Web Wallet Endpoint: t1wallet.eos.io, t1api.eos.io, t1readonly.eos.io
-- Testnet2
-    - HTTP Endpoint: testnet2.eos.io
-    - P2P Endpoint: t2p2pXX.eos.io where XX is ranging from 01-21
-    - Web Wallet Endpoint: t2wallet.eos.io, t2api.eos.io, t2readonly.eos.io
 
 You can test the connection using `curl`
 ```bash
