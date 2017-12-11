@@ -101,14 +101,16 @@ Positionals:
 This will connect you to your local node
 
 ```
-$ eosc -H localhost -p 8889
+$ eosc -H localhost -p 8889 <subcommand>
 ```
 
-You can also adjust the node param to connect to a different node, e.g. the public testnet
+You can also adjust the node params to connect to a different node, e.g. the public testnet
 
 ```
-$ eosc -H test1.eos.io -p 80
+$ eosc -H test1.eos.io -p 80 <subcommand>
 ```
+
+**Note** You need to include the `-H` and `-p` arguments with each request to `eosc` 
 
 ### Query blockchain state
 
