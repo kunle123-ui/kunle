@@ -24,17 +24,13 @@ There are several differences between the Public Testnet and the public Mainnet.
 The Testnet consists of block-producing nodes and non-producing nodes. 
 
 ## Public Testnet Endpoints
-There are currently two Public Testnets.
+The following is the list of currently available Public Testnets:
 - Testnet1
     - HTTP Endpoint: testnet1.eos.io
     - P2P Endpoint: t1p2pXX.eos.io where XX is ranging from 01-21
     - Web Wallet Endpoint: t1wallet.eos.io, t1api.eos.io, t1readonly.eos.io
-- Testnet2
-    - HTTP Endpoint: testnet2.eos.io
-    - P2P Endpoint: t2p2pXX.eos.io where XX is ranging from 01-21
-    - Web Wallet Endpoint: t2wallet.eos.io, t2api.eos.io, t2readonly.eos.io
 
-You can test the connection either using `curl`
+You can test the connection using `curl`
 ```bash
 $ curl testnet1.eos.io/v1/chain/get_info
 ```
