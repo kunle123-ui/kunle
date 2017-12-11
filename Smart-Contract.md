@@ -1081,7 +1081,7 @@ As mentioned in the tutorial above, deploying a contract onto the blockchain can
 
 Use the following command to:
 - deploy a new contract, and
-- update an existing contract (Q:what happens to the data in the contract?)
+- update an existing contract 
 ```base
 $ eosc set contract ${account} ${contract}.wast ${contract}.abi
 ```
