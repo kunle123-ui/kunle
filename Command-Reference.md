@@ -34,7 +34,7 @@
 | Skip signatures | $ eosd --skip-transaction-signatures | [View](#skip-signatures) |
 
 
-## wallet-d command
+## eos-wallets command
 
 | Action | Syntax | Example |
 |--|--|--|
