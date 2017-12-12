@@ -9,7 +9,7 @@ An **account** is human readable identifier that is stored on the blockchain. Ev
 
 ## 1. Wallets
 
-Wallets are clients that store keys that may or may not be associated to the permissions of one or more accounts. Ideally a wallet has a locked (encrypted) and unlocked (decrypted) state that is protected by a highly entropied password. The EOSIO/eos repository comes bundled with a command line interface client called `eosc` which contains as part of its functionality the native EOS wallet.
+Wallets are clients that store keys that may or may not be associated to the permissions of one or more accounts. Ideally a wallet has a locked (encrypted) and unlocked (decrypted) state that is protected by a highly entropied password. The EOSIO/eos repository comes bundled with a command line interface client called `eosc` that includes a wallet as part of its functionality. 
 
 ## 2. Accounts
 
