@@ -132,7 +132,7 @@ Wallets:
 
 Interesting, where did the wallet go?
 
-Wallets first need to be opened, and because you shut down `eosd`, the wallet wasn't open. Run the following commands.
+Wallets first need to be opened, and because you shut down `eos-walletd`, the wallet wasn't open. Run the following commands.
 
 ```bash
 $ eosc wallet open
