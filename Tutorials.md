@@ -30,7 +30,7 @@ This tutorial is for users who want to interface with the public testnet. It wil
 
 #### Open your terminal and change to the directory where EOS was built
 
-This will make it easier for us to interact with `eosc`, which is a command line interface for interacting with `eosd`. 
+This will make it easier for us to interact with `eosc`, which is a command line interface for interacting with `eosd` and `eos-walletd`. 
 
 ```bash
 $ cd /path_to_eos/build/programs/eosc
