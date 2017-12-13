@@ -17,7 +17,7 @@ You'll learn how to create and manage wallets, their keys and then use this wall
 
 #### Who this Tutorial is For
 
-This tutorial is for users who want to interface with the public testnet. It will attempt to teach you as much about `eosc` and how wallets and accounts on EOS interact with each other. Advanced users may be better suited to check out the **Reference guide:** [eos-walletd](CLI%20Wallet)
+This tutorial is for users who want to interface with the public testnet. It will attempt to teach you as much about `eosc` and how wallets and accounts on EOS interact with each other. Advanced users may be better suited to check out the **[Command Reference](Command%20Reference)**
 
 #### Prerequisites
 
