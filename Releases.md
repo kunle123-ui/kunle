@@ -2,7 +2,7 @@
 |-------------------------------|-------------|-------------|----------------------|
 | Dawn v1.0.0 (dawn-v1.0.0)     | 2017 Sep 14 | 6294dea [1] | First beta release   |
 | Dawn v2.0.0 (dawn-v2.0.0)     | 2017 Dec 4  | 9703495     | Second beta release  |
-|  (STAT-2017-12-12) | 2017 Dec 13 | 00db493     | reverts primary genesis.json|
+|  (STAT-2017-12-12) | 2017 Dec 12 | 00db493     | reverts primary genesis.json|
 |  (STAT-2017-12-13) | 2017 Dec 13 | 941fa2f     | connect via remote **`eosd`** |
 
 
