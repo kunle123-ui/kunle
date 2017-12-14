@@ -37,12 +37,10 @@ $ curl testnet1.eos.io/v1/chain/get_info
 
 ## Connecting Local EOSD with Public Testnet
 
-**NOTE:** Testnet is not yet configured to be connected to with `eosd`. 
-
 In order to connect your local eosd to the public testnet, ensure your machine's clock is accurate and you need to modify your `config.ini` as the following:
 - Add `p2p-peer-address` field with one of the valid public testnet p2p endpoint
 ```
-p2p-peer-address = ${p2p_endpoint}
+p2p-peer-address = p2p-testnet1.eos.io
 ```
 - Modify `block-interval-seconds` to match the testnet, which is 2. Otherwise, your local eosd node won't be able to sync with the public testnet.
 ```
