@@ -27,7 +27,7 @@ The Testnet consists of block-producing nodes and non-producing nodes.
 The following is the list of currently available Public Testnets:
 - Testnet1
     - HTTP Endpoint: testnet1.eos.io
-    - P2P Endpoint:  p2p-testnet1.eos.io
+    - P2P Endpoint:  p2p-testnet1.eos.io:9876
     - Web Wallet Endpoint: t1wallet.eos.io, t1api.eos.io, t1readonly.eos.io
 
 You can test the connection using `curl`
