@@ -92,5 +92,5 @@ Once you have your account name, you can choose how you would like to interact w
 1. You'll need the `eos-walletd` and `eosc` binary from recent `eosd` build, see [Local Environment](https://github.com/EOSIO/eos/wiki/Local-Environment)
 2. Connect to [Public Testnet](https://github.com/EOSIO/eos/wiki/Testnet:-Public)
 3. [Import your private key to the wallet](https://github.com/EOSIO/eos/wiki/Command%20Reference#import-key-to-wallet) with `eosc` 
-4. Learn how to use `eosc` by either figuring it out yourself with the [command reference](https://github.com/EOSIO/eos/wiki/Command-Reference) or be guided through the process with a [tutorial](https://github.com/EOSIO/eos/wiki/Tutorials#1-accounts--wallets). The choice is yours. 
+4. Learn how to use `eosc` by either figuring it out yourself with the [command reference](https://github.com/EOSIO/eos/wiki/Command-Reference) or be guided through the process with a [tutorial](https://github.com/EOSIO/eos/wiki/Tutorials#1-accounts--wallets).
 
