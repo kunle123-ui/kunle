@@ -28,7 +28,7 @@
 
 **C / C++ Experience**
 
-EOS.IO based blockchains execute user generated applications and code using [Web Assembly](http://webassembly.org/) (WASM). WASM is an emerging web standard with widespread support of Google, Microsoft, Apple, and others. At the moment the most mature toolchain for building applications that compile to WASM is clang/llvm with their C/C++ compiler.
+EOS.IO based blockchains execute user-generated applications and code using [Web Assembly](http://webassembly.org/) (WASM). WASM is an emerging web standard with widespread support of Google, Microsoft, Apple, and others. At the moment the most mature toolchain for building applications that compile to WASM is clang/llvm with their C/C++ compiler.
 
 Other toolchains in development by 3rd parties include: Rust, Python, and Solidiity. While these other languages may appear simpler, their performance will likely impact the scale of application you can build. We expect that C++ will be the best language for developing high-performance and secure smart contacts.
 
@@ -40,7 +40,7 @@ The EOS.IO software only officially supports the following environment
 
 **Command Line Knowledge**
 
-There are a varity of tools provided along with EOS.IO which requires you to have basic command line knowledge in order to interact with.
+There are a variety of tools provided along with EOS.IO which requires you to have basic command line knowledge in order to interact with.
 
 
 ### 1.2. Basics of EOS Smart Contract
@@ -111,7 +111,7 @@ A message represents a single operation, whereas a transaction is a collection o
 
 **Message Name Restrictions**
 
-Message types are actually **base32 encoded 64 bit integers**. This means they are limited to the characters a-z, 1-5, and '.' for the first 12 charcters. If there is a 13th character then it is restricted to the first 16 characters ('.' and a-p).
+Message types are actually **base32 encoded 64-bit integers**. This means they are limited to the characters a-z, 1-5, and '.' for the first 12 characters. If there is a 13th character then it is restricted to the first 16 characters ('.' and a-p).
 
 **Transaction Confirmation**
 
@@ -123,8 +123,8 @@ By means of confirmation, you should see the transaction in transaction history 
 ### 1.3. Technical Limitation
 
 - **No floating point.** Contracts will not accept floating point operation since it is a non-deterministic behavior at CPU level which could lead to unintended forks.
-- **Transaction to be executed within 1 ms**. Execution time of a transaciton needs to be **less than or equal to 1 ms** or the transction will fail.
-- **Maximum 30 tps**. The public testnet at the moment is setup in the way that each account is limited to publish maximum 30 transactions per second. 
+- **Transaction to be executed within 1 ms**. Execution time of a transaction needs to be **less than or equal to 1 ms** or the transaction will fail.
+- **Maximum 30 tps**. The public testnet at the moment is set up in the way that each account is limited to publish maximum 30 transactions per second. 
 
 
 ## 2 Smart Contract Files 
@@ -142,13 +142,13 @@ ${contract}.abi ${contract}.hpp ${contract}.cpp
 
 ### 2.1. HPP
 
-HPP is the header file that contain the variables, constants and functions referenced by the CPP file.
+HPP is the header file that contain the variables, constants, and functions referenced by the CPP file.
 
 ### 2.2. CPP
 
 The CPP file is the source file that contains the functions of the contract. 
 
-If you generate the CPP file using the eoscpp tool, the generated cpp file would looks similar to the following:
+If you generate the CPP file using the eoscpp tool, the generated cpp file would look similar to the following:
 ```base
 #include <${contract}.hpp>
 
@@ -177,7 +177,7 @@ In there you can see there are 2 functions being created, `init` and `apply`. Al
 
 **init**
 
-The `init` function will only be executed once at initial deployment. It is used for initialize contract variables, e.g. the number of token supply for a currency contract.
+The `init` function will only be executed once at initial deployment. It is used for initializing contract variables, e.g. the number of token supply for a currency contract.
 
 **apply**
 
@@ -186,7 +186,7 @@ The `apply` function requires two input parameters, `code` and `action`.
 
 **code filter**
 
-In order to response to a particular message, you can structure your `apply` function as the following, you may also construct response to general messages by omitting the code filter.
+In order to respond to a particular message, you can structure your `apply` function as the following. You may also construct response to general messages by omitting the code filter.
 ```base
 if (code == N(${contract_name}) {
     //your handler to response to particular message
@@ -197,10 +197,10 @@ Within that you can also define response to respective actions.
 
 **action filter**
 
-To response to particular action, you can structure your `apply` function as the following as the following. This is normally used in conjuction with the code filter.
+To respond to a particular action, you can structure your `apply` function as the following as the following. This is normally used in conjuction with the code filter.
 ```base
 if (action == N(${action_name}) {
-    //your handler to response to particular action
+    //your handler to respond to a particular action
 }
 ```
 
@@ -216,7 +216,7 @@ $ eoscpp -o ${contract}.wast ${contract}.cpp
 
 ### 2.4. ABI
 
-The  Application Binary Interface (ABI) is a JSON-based description on how to convert user actions between their JSON and Binary representations. The ABI also describes how to convert the database state to/from JSON. Once you have described your contract via an ABI then developers and users will be able to interact with your contract seemlessly via JSON.
+The  Application Binary Interface (ABI) is a JSON-based description on how to convert user actions between their JSON and Binary representations. The ABI also describes how to convert the database state to/from JSON. Once you have described your contract via an ABI then developers and users will be able to interact with your contract seamlessly via JSON.
 
 The ABI file can be generated from the HPP files using the `eoscpp` tool:
 ```base
@@ -278,7 +278,7 @@ You will notice that this ABI defines an action `transfer` of type `transfer`. T
     },{
 ...
 ```
-It has several fields, including `from`, `to` and `quantity`. These fields have the coresponding types `account_name`, and `uint64`. `account_name` is a built in type used to represent base32 string as uint64. To see more about what built in types are available check [here](https://github.com/EOSIO/eos/blob/b2af4daa8acb64bbb341fd85f7e8a2cd54fa4de4/libraries/types/abi_serializer.cpp).
+It has several fields, including `from`, `to` and `quantity`. These fields have the corresponding types `account_name`, and `uint64`. `account_name` is a built-in type used to represent base32 string as uint64. To see more about what built-in types are available, check [here](https://github.com/EOSIO/eos/blob/b2af4daa8acb64bbb341fd85f7e8a2cd54fa4de4/libraries/types/abi_serializer.cpp).
 ```base
 {
   "types": [{
@@ -288,16 +288,16 @@ It has several fields, including `from`, `to` and `quantity`. These fields have 
   ],
 ...
 ```
-Inside the above `types` array we define list of alias for existing type. Here, we define `name` as alias of `account_name`.
+Inside the above `types` array we define a list of alias for existing type. Here, we define `name` as an alias of `account_name`.
 
 
 ## 3. Checklist
 
 Before getting started with an EOS Smart Contract be sure to do all the following:
 
-**Build the latest built**
+**Build the latest build**
 
-Make sure you have the latest built in your enviornment, you will need that in order to access `eoscpp` and `eosc`, the tools that are necessary for you to get started. Instructions on getting the latest built can be found in the [Environment](https://github.com/EOSIO/eos/wiki/Local-Environment) section.
+Make sure you have the latest build in your environment, you will need that in order to access `eoscpp` and `eosc`, the tools that are necessary for you to get started. Instructions on getting the latest built can be found in the [Environment](https://github.com/EOSIO/eos/wiki/Local-Environment) section.
 
 Once you have the latest eosio/eos code installed, make sure that ${CMAKE_INSTALL_PREFIX}/bin is in your path, or you will have to install it by running the following command.
 
@@ -320,7 +320,7 @@ $ eosc -H ${node_ip} -p ${port_num}
 
 **Create a wallet and have access to an account**
 
-In order to deploy a contract to the blockchain you will need an account created on the EOS.IO blockchain. Every contract requires an associated account. 
+In order to deploy a contract to the blockchain, you will need an account created on the EOS.IO blockchain. Every contract requires an associated account. 
 
 If you hold EOS Tokens already you should have an account on the public testnet. If you need to create a new account for testing, please follow the instructions below:
 
@@ -340,7 +340,7 @@ In order to interact with these sample contracts, you will need to first complet
 
 **Deploying the sample contract**
 
-The example currency contracts can be found [here](https://github.com/EOSIO/eos/tree/master/contracts/currency), if you have downloaded the EOSIO repository, you should be able to find it in your local drive.
+The example currency contracts can be found [here](https://github.com/EOSIO/eos/tree/master/contracts/currency), if you have downloaded the EOSIO repository, you should be able to find it on your local drive.
 
 The folder contains the .abi, .cpp and .hpp files, you will need to generate the .wast file before you can deploy the contract.
 ```base
@@ -418,10 +418,10 @@ $ cat currency.abi
 ```
 
 **Observations**
-- The contract accepts an action called `transfer` that accepts message with fields `from`, `to`, and `quantity`
-- There is a table `account`, that stores the data
+- The contract accepts an action called `transfer` that accepts a message with fields `from`, `to`, and `quantity`
+- There is a table named `account`, that stores the data
 
-Now that we have find out there are the transfer action and the account table that we can use to check the balance, we can use `eosc` to interact with them.
+Now that we have found a transfer action and the account table that we can use to check the balance, we can use `eosc` to interact with them.
 
 **Read account balance**
 
@@ -449,7 +449,7 @@ $ eosc push message currency transfer '{"from":"${account_a}","to":"${account_b}
 
 We specify the `--scope` argument to give the currency contract read/write permission to those users so it can modify their balances. In a future release scope will be automatically determined.
 
-As a confirmation of a successfully submitted transaction you will receive json output that includes a `transaction_id` field.
+As a confirmation of a successfully submitted transaction, you will receive JSON output that includes a `transaction_id` field.
 ```base
 1589302ms thread-0   currency.cpp:271  operator()  ] Converting argument to binary...
 1589304ms thread-0   currency.cpp:290  operator()  ] Transaction result:
@@ -502,7 +502,7 @@ The folder contains the .abi, .cpp and .hpp files, you will need to generate the
 $ eoscpp -o tic_tac_toe.wast tic_tac_toe.cpp
 ```
 
-Once you have successfully generated the .wast file, you can use the `set contract` command to deploy. For this example, we are going to deploy it on account `tic.tac.toe`. Note that the EOS.IO blockchain only support base32 char for the account name that's why, underscore is replaced with '.'. If you are going to deploy it to other account beside `tic.tac.toe`, replace any occurence of `tic.tac.toe` in the .hpp, .cpp, and .abi with your account name.
+Once you have successfully generated the .wast file, you can use the `set contract` command to deploy. For this example, we are going to deploy it on account `tic.tac.toe`. Note that the EOS.IO blockchain only supports base32 char for the account name that's why, underscore is replaced with '.'. If you are going to deploy it to other account beside `tic.tac.toe`, replace any occurrence of `tic.tac.toe` in the .hpp, .cpp, and .abi with your account name.
 ```base
 $ eosc set contract tic.tac.toe tic_tac_toe.wast tic_tac_toe.abi
 Reading WAST...
@@ -653,7 +653,7 @@ In this section, we will be building a **hello world** contract step by step.
 
 Before you begin, you will need to first complete all items on the [checklist](#3-checklist) above.
 
-**Lets begin**
+**Let's begin**
 First, we use `eoscpp` to generate the skeleton of the smart contract. This will create a new empty project in the **hello** folder with the abi, hpp and cpp file.
 
 ```base
@@ -673,7 +673,7 @@ We should now generate the .wast from this cpp file.
 $ eoscpp -o hello.wast hello.cpp
 ```
 
-Now that you have the .wast and .abi files, you can deply your contract to the blockchain.
+Now that you have the .wast and .abi files, you can deploy your contract to the blockchain.
 
 Assuming your wallet is unlocked and has keys for `${account}`, you can now upload this contract to the blockchain with the following command:
 
@@ -740,12 +740,12 @@ You will notice the lines "Init World!" are executed 3 times. This isn't a mista
 3rd : eosd pushes the generated block as if it is received it from the network
 - prints "Init World!" a third time
 
-At this point your contract is ready to start receiving messages. Since the default message handler accepts all messages we can send it anything we want. Let's try sending it an empty message:
+At this point, your contract is ready to start receiving messages. Since the default message handler accepts all messages we can send it anything we want. Let's try sending it an empty message:
 ```base
 $ eosc push message ${account} hello '"abcd"' --scope ${account}
 ```
 
-This command will send the message "hello" with binary data represented by the hex string "abcd". Note, in a bit we will show how to define the ABI so that you can replace the hex string with a pretty, easy-to-read, JSON object. For now we merely want to demonstrate how the message type "hello" is dispatched to account.
+This command will send the message "hello" with binary data represented by the hex string "abcd". Note, in a bit, we will show how to define the ABI so that you can replace the hex string with a pretty, easy-to-read, JSON object. For now, we merely want to demonstrate how the message type "hello" is dispatched to account.
 
 The result is:
 ```base
@@ -774,7 +774,7 @@ The result is:
   }
 }
 ```
-If you are following along in eosd then you should have seen the following scroll by the screen:
+If you are following along in eosd, then you should have seen the following scroll by the screen:
 ```base
 Hello World: ${account}->hello
 Hello World: ${account}->hello
@@ -954,7 +954,7 @@ Transfer 50 from currency to inita
 ```
 **Using C++ API to Read Messages**
 
-So far we used the C API because it is the lowest level API that is directly exposed by EOS.IO to the WASM virtual machine. Fortunately, eoslib provides a higher level API that removes much of the boiler plate.
+So far we used the C API because it is the lowest level API that is directly exposed by EOS.IO to the WASM virtual machine. Fortunately, eoslib provides a higher level API that removes much of the boilerplate.
 ```base
 /// eoslib/message.hpp
 namespace eosio {
@@ -1002,7 +1002,7 @@ After compiling and uploading it you should get the same results as the C versio
 
 **Requiring Sender Authority to Transfer**
 
-One of the most common requirements of any contract is to define who is allowed to perform the action. In the case of a curency transfer, we want require that the account defined by the `from` parameter signs off on the message.
+One of the most common requirements of any contract is to define who is allowed to perform the action. In the case of a currency transfer, we want to require that the account defined by the `from` parameter signs off on the message.
 
 The EOS.IO software will take care of enforcing and validating the signatures, all you need to do is require the necessary authority.
 ```base
@@ -1077,7 +1077,7 @@ Now that you have completed the Hello World tutorial, you are ready to write you
 
 ## 6. Deploy and update Smart Contract
 
-As mentioned in the tutorial above, deploying a contract onto the blockchain can simply be done by using the `set contract` command, where the `set contract` command do not only upload but also update an existing contract, but only if you have permission to do so. 
+As mentioned in the tutorial above, deploying a contract onto the blockchain can simply be done by using the `set contract` command. In addition, the `set contract` command _will also update an existing contract_, if you have permission to do so. 
 
 Use the following command to:
 - deploy a new contract, and
@@ -1123,16 +1123,16 @@ The main method used to debug smart contract is **Caveman Debugging**, where we 
 Print C API supports the following data type that you can print:
 - prints - a null terminated char array (string)
 - prints_l - any char array (string) with given size
-- printi - 64 bit unsigned integer
-- printi128 - 128 bit unsigned integer
-- printd - double encoded as 64 bit unsigned integer
-- printn - base32 string encoded as 64 bit unsigned integer
+- printi - 64-bit unsigned integer
+- printi128 - 128-bit unsigned integer
+- printd - double encoded as 64-bit unsigned integer
+- printn - base32 string encoded as 64-bit unsigned integer
 - printhex - hex given binary of data and its size 
 
 While Print C++ API wraps some of the above C API by overriding the print() function so user doesn't need to determine which specific print function he needs to use. Print C++ API supports
 - a null terminated char array (string)
-- integer (128 bit unsigned, 64 bit unsigned, 32 bit unsigned, signed, unsigned)
-- base32 string encoded as 64 bit unsigned integer
+- integer (128-bit unsigned, 64-bit unsigned, 32-bit unsigned, signed, unsigned)
+- base32 string encoded as 64-bit unsigned integer
 - struct that has print() method
 
 ### 8.3. Example
