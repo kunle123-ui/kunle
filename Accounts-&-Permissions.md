@@ -81,6 +81,5 @@ Also notice in the above table, we've permissions using both an **account name**
 **Observations**
 
 - @bob and @stacy can be explicitly identified as the owners of this account
-- A third party can remained relatively anonymous in the context of the example **@multisig** account, assuming this key is not permissioned to any another account on the blockchain.
 - @bob and @stacy have elevated priviledges for the the **publish** permissions. 
 
