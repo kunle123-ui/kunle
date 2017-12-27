@@ -5,15 +5,15 @@
   * [4.1 Default Account Configuration (Single-Sig)](#41-default-account-configuration-single-sig)
   * [4.2 Multi-sig Account & Custom Permissions](#42-multi-sig-account--custom-permissions)
 
-An **account** is human readable identifier that is stored on the blockchain. Every transaction has it's permissions evaluated under the configured authority of an account. Each named permission has a threshold that must be met for a transactions signed under that authority to be considered valid. Transactions are signed by utilizing a **client** that has a loaded and unlocked wallet. A wallet is software that protects and makes use of your keys. These keys may or maybe not be permissioned to an account authority on the blockchain.
+An **account** is a human-readable identifier that is stored on the blockchain. Every transaction has its permissions evaluated under the configured authority of an account. Each named permission has a threshold that must be met for a transaction signed under that authority to be considered valid. Transactions are signed by utilizing a **client** that has a loaded and unlocked wallet. A wallet is software that protects and makes use of your keys. These keys may or maybe not be permissioned to an account authority on the blockchain.
 
 ## 1. Wallets
 
-Wallets are clients that store keys that may or may not be associated to the permissions of one or more accounts. Ideally a wallet has a locked (encrypted) and unlocked (decrypted) state that is protected by a highly entropied password. The EOSIO/eos repository comes bundled with a command line interface client called `eosc` that includes a wallet as part of its functionality. 
+Wallets are clients that store keys that may or may not be associated with the permissions of one or more accounts. Ideally a wallet has a locked (encrypted) and unlocked (decrypted) state that is protected by a high entropy password. The EOSIO/eos repository comes bundled with a command line interface client called `eosc` that includes a wallet as part of its functionality. 
 
 ## 2. Accounts
 
-An account is a human readable name that is stored on the blockchain. It can be owned by an individual or group of individuals depending on permissions configuration. An account is required to transfer or otherwise push a transaction to the blockchain. 
+An account is a human-readable name that is stored on the blockchain. It can be owned by an individual or group of individuals depending on permissions configuration. An account is required to transfer or otherwise push a transaction to the blockchain. 
 
 ## 3. Authorities and Permissions
 
@@ -22,7 +22,7 @@ Authorities determine whether or not any given message is properly authorized.
 Every account has two _native_ named permissions
 
 - `owner` authority symbolizes ownership of an account. There are only a few transactions that require this authority, but most notably, are messages that make any kind of change to the owner authority. Generally, it is suggested that owner is kept in cold storage and not shared with anyone. `owner` can be used to recover another permission that may have been compromised.
-- `active` authority is used for transferring funds, voting for producers and making other high level account changes. 
+- `active` authority is used for transferring funds, voting for producers and making other high-level account changes. 
 
 In addition to the _native_ permissions, an account can possess custom named permissions that are available to further extend account management. Custom permissions are incredibly flexible and address numerous possible use cases when implemented. Much of this is up to the developer community in how they are employed, and what conventions if any, are adopted.
 
@@ -51,7 +51,7 @@ To push a transaction under the owner authority, only **@bob** needs to sign the
 
 ### 4.2 Multi-sig Account & Custom Permissions
 
-The below example are authorities for a fictional account named `@multisig`. In this scenario, two users are authoritized to both the `owner` and `active` permissions of a fictional `@multisig` account, with three users permissioned to a custom `publish` permission with varying weight. 
+The below examples are authorities for a fictional account named `@multisig`. In this scenario, two users are authoritized to both the `owner` and `active` permissions of a fictional `@multisig` account, with three users permissioned to a custom `publish` permission with varying weight. 
 
 #### __*@multisig account authorities*__
 
@@ -76,10 +76,10 @@ There's also a third *custom named permission* called *publish*. For the sake of
 
 Thus the above permissions table implies that **@bob** and **@stacy**, as owners of the account, have _elevated priviledges_ similar to a moderator or editor. While this primitive example has limitations particularly with scalability and is not necessarily a good design, it does adequately demonstrate the flexible nature of the EOS permissions system.
 
-Also notice in the above table, we've permissions using both an **account name** and a **key**. At first glance this may seem trivial, however it does suggest some added dimensions of flexibility. 
+Also, notice in the above table, we've permissions using both an **account name** and a **key**. At first glance this may seem trivial, however it does suggest some added dimensions of flexibility. 
 
 **Observations**
 
 - @bob and @stacy can be explicitly identified as the owners of this account
-- @bob and @stacy have elevated priviledges for the the **publish** permissions. 
+- @bob and @stacy have elevated privileges for the the **publish** permissions. 
 
