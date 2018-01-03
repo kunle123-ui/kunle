@@ -37,15 +37,50 @@ $ curl testnet1.eos.io/v1/chain/get_info
 
 ## Connecting Local EOSD with Public Testnet
 
-In order to connect your local eosd to the public testnet, ensure your machine's clock is accurate and you need to modify your `config.ini` as the following:
-- Add `p2p-peer-address` field with one of the valid public testnet p2p endpoint
+## Running a local node connected to the public testnet
+
+To run a local node connected to the public testnet operated by block.one, a script is provided.
+
+```bash
+cd ~/eos/build/scripts
+./start_npnode.sh
 ```
-p2p-peer-address = p2p-testnet1.eos.io:9876
+
+This command will use the data folder provided for the instance called `testnet_np`.
+
+You should see the following response:
+
+```bash
+Launched eosd.
+See testnet_np/stderr.txt for eosd output.
+Synching requires at least 8 minutes, depending on network conditions.
 ```
-- Modify `block-interval-seconds` to match the testnet, which is 2. Otherwise, your local eosd node won't be able to sync with the public testnet.
+
+To confirm eosd operation and synchronization:
+
+```bash
+tail -F testnet_np/stderr.txt
 ```
-block-interval-seconds = 2
+
+To exit tail, use Ctrl-C.  During synchronization, you will see log messages similar to:
+
+
+```bash
+3439731ms            chain_plugin.cpp:272          accept_block         ] Syncing Blockchain --- Got block: #200000 time: 2017-12-09T07:56:32 producer: initu
+3454532ms            chain_plugin.cpp:272          accept_block         ] Syncing Blockchain --- Got block: #210000 time: 2017-12-09T13:29:52 producer: initc
 ```
+
+Synchronization is complete when you see log messages similar to:
+
+```bash
+42467ms            net_plugin.cpp:1245           start_sync           ] Catching up with chain, our last req is 351734, theirs is 351962 peer ip-10-160-11-116:9876
+42792ms            chain_controller.cpp:208      _push_block          ] initt #351947 @2017-12-12T22:59:44  | 0 trx, 0 pending, exectime_ms=0
+42793ms            chain_controller.cpp:208      _push_block          ] inito #351948 @2017-12-12T22:59:46  | 0 trx, 0 pending, exectime_ms=0
+42793ms            chain_controller.cpp:208      _push_block          ] initd #351949 @2017-12-12T22:59:48  | 0 trx, 0 pending, exectime_ms=0
+```
+
+This eosd instance listens on 127.0.0.1:8888 for http requests, on all interfaces at port 9877
+for p2p requests, and includes the wallet plugins.
 
 ## Connecting Local EOSC with Public Testnet
 
