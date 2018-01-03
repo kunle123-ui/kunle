@@ -2,7 +2,7 @@
 * [Differences between Testnet and Mainnet](#differences-between-testnet-and-mainnet)
 * [Nodes](#nodes)
 * [Public Testnet Endpoints](#public-testnet-endpoints)
-* [Connecting Local EOSD with Public Testnet](#connecting-local-eosd-with-public-testnet)
+* [Connecting Local EOSD with Public Testnet](#connecting-local-eosd-node-with-public-testnet)
 * [Connecting Local EOSC with Public Testnet](#connecting-local-eosc-with-public-testnet)
 * [Testnet Accounts](#accounts-on-testnet)
 * [External Links](#external-links)
