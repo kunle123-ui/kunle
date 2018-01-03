@@ -549,7 +549,7 @@ Publishing contract...
 
 We can query the blockchain for the .abi of the contract, on which we can check the list of available actions and their respective message structure
 ```
-$ eosc get code --a currency.abi currency
+$ eosc get code -a currency.abi currency
 code hash: 9b9db1a7940503a88535517049e64467a6e8f4e9e03af15e9968ec89dd794975
 saving abi to currency.abi
 $ cat currency.abi
@@ -599,7 +599,7 @@ A message should be contract according to the contract ABI.
 
 For example, the ABI of the currency contract is contructed as follow.
 ```
-$ eosc get code --a currency.abi currency
+$ eosc get code -a currency.abi currency
 code hash: 9b9db1a7940503a88535517049e64467a6e8f4e9e03af15e9968ec89dd794975
 saving abi to currency.abi
 $ cat currency.abi
@@ -700,7 +700,7 @@ Depending on the table structure defines in the contract, you can query the data
 
 For example, the currency contract ABI contains the account table.
 ```
-$ eosc get code --a currency.abi currency
+$ eosc get code -a currency.abi currency
 code hash: 9b9db1a7940503a88535517049e64467a6e8f4e9e03af15e9968ec89dd794975
 saving abi to currency.abi
 $ cat currency.abi
