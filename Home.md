@@ -58,7 +58,7 @@ Welcome to the EOS.IO wiki. This resource is intended as a guide for developers 
   * [Currency Contract Walkthrough](Tutorials#2-currency-contract-walkthrough)
   * [Smart Contract "Hello World"](Tutorials#3-smart-contract-hello-world)
   * [Tic-Tac-Toe](Tutorials#4-tic-tac-toe)
-- [Testnet: Private](Testnet%3A%20Private)
+- [Testnet: Multi-node Local (Private)](Testnet%3A%20Multinode%20Local)
   * [Testnet Nodes, Networks, and Topology](Testnet%3A%20Private#testnet-nodes-networks-and-topology)
   * [Localhost Networks](Testnet%3A%20Private#localhost-networks)
   * [Network Topology](Testnet%3A%20Private#network-topology)
