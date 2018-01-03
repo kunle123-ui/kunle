@@ -35,9 +35,7 @@ You can test the connection using `curl`
 $ curl testnet1.eos.io/v1/chain/get_info
 ```
 
-## Connecting Local EOSD with Public Testnet
-
-## Running a local node connected to the public testnet
+## Connecting Local EOSD node with Public Testnet
 
 To run a local node connected to the public testnet operated by block.one, a script is provided.
 
