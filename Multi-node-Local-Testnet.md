@@ -1,3 +1,33 @@
+To run a local testnet you can use a `launcher` application provided in `~/eos/build/programs/launcher` folder.
+
+For testing purposes you will run 2 local production nodes talking to each other.
+
+```bash
+cd ~/eos/build
+cp ../genesis.json ./
+./programs/launcher/launcher -p2 --skip-signature
+```
+
+This command will generate 2 data folders for each instance of the node: `tn_data_0` and `tn_data_1`.
+
+You should see the following response:
+
+```bash
+spawning child, programs/eosd/eosd --skip-transaction-signatures --data-dir tn_data_0
+spawning child, programs/eosd/eosd --skip-transaction-signatures --data-dir tn_data_1
+```
+
+To confirm the nodes are running, run following `eosc` commands:
+```bash
+~/eos/build/programs/eosc
+./eosc -p 8888 get info
+./eosc -p 8889 get info
+```
+
+For each command you should get a json with blockchain information.
+
+# More about the Launcher 
+
 To date, all work done to experiment with the EOS blockchain has been performed using a single instance of eosd hosting all 21 block producers. While this is a perfectly valid solution for validating features of the blockchain, developing new contracts, or whatever, it does not scale. Nor does it expose the sort of issues raised when contract and block data must be shared across multiple instances. Providing the ability to scale involves deploying multiple eosd nodes across many hosts and lining then into a peer-to-peer (p2p) network. Composing this network involves tailoring and distributing configuration files, coordinating starts and stops and other tasks.
 
 Doing this manually is a tedious task and easily error prone. Fortunately a solution is provided, in the form of the Launcher application, described below.
