@@ -81,5 +81,5 @@ Also, notice in the above table, permissions are set using both an **account nam
 **Observations**
 
 - @bob and @stacy can be explicitly identified as the owners of this account
-- @bob and @stacy have elevated privileges for the the **publish** permissions. 
-- The public key cannot push a message under "publish" authority without an additional signature from @bob or @stacy, while @bob and @stacy can push a message under "publish" authority without any additional signatures. 
+- The public key cannot push a message under **publish** authority without an additional signature from @bob or @stacy
+- @bob and @stacy can push a message under **publis** authority without any additional signatures. 
