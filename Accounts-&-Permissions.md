@@ -76,7 +76,7 @@ There's also a third *custom named permission* called *publish*. For the sake of
 
 Thus the above permissions table implies that **@bob** and **@stacy**, as owners of the account, have _elevated priviledges_ similar to a moderator or editor. While this primitive example has limitations particularly with scalability and is not necessarily a good design, it does adequately demonstrate the flexible nature of the EOS permissions system.
 
-Also, notice in the above table, we've permissions using both an **account name** and a **key**. At first glance this may seem trivial, however it does suggest some added dimensions of flexibility. 
+Also, notice in the above table, permissions are set using both an **account name** and a **key**. At first glance this may seem trivial, however it does suggest some added dimensions of flexibility. 
 
 **Observations**
 
