@@ -82,4 +82,4 @@ Also, notice in the above table, permissions are set using both an **account nam
 
 - @bob and @stacy can be explicitly identified as the owners of this account
 - The public key cannot push a message under **publish** authority without an additional signature from @bob or @stacy
-- @bob and @stacy can push a message under **publis** authority without any additional signatures. 
+- @bob and @stacy can push a message under **publish** authority without any additional signatures. 
