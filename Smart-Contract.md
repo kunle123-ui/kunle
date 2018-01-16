@@ -30,7 +30,7 @@
 
 EOS.IO based blockchains execute user-generated applications and code using [Web Assembly](http://webassembly.org/) (WASM). WASM is an emerging web standard with widespread support of Google, Microsoft, Apple, and others. At the moment the most mature toolchain for building applications that compile to WASM is clang/llvm with their C/C++ compiler.
 
-Other toolchains in development by 3rd parties include: Rust, Python, and Solidiity. While these other languages may appear simpler, their performance will likely impact the scale of application you can build. We expect that C++ will be the best language for developing high-performance and secure smart contacts.
+Other toolchains in development by 3rd parties include: Rust, Python, and Solidity. While these other languages may appear simpler, their performance will likely impact the scale of application you can build. We expect that C++ will be the best language for developing high-performance and secure smart contracts.
 
 **Linux / Mac OS Experience**
 
