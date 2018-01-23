@@ -7,7 +7,7 @@
 | DAO             |                | Decentralized Autonomous Organization. |
 | DPoS            |                | Delegated Proof of Stake. Also, "Democracy as Proof of Stake." DPoS is one of a collection of consensus algorithms, i.e. methods by which block producers can agree (reach consensus) on which transactions and which blocks are "real" and should be confirmed and treated as irreversible. |
 | Key pair		  | keys		   | A public key and its corresponding private key |
-| larimer         |                | 1/1000 of an EOS (token) `0.0001 EOS` |
+| larimer         |                | 1/10000 of an EOS (token) `0.0001 EOS` |
 | Master Password | 			   | The password used to to unlock (decrypt) a wallet file |
 | Message         | Msg            | A change to the Blockchain. One or more messages make up a Transaction. |   
 | Oracle          |                | "An oracle, in the context of blockchains and smart contracts, is an agent that finds and verifies real-world occurrences and submits this information to a blockchain to be used by smart contracts." *[Source](https://blockchainhub.net/blockchain-oracles/)* |
