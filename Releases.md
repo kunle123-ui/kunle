@@ -2,13 +2,13 @@
 |-------------------------------|-------------|-------------|----------------------|
 | Dawn v1.0.0 (dawn-v1.0.0)     | 2017 Sep 14 | 6294dea [1] | First beta release   |
 | Dawn v2.0.0 (dawn-v2.0.0)     | 2017 Dec 4  | 9703495     | Second beta release  |
-|  (STAT-2017-12-12)            | 2017 Dec 12 | 00db493  | reverts primary genesis.json|
-|  (STAT-2017-12-13)            | 2017 Dec 13 | 941fa2f  | connect via remote **`eosd`** |
-|  (STAT-2017-12-21)            | 2017 Dec 21 | 233ba4e  | p2p stability and other fixes |
-|  (DAWN-2018-01-05)            | 2018 Jan 5 | 2cc40a4  | Stability release |
-|  (DAWN-2018-01-09-ALPHA)            | 2018 Jan 9 | ede87e6  | Stability release |
-|  (DAWN-2018-01-18-ALPHA)            | 2018 Jan 18 | 466b4ce  | Stability release |
-|  (DAWN-2018-01-23-ALPHA)            | 2018 Jan 23 | 26eecaa  | local eosd network updates |
+| STAT-2017-12-12            | 2017 Dec 12 | 00db493  | reverts primary genesis.json|
+| STAT-2017-12-13            | 2017 Dec 13 | 941fa2f  | connect via remote **`eosd`** |
+| STAT-2017-12-21            | 2017 Dec 21 | 233ba4e  | p2p stability and other fixes |
+| DAWN-2018-01-05            | 2018 Jan 5 | 2cc40a4  | Stability release |
+| DAWN-2018-01-09-ALPHA            | 2018 Jan 9 | ede87e6  | Stability release |
+| DAWN-2018-01-18-ALPHA            | 2018 Jan 18 | 466b4ce  | Stability release |
+| DAWN-2018-01-23-ALPHA            | 2018 Jan 23 | 26eecaa  | local eosd network updates |
 
 [1] This release is not self-identifying
 
