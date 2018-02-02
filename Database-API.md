@@ -138,7 +138,8 @@ the number of bytes read or -1 if key was not found
 
 *Parameters*
 
- - data	- must point to at least 8 bytes containing primary key
+- scope	- the account scope that will be read, must exist in the transaction scopes list
+- table	- the ID/name of the table within the current scope/code context to delete
 
 *Returns*
 
