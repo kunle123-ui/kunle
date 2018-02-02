@@ -139,7 +139,7 @@ the number of bytes read or -1 if key was not found
 *Parameters*
 
 - scope	- the account scope that will be read, must exist in the transaction scopes list
-- table	- the ID/name of the table within the current scope/code context to delete
+- table	- the ID/name of the table within the current scope/code context to remove
 
 *Returns*
 
