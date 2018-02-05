@@ -9,6 +9,7 @@
 | DAWN-2018-01-09-ALPHA            | 2018 Jan 9 | ede87e6  | Stability release |
 | DAWN-2018-01-18-ALPHA            | 2018 Jan 18 | 466b4ce  | Stability release |
 | DAWN-2018-01-23-ALPHA            | 2018 Jan 23 | 26eecaa  | local eosd network updates |
+| DAWN-2018-01-31-ALPHA            | 2018 Jan 23 | d75c30e  | DAWN3.0 pre-release, single node only |
 
 [1] This release is not self-identifying
 
