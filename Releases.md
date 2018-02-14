@@ -5,11 +5,13 @@
 | STAT-2017-12-12            | 2017 Dec 12 | 00db493  | reverts primary genesis.json|
 | STAT-2017-12-13            | 2017 Dec 13 | 941fa2f  | connect via remote **`eosd`** |
 | STAT-2017-12-21            | 2017 Dec 21 | 233ba4e  | p2p stability and other fixes |
-| DAWN-2018-01-05            | 2018 Jan 5 | 2cc40a4  | Stability release |
-| DAWN-2018-01-09-ALPHA            | 2018 Jan 9 | ede87e6  | Stability release |
-| DAWN-2018-01-18-ALPHA            | 2018 Jan 18 | 466b4ce  | Stability release |
-| DAWN-2018-01-23-ALPHA            | 2018 Jan 23 | 26eecaa  | local eosd network updates |
+| DAWN-2018-01-05            | 2018 Jan 5 | 2cc40a4  | Stability release for DAWN2.x |
+| DAWN-2018-01-09-ALPHA            | 2018 Jan 9 | ede87e6  | Stability release for DAWN2.x |
+| DAWN-2018-01-18-ALPHA            | 2018 Jan 18 | 466b4ce  | Stability release for DAWN2.x |
+| DAWN-2018-01-23-ALPHA            | 2018 Jan 23 | 26eecaa  | local eosd network updates for DAWN2.x |
 | DAWN-2018-01-31-ALPHA            | 2018 Jan 23 | d75c30e  | DAWN3.0 pre-release, single node only |
+| DAWN-2018-02-02           | 2018 Feb 14 | 6992cf4  | Stability release for DAWN2.x |
+| DAWN-2018-02-14           | 2018 Feb 14 | bcb5bf7  | Stability release for DAWN2.x |
 
 [1] This release is not self-identifying
 
