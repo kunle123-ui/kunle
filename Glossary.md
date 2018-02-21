@@ -18,6 +18,7 @@
 | Permission      |				   | A weighted security mechanism that determines whether or not a message is properly authorized by evaluating its signature(s) authority |
 | Private Key	  |    			   | A secret key used to sign transactions | 
 | Public Key	  | pub key		   | A publicly available key that is transmitted alongside a transaction |
+| Scope | | Scope is a region of data within a contract. Contracts can only write to regions in their own contracts but they can read from any contract's regions. Proper scoping allows transactions to run in parallel for the same contract because they do not write to the same regions. Scope is not conflated with an account name, but contracts can use the same value for both for convenience. |
 | Smart Contract  |                | A smart contract is a computer protocol intended to facilitate, verify, or enforce the negotiation or performance of a contract. |
 | Standby Pool | | A set of about 100 full nodes that have expressed the desire to be selected as block producers, and are capable of doing so on demand. Whenever the chain needs to replace an existing BP with a new one, the new one is drawn from the standby pool. |
 | Transaction     | Tx, Txn        | A complete all-or-nothing change to the Blockchain. A combination of one or more Messages. Usually, the execution of a Smart Contract.
