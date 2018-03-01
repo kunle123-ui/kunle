@@ -197,7 +197,7 @@ Within that you can also define response to respective actions.
 
 **action filter**
 
-To respond to a particular action, you can structure your `apply` function as the following as the following. This is normally used in conjuction with the code filter.
+To respond to a particular action, you can structure your `apply` like so. This is normally used in conjuction with the code filter.
 ```base
 if (action == N(${action_name}) {
     //your handler to respond to a particular action
