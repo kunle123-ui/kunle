@@ -17,11 +17,11 @@ An account is a human-readable name that is stored on the blockchain. It can be 
 
 ## 3. Authorities and Permissions
 
-Authorities determine whether or not any given message is properly authorized. 
+Authorities determine whether or not any given action is properly authorized. 
 
 Every account has two _native_ named permissions
 
-- `owner` authority symbolizes ownership of an account. There are only a few transactions that require this authority, but most notably, are messages that make any kind of change to the owner authority. Generally, it is suggested that owner is kept in cold storage and not shared with anyone. `owner` can be used to recover another permission that may have been compromised.
+- `owner` authority symbolizes ownership of an account. There are only a few transactions that require this authority, but most notably, are actions that make any kind of change to the owner authority. Generally, it is suggested that owner is kept in cold storage and not shared with anyone. `owner` can be used to recover another permission that may have been compromised.
 - `active` authority is used for transferring funds, voting for producers and making other high-level account changes. 
 
 In addition to the _native_ permissions, an account can possess custom named permissions that are available to further extend account management. Custom permissions are incredibly flexible and address numerous possible use cases when implemented. Much of this is up to the developer community in how they are employed, and what conventions if any, are adopted.
@@ -34,7 +34,7 @@ Below is the combination of all the above concepts and some loose examples of ho
 
 ### 4.1 Default Account Configuration (Single-Sig)
 
-This is how an account is configured after it has been created, it has a single key for both the **owner** and **active** permissions, both keys with a weight of **1** and permissions both with a threshold of **1**. The default configuration requires a single signature to authorize a message for the native permissions.
+This is how an account is configured after it has been created, it has a single key for both the **owner** and **active** permissions, both keys with a weight of **1** and permissions both with a threshold of **1**. The default configuration requires a single signature to authorize a action for the native permissions.
 
 #### __*@bob account authorities*__
 
@@ -70,9 +70,9 @@ The below examples are authorities for a fictional account named `@multisig`. In
 
 In this scenario, a weight threshold of 2 is required to make changes to the `owner` permission level, which means that because all parties have a weight of **1**, all users are required to sign the transaction for it to be fully authorized. 
 
-To send a transaction which requires the *active* authority, the threshold is set to **1**. This implies that only 1 signature is required authorize a message from the *active* authority of the account. 
+To send a transaction which requires the *active* authority, the threshold is set to **1**. This implies that only 1 signature is required authorize a action from the *active* authority of the account. 
 
-There's also a third *custom named permission* called *publish*. For the sake of this example, the *publish* permission is used to publish posts to the @multisig's blog using a theoretical blog dApp. The *publish* permission has a threshold of **2**, **@bob** and **@stacy** both have a weight of *2*, and a **public key** has a weight of **1**. This implies that both **@bob** and **@stacy** can publish without an additional signature, whereas the **public key** requires an additional signature in order for a message under the public permission to be authorized. 
+There's also a third *custom named permission* called *publish*. For the sake of this example, the *publish* permission is used to publish posts to the @multisig's blog using a theoretical blog dApp. The *publish* permission has a threshold of **2**, **@bob** and **@stacy** both have a weight of *2*, and a **public key** has a weight of **1**. This implies that both **@bob** and **@stacy** can publish without an additional signature, whereas the **public key** requires an additional signature in order for a action under the public permission to be authorized. 
 
 Thus the above permissions table implies that **@bob** and **@stacy**, as owners of the account, have _elevated priviledges_ similar to a moderator or editor. While this primitive example has limitations particularly with scalability and is not necessarily a good design, it does adequately demonstrate the flexible nature of the EOS permissions system.
 
@@ -81,5 +81,5 @@ Also, notice in the above table, permissions are set using both an **account nam
 **Observations**
 
 - @bob and @stacy can be explicitly identified as the owners of this account
-- The public key cannot push a message under **publish** authority without an additional signature from @bob or @stacy
-- @bob and @stacy can push a message under **publish** authority without any additional signatures. 
+- The public key cannot push a action under **publish** authority without an additional signature from @bob or @stacy
+- @bob and @stacy can push a action under **publish** authority without any additional signatures. 
