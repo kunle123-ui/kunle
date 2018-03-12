@@ -66,7 +66,7 @@ The below examples are authorities for a fictional account named `@multisig`. In
 | publish    |                                                       |        | 2         |
 |            | @bob                                                  | 2      |           |
 |            | @stacy 	                                              | 2      |           |
-|            | EOS7Hnv4iBWo1pcEpP8JyFYCJLRUzYcXSqtQBcEnysYDFTEbUpi6y | 1      |           |
+|            | EOS7Hnv4iBWo1pcEpP8JyFYCJLRUzYcXSqt...                | 1      |           |
 
 In this scenario, a weight threshold of 2 is required to make changes to the `owner` permission level, which means that because all parties have a weight of **1**, all users are required to sign the transaction for it to be fully authorized. 
 
