@@ -13,15 +13,15 @@
 
 #### What you'll learn
 
-You'll learn how to create and manage wallets, their keys and then use this wallet to interact with the blockchain through `eosc`.
+You'll learn how to create and manage wallets, their keys and then use this wallet to interact with the blockchain through `cleos`.
 
 #### Who this Tutorial is For
 
-This tutorial is for users who want to learn about wallet and account management. It will attempt to teach you as much about `eosc` and how wallets and accounts on EOS interact with each other. Advanced users may be better suited to check out the **[Command Reference](Command%20Reference)**
+This tutorial is for users who want to learn about wallet and account management. It will attempt to teach you as much about `cleos` and how wallets and accounts on EOS interact with each other. Advanced users may be better suited to check out the **[Command Reference](Command%20Reference)**
 
 #### Prerequisites
 
-- Built and running copy of `eosc` and `eos-walletd` on your system.
+- Built and running copy of `cleos` and `eos-walletd` on your system.
 - Basic understanding of command line interface. 
 
 **Note:** Instructions require slight modification when applied to a docker installation. 
@@ -30,16 +30,16 @@ This tutorial is for users who want to learn about wallet and account management
 
 #### Open your terminal and change to the directory where EOS was built
 
-This will make it easier for us to interact with `eosc`, which is a command line interface for interacting with `eosd` and `eos-walletd`. 
+This will make it easier for us to interact with `cleos`, which is a command line interface for interacting with `eosd` and `eos-walletd`. 
 
 ```bash
-$ cd /path_to_eos/build/programs/eosc
+$ cd /path_to_eos/build/programs/cleos
 ```
 
-The first thing you'll need to do is create a wallet; use the `wallet create` command of `eosc`
+The first thing you'll need to do is create a wallet; use the `wallet create` command of `cleos`
 
 ```bash
-$ eosc wallet create
+$ cleos wallet create
 Creating wallet: default
 Save password to use in the future to unlock this wallet.
 Without password imported keys will not be retrievable.
@@ -52,10 +52,10 @@ The file for this wallet is named `default.wallet` and is located in the `data-d
 
 #### Managing Multiple Wallets and Wallet Names
 
-`eosc` is capable of managing multiple wallets. Each individual wallet is protected by different wallet master passwords. The example below creates another wallet and demonstrates how to name it by using the `-n` argument.
+`cleos` is capable of managing multiple wallets. Each individual wallet is protected by different wallet master passwords. The example below creates another wallet and demonstrates how to name it by using the `-n` argument.
 
 ```bash
-$ eosc wallet create -n periwinkle
+$ cleos wallet create -n periwinkle
 Creating wallet: periwinkle
 Save password to use in the future to unlock this wallet.
 Without password imported keys will not be retrievable.
@@ -65,7 +65,7 @@ Without password imported keys will not be retrievable.
 Now confirm that the wallet was created with your chosen name.
 
 ```bash
-$ eosc wallet list
+$ cleos wallet list
 Wallets:
 [
   "default *",
@@ -78,14 +78,14 @@ It's important to notice the asterisk (*) after each listed wallet, which means 
 Lock that second wallet using `wallet lock`
 
 ```bash
-$ eosc wallet lock -n periwinkle
+$ cleos wallet lock -n periwinkle
 Locked: 'periwinkle'
 ```
 
 Upon running `wallet list` again, you will see that the asterisk is gone, meaning that the wallet is now locked.
 
 ```bash
-$ eosc wallet list
+$ cleos wallet list
 Wallets:
 [
   "default *",
@@ -96,10 +96,10 @@ Wallets:
 Unlocking a named wallet entails calling `wallet unlock` with an `-n` parameter followed by the name of the wallet and then entering the wallet's master password in the password prompt (yes, you can paste the password). Go ahead and grab the master key for the second wallet you created, execute the command below and when the _password_ prompt appears, paste and press _enter_. You'll be presented with a confirmation.
 
 ```bash
-$ eosc wallet unlock -n periwinkle
+$ cleos wallet unlock -n periwinkle
 ```
 
-eosc will let you know that the wallet was unlocked
+cleos will let you know that the wallet was unlocked
 
 ```bash
 Unlocked: 'periwinkle'
@@ -110,7 +110,7 @@ _**Note:** You can also use a `--password` argument followed by the master passw
 Now check your progress
 
 ```bash
-$ eosc wallet list
+$ cleos wallet list
 Wallets:
 [
   "default *",
@@ -122,10 +122,10 @@ Wonderful, the _periwinkle_ wallet is followed by an asterisk, so it is now unlo
 
 _**Note:** Interacting with the 'default' wallet using the wallet command does not require the `-n` parameter_
 
-Restart `eos-walletd` now, and then go back to where you were calling `eosc` and run the following command
+Restart `eos-walletd` now, and then go back to where you were calling `cleos` and run the following command
 
 ```bash
-$ eosc wallet list
+$ cleos wallet list
 Wallets:
 []
 ```
@@ -135,8 +135,8 @@ Interesting, where did the wallet go?
 Wallets first need to be opened, and because you shut down `eos-walletd`, the wallet wasn't open. Run the following commands.
 
 ```bash
-$ eosc wallet open
-$ eosc wallet list
+$ cleos wallet open
+$ cleos wallet list
 Wallets:
 [
   "default"
@@ -145,20 +145,20 @@ Wallets:
 
 That's better. 
 
-_**Note:** If you wanted to open a named wallet, you would run `$ eosc wallet open -n periwinkle`, see a pattern forming? ;)_
+_**Note:** If you wanted to open a named wallet, you would run `$ cleos wallet open -n periwinkle`, see a pattern forming? ;)_
 
 You'll notice in the last response that the default wallet is locked by default. Unlock it now, you'll need it in the subsequent steps. 
 
 Run the `wallet unlock` command and paste your _default_ wallet's master password when the password prompt appears.
 
 ```bash
-$ eosc wallet unlock
+$ cleos wallet unlock
 Unlocked: 'default'
 ```
 Go ahead and check that the wallet is unlocked
 
 ```bash
-$ eosc wallet list
+$ cleos wallet list
 Wallets:
 [
   "default *"
@@ -166,19 +166,19 @@ Wallets:
 ```
 The wallet is accompanied by an asterisk, so it's unlocked. Excellent. 
 
-You've learned how to create multiple wallets, and interact with them in `eosc`. But an empty wallet doesn't do you much good, time to import some keys. 
+You've learned how to create multiple wallets, and interact with them in `cleos`. But an empty wallet doesn't do you much good, time to import some keys. 
 
 ### 1.2 Generating and Importing EOS Keys
 
-There are several ways to generate an EOS key pair, but this tutorial will focus on `create key` command in `eosc`
+There are several ways to generate an EOS key pair, but this tutorial will focus on `create key` command in `cleos`
 
 Generate two keypairs
 
 ```bash
-$ eosc create key
+$ cleos create key
 Private key:###
 Public key: ###
-$ eosc create key
+$ cleos create key
 Private key:###
 Public key: ###
 ```
@@ -190,27 +190,27 @@ If you followed all of the previous steps, your _default_ wallet should be open 
 In this next step, we execute `wallet import` twice, one for each *private key* that were generated earlier. You now need to import these to your `default` wallet.
 
 ```bash
-$ eosc wallet import ${private_key_1}
+$ cleos wallet import ${private_key_1}
 ```
 And then again with the second private key
 
 ```bash
-$ eosc wallet import ${private_key_2}
+$ cleos wallet import ${private_key_2}
 ```
 
 If successful, each time `wallet import` command responds with the public key corresponding to your private key, your console should look something like..
 
 ```bash
-$ eosc wallet import ${private_key_1}
+$ cleos wallet import ${private_key_1}
 imported private key for: ${public_key_1}
-$ eosc wallet import ${private_key_2}
+$ cleos wallet import ${private_key_2}
 imported private key for: ${public_key_2}
 ```
 
 We can check which keys are loaded by calling `wallet keys`
 
 ```bash
-$ eosc wallet keys
+$ cleos wallet keys
 [[
     "EOS6....",
     "5KQwr..."
@@ -244,7 +244,7 @@ Once in the directory you will the two files, `default.wallet` and `periwinkle.w
 First let's *examine* the `create account` command and its positional arguments.
 
 ```bash
-$ eosc create account inita ${desired_account_name} ${public_key_1} ${public_key_2}
+$ cleos create account inita ${desired_account_name} ${public_key_1} ${public_key_2}
 ```
 
 **Breakdown of the positional arguments for `create account` command**
@@ -256,7 +256,7 @@ $ eosc create account inita ${desired_account_name} ${public_key_1} ${public_key
 You generated two keypairs previously, you can either scroll up in your console, as you executed this command only moments ago, or execute `wallet keys` if you disdain scrolling or have cleared your screen
 
 ```bash
-$ eosc wallet keys
+$ cleos wallet keys
 [[
     "EOS6....",
     "5KQwr..."
@@ -275,14 +275,14 @@ _Reminder,_ your owner key equates to full control of your account, whereas your
 With all you've just learned, replace the placeholders in the following command and press enter. 
 
 ```bash
-$ eosc create account inita ${desired_account_name} ${public_key_1} ${public_key_2}
+$ cleos create account inita ${desired_account_name} ${public_key_1} ${public_key_2}
 ```
 Did you recieve an error mentioning "authorities" somewhere? Don't fret, I put you through that intentionally. The reason you got an error, is that you do not have the **@inita**  account keys loaded. Sorry about that, couldn't resist. 
 
 **inita's** keys are included in `config.ini` but for your convenience I've went ahead and grabbed the key and provided it below. Just execute the provided command, maybe that makes up for forcing you through an error?
 
 ```bash
-$ eosc wallet import 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3
+$ cleos wallet import 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3
 ```
 it will respond with 
 
@@ -292,7 +292,7 @@ imported private key for: EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV
 
 Now that the **@inita** account's keys are loaded, execute the `create account` command you crafted before I baited you into a trap, and press enter. 
 
-If all goes well, `eosc` will return a json object with a transaction ID, similar to the following
+If all goes well, `cleos` will return a json object with a transaction ID, similar to the following
 
 ```
 {
@@ -668,13 +668,13 @@ rounding up the ABI file.
 Now all the three files (currency.hpp, currency.cpp, currency.abi) can
 be deployed from command line:
 ~~~~
-$ eosc set contract currency currency.wast currency.abi
+$ cleos set contract currency currency.wast currency.abi
 ~~~~
 Make sure that the wallet is unlocked and contains the currency key.
 After the deployment the contracts action can be triggered from command
 line in the following way:
 ~~~~
-$ eosc push message currency transfer ‘{“from”:“currency”,“to”:“tester”,“quantity”:50}’ -S currency -S tester -p currency@active
+$ cleos push message currency transfer ‘{“from”:“currency”,“to”:“tester”,“quantity”:50}’ -S currency -S tester -p currency@active
 ~~~~
 
 ## 3. Smart Contract “Hello World”
@@ -741,7 +741,7 @@ Now that you have compiled your application it is time to deploy it. This will r
 Assuming your wallet is unlocked and has keys for `${account}`, you can now upload this contract to the blockchain with the following command:
 
 ```bash
-$ eosc set contract ${account} hello.wast hello.abi
+$ cleos set contract ${account} hello.wast hello.abi
 Reading WAST...
 Assembling WASM...
 Publishing contract...
@@ -807,7 +807,7 @@ At this point your contract is ready to start receiving messages. Since the defa
 anything we want. Let's try sending it an empty message:
 
 ```bash
-$ eosc push message ${account} hello '"abcd"' --scope ${account}
+$ cleos push message ${account} hello '"abcd"' --scope ${account}
 ```
 
 This command will send the message "hello" with binary data represented by the hex string "abcd". Note, in a bit we will show how to define the ABI so that
@@ -943,7 +943,7 @@ the `types` array to `name`, which is a built in type used to encode a uint64_t 
 Now that we have reviewed the ABI defined by the skeleton, we can construct a message call for `transfer`:
 
 ```bash
-eosc push message ${account} transfer '{"from":"currency","to":"inita","quantity":50}' --scope initc
+cleos push message ${account} transfer '{"from":"currency","to":"inita","quantity":50}' --scope initc
 2570494ms thread-0   main.cpp:797                  operator()           ] Converting argument to binary...
 {
   "transaction_id": "b191eb8bff3002757839f204ffc310f1bfe5ba1872a64dda3fc42bfc2c8ed688",
@@ -1056,7 +1056,7 @@ Then we can recompile and deploy it with:
 
 ```bash
 eoscpp -o hello.wast hello.cpp 
-eosc set contract ${account} hello.wast hello.abi
+cleos set contract ${account} hello.wast hello.abi
 ```
 
 `eosd` will call init() again because of the redeploy
@@ -1070,7 +1070,7 @@ Init World!
 Then we can execute transfer:
 
 ```bash
-$ eosc push message ${account} transfer '{"from":"currency","to":"inita","quantity":50}' --scope ${account}
+$ cleos push message ${account} transfer '{"from":"currency","to":"inita","quantity":50}' --scope ${account}
 {
   "transaction_id": "a777539b7d5f752fb40e6f2d019b65b5401be8bf91c8036440661506875ba1c0",
   "processed": {
@@ -1188,7 +1188,7 @@ The EOS.IO software will take care of enforcing and validating the signatures, a
 After building and deploying we can attempt to transfer again:
 
 ```bash
- eosc push message ${account} transfer '{"from":"initb","to":"inita","quantity":50}' --scope ${account}
+ cleos push message ${account} transfer '{"from":"initb","to":"inita","quantity":50}' --scope ${account}
  1881603ms thread-0   main.cpp:797                  operator()           ] Converting argument to binary...
  1881630ms thread-0   main.cpp:851                  main                 ] Failed with error: 10 assert_exception: Assert Exception
  status_code == 200: Error
@@ -1208,10 +1208,10 @@ Hello World: initc->transfer
 
 This shows that it attempted to apply your transaction, printed the initial "Hello World" and then aborted when `eosio::require_auth` failed to find authorization of account `initb`.
 
-We can fix that by telling `eosc` to add the required permission:
+We can fix that by telling `cleos` to add the required permission:
 
 ```bash
- eosc push message ${account} transfer '{"from":"initb","to":"inita","quantity":50}' --scope ${account} --permission initb@active
+ cleos push message ${account} transfer '{"from":"initb","to":"inita","quantity":50}' --scope ${account} --permission initb@active
 ```
 
 The `--permission` command defines the account and permission level, in this case we use the `active` authority which is the default.
@@ -1240,8 +1240,8 @@ We can now compile, deploy, and attempt to execute a transfer of 0:
 
 ```bash
  $ eoscpp -o hello.wast hello.cpp
- $ eosc set contract ${account} hello.wast hello.abi
- $ eosc push message ${account} transfer '{"from":"initb","to":"inita","quantity":0}' --scope initc --permission initb@active
+ $ cleos set contract ${account} hello.wast hello.abi
+ $ cleos push message ${account} transfer '{"from":"initb","to":"inita","quantity":0}' --scope initc --permission initb@active
  3071182ms thread-0   main.cpp:851                  main                 ] Failed with error: 10 assert_exception: Assert Exception
  status_code == 200: Error
  : 10 assert_exception: Assert Exception
@@ -1279,8 +1279,8 @@ User will have the following actions to interact with this contract:
 #### Contract account
 For the following guide, we are going to push the contract to an account called `tic.tac.toe`. In case `tic.tac.toe` account name is already taken, you can also use another account by replacing any occurence of `tic.tac.toe` in the code with your account name. If you haven't create the account, please create the account first.
 ```bash
-$ eosc create account ${creator_name} ${contract_account_name} ${contract_pub_owner_key} ${contract_pub_active_key} --permission ${creator_name}@active
-# e.g. $ eosc create account inita tic.tac.toe  EOS4toFS3YXEQCkuuw1aqDLrtHim86Gz9u3hBdcBw5KNPZcursVHq EOS7d9A3uLe6As66jzN8j44TXJUqJSK3bFjjEEqR4oTvNAB3iM9SA --permission inita@active
+$ cleos create account ${creator_name} ${contract_account_name} ${contract_pub_owner_key} ${contract_pub_active_key} --permission ${creator_name}@active
+# e.g. $ cleos create account inita tic.tac.toe  EOS4toFS3YXEQCkuuw1aqDLrtHim86Gz9u3hBdcBw5KNPZcursVHq EOS7d9A3uLe6As66jzN8j44TXJUqJSK3bFjjEEqR4oTvNAB3iM9SA --permission inita@active
 ```
 Ensure that you have your wallet unlocked and the creator's private active key in the wallet imported, otherwise the above command will fail.
 
@@ -1830,7 +1830,7 @@ For the actions, we define the actions inside `actions` and the structure of the
 ### Deploy!
 Now all the three files (tic_tac_toe.hpp, tic_tac_toe.cpp, tic_tac_toe.abi) are ready. Time to deploy!
 ```bash
-$ eosc set contract tic.tac.toe tic_tac_toe.wast tic_tac_toe.abi
+$ cleos set contract tic.tac.toe tic_tac_toe.wast tic_tac_toe.abi
 ```
 Ensure that your wallet is unlocked and you have `tic.tac.toe` key imported. If you are going to upload the contract to another account beside `tic.tac.toe`, replace `tic.tac.toe` with your account name and ensure you have the key for that account in your wallet
 
@@ -1839,24 +1839,24 @@ After the deployment and the transaction is confirmed, the contract is already a
 
 #### Create
 ```bash
-$ eosc push message tic.tac.toe create '{"challenger":"inita", "host":"initb"}' -S initb -S tic.tac.toe -p initb@active 
+$ cleos push message tic.tac.toe create '{"challenger":"inita", "host":"initb"}' -S initb -S tic.tac.toe -p initb@active 
 ```
 #### Move
 ```bash
-$ eosc push message tic.tac.toe move '{"challenger":"inita", "host":"initb", "by":"initb", "movement":{"row":0, "column":0} }' -S initb -S tic.tac.toe -p initb@active 
-$ eosc push message tic.tac.toe move '{"challenger":"inita", "host":"initb", "by":"inita", "movement":{"row":1, "column":1} }' -S initb -S tic.tac.toe -p inita@active 
+$ cleos push message tic.tac.toe move '{"challenger":"inita", "host":"initb", "by":"initb", "movement":{"row":0, "column":0} }' -S initb -S tic.tac.toe -p initb@active 
+$ cleos push message tic.tac.toe move '{"challenger":"inita", "host":"initb", "by":"inita", "movement":{"row":1, "column":1} }' -S initb -S tic.tac.toe -p inita@active 
 ```
 #### Restart
 ```bash
-$ eosc push message tic.tac.toe restart '{"challenger":"inita", "host":"initb", "by":"initb"}' -S initb -S tic.tac.toe -p initb@active 
+$ cleos push message tic.tac.toe restart '{"challenger":"inita", "host":"initb", "by":"initb"}' -S initb -S tic.tac.toe -p initb@active 
 ```
 #### Close
 ```bash
-$ eosc push message tic.tac.toe close '{"challenger":"inita", "host":"initb"}' -S initb -S tic.tac.toe -p initb@active
+$ cleos push message tic.tac.toe close '{"challenger":"inita", "host":"initb"}' -S initb -S tic.tac.toe -p initb@active
 ```
 #### See the game status
 ```
-$ eosc get table initb tic.tac.toe games
+$ cleos get table initb tic.tac.toe games
 {
   "rows": [{
       "challenger": "inita",
