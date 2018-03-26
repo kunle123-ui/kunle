@@ -297,7 +297,7 @@ Before getting started with an EOS Smart Contract be sure to do all the followin
 
 **Build the latest build**
 
-Make sure you have the latest build in your environment, you will need that in order to access `eoscpp` and `eosc`, the tools that are necessary for you to get started. Instructions on getting the latest built can be found in the [Environment](https://github.com/EOSIO/eos/wiki/Local-Environment) section.
+Make sure you have the latest build in your environment, you will need that in order to access `eoscpp` and `cleos`, the tools that are necessary for you to get started. Instructions on getting the latest built can be found in the [Environment](https://github.com/EOSIO/eos/wiki/Local-Environment) section.
 
 Once you have the latest eosio/eos code installed, make sure that ${CMAKE_INSTALL_PREFIX}/bin is in your path, or you will have to install it by running the following command.
 
@@ -311,7 +311,7 @@ make install
 You can connect to a node using the command
 
 ```base
-$ eosc -H ${node_ip} -p ${port_num}
+$ cleos -H ${node_ip} -p ${port_num}
 ```
 
 *node_ip* can be a private node's IP of you can connect to the public testnet using public nodes ip [here](Testnet%3A%20Public#nodes).
@@ -349,7 +349,7 @@ $ eoscpp -o currency.wast currency.cpp
 
 Once you have successfully generated the .wast file, you can use the `set contract` command to deploy.
 ```base
-$ eosc set contract ${contract_account_name} ../contracts/currency.wast ../contracts/currency.abi
+$ cleos set contract ${contract_account_name} ../contracts/currency.wast ../contracts/currency.abi
 Reading WAST...
 Assembling WASM...
 Publishing contract...
@@ -370,9 +370,9 @@ Ensure that your wallet is unlocked and you have active key for ${contract_accou
 
 **Understanding the contract**
 
-Now that we have deployed the contract, anybody can use the `eosc`'s `get code` to retrieve the .abi of the contract and understand what interface is available for this contract.
+Now that we have deployed the contract, anybody can use the `cleos`'s `get code` to retrieve the .abi of the contract and understand what interface is available for this contract.
 ```base
-$ eosc get code currency -a currency.abi
+$ cleos get code currency -a currency.abi
 code hash: 86968a9091ce32255777e2017fccaede8cea2d4978b30f25b41ee97b9d77bed0
 saving abi to currency.abi
 $ cat currency.abi
@@ -421,13 +421,13 @@ $ cat currency.abi
 - The contract accepts an action called `transfer` that accepts a message with fields `from`, `to`, and `quantity`
 - There is a table named `account`, that stores the data
 
-Now that we have found a transfer action and the account table that we can use to check the balance, we can use `eosc` to interact with them.
+Now that we have found a transfer action and the account table that we can use to check the balance, we can use `cleos` to interact with them.
 
 **Read account balance**
 
-To query data from a table, simply use the `get table` command with the syntax `eosc get table ${account} ${contract} ${table}`.
+To query data from a table, simply use the `get table` command with the syntax `cleos get table ${account} ${contract} ${table}`.
 ```bash
-$ eosc get table ${account} currency account
+$ cleos get table ${account} currency account
 {
   "rows": [{
      "key": "account",
@@ -444,7 +444,7 @@ Anyone can send any message to any contract at any time but the contracts may re
 
 The following command would transfer 50 *token* from account_a to account_b within the currency contract.
 ```base
-$ eosc push message currency transfer '{"from":"${account_a}","to":"${account_b}","quantity":50}' --scope ${account_a},${account_b} --permission ${account_a}@active
+$ cleos push message currency transfer '{"from":"${account_a}","to":"${account_b}","quantity":50}' --scope ${account_a},${account_b} --permission ${account_a}@active
 ```
 
 We specify the `--scope` argument to give the currency contract read/write permission to those users so it can modify their balances. In a future release scope will be automatically determined.
@@ -504,7 +504,7 @@ $ eoscpp -o tic_tac_toe.wast tic_tac_toe.cpp
 
 Once you have successfully generated the .wast file, you can use the `set contract` command to deploy. For this example, we are going to deploy it on account `tic.tac.toe`. Note that the EOS.IO blockchain only supports base32 char for the account name that's why, underscore is replaced with '.'. If you are going to deploy it to other account beside `tic.tac.toe`, replace any occurrence of `tic.tac.toe` in the .hpp, .cpp, and .abi with your account name.
 ```base
-$ eosc set contract tic.tac.toe tic_tac_toe.wast tic_tac_toe.abi
+$ cleos set contract tic.tac.toe tic_tac_toe.wast tic_tac_toe.abi
 Reading WAST...
 Assembling WASM...
 Publishing contract...
@@ -524,9 +524,9 @@ Publishing contract...
 
 **Understanding the contract**
 
-Now that we have deployed the contract, anybody can use the `eosc`'s `get code` to retrieve the .abi of the contract and understand what interface is available for this contract.
+Now that we have deployed the contract, anybody can use the `cleos`'s `get code` to retrieve the .abi of the contract and understand what interface is available for this contract.
 ```base
-$ eosc get code tic.tac.toe. -a tic_tac_toe.abi
+$ cleos get code tic.tac.toe. -a tic_tac_toe.abi
 code hash: c78d16396a5a63b1be47fd570633084cb5fe2eaa9980ca87ec25061d68299294
 saving abi to tic_tac_toe.abi
 $ cat tic_tac_toe.abi
@@ -621,26 +621,26 @@ $ cat tic_tac_toe.abi
 - Create a game using `create` action, with you as the host and other account as the challenger.
 
 ```bash
-$ eosc push message tic.tac.toe create '{"challenger":"${challenger_account_name}","host":"${your_account_name}"}' --permission ${your_account}@active
+$ cleos push message tic.tac.toe create '{"challenger":"${challenger_account_name}","host":"${your_account_name}"}' --permission ${your_account}@active
 ```
 
 - The first move needs to be done by the host, use the `move` action to make a move by specifying which row and column to fill.
 ```bash
-$ eosc push message tic.tac.toe move '{"challenger":"${challenger_account_name}","host":"${your_account_name}","by":"${your_account_name}","''{"row":0,"column":1}"}' --permission ${your_account}@active
+$ cleos push message tic.tac.toe move '{"challenger":"${challenger_account_name}","host":"${your_account_name}","by":"${your_account_name}","''{"row":0,"column":1}"}' --permission ${your_account}@active
 ```
 
 - Then ask the challenger to make a move, after that it's the host's turn again. Repeat until the winner is determined.
 ```bash
-$ eosc push message tic.tac.toe move '{"challenger":"${challenger_account_name}","host":"${your_account_name}","by":"${your_account_name}","''{"row":1,"column":1}"}' --permission ${challenger_account}@active
+$ cleos push message tic.tac.toe move '{"challenger":"${challenger_account_name}","host":"${your_account_name}","by":"${your_account_name}","''{"row":1,"column":1}"}' --permission ${challenger_account}@active
 ```
 
 - To restart the game, use the `restart` action
 ```bash
-$ eosc push message tic.tac.toe restart '{"challenger":"${challenger_account_name}","host":"${your_account_name}","by":"${your_account_name}"}' --permission ${your_account}@active
+$ cleos push message tic.tac.toe restart '{"challenger":"${challenger_account_name}","host":"${your_account_name}","by":"${your_account_name}"}' --permission ${your_account}@active
 ```
 - To clear the game from the database, use the `close` action. This will free up space after the game has concluded.
 ```bash
-$ eosc push message tic.tac.toe close '{"challenger":"${challenger_account_name}","host":"${your_account_name}"}' --permission ${your_account}@active
+$ cleos push message tic.tac.toe close '{"challenger":"${challenger_account_name}","host":"${your_account_name}"}' --permission ${your_account}@active
 ```
 
 
@@ -678,7 +678,7 @@ Now that you have the .wast and .abi files, you can deploy your contract to the 
 Assuming your wallet is unlocked and has keys for `${account}`, you can now upload this contract to the blockchain with the following command:
 
 ```base
-$ eosc set contract ${account} hello.wast hello.abi
+$ cleos set contract ${account} hello.wast hello.abi
 Reading WAST...
 Assembling WASM...
 Publishing contract...
@@ -742,7 +742,7 @@ You will notice the lines "Init World!" are executed 3 times. This isn't a mista
 
 At this point, your contract is ready to start receiving messages. Since the default message handler accepts all messages we can send it anything we want. Let's try sending it an empty message:
 ```base
-$ eosc push message ${account} hello '"abcd"' --scope ${account}
+$ cleos push message ${account} hello '"abcd"' --scope ${account}
 ```
 
 This command will send the message "hello" with binary data represented by the hex string "abcd". Note, in a bit, we will show how to define the ABI so that you can replace the hex string with a pretty, easy-to-read, JSON object. For now, we merely want to demonstrate how the message type "hello" is dispatched to account.
@@ -800,7 +800,7 @@ If we look into the ABI file, you will notice it defines an action `transfer` of
 
 Now that we have reviewed the ABI defined by the skeleton, we can construct a message call for transfer:
 ```base
-eosc push message ${account} transfer '{"from":"currency","to":"inita","quantity":50}' --scope initc
+cleos push message ${account} transfer '{"from":"currency","to":"inita","quantity":50}' --scope initc
 2570494ms thread-0   main.cpp:797                  operator()           ] Converting argument to binary...
 {
   "transaction_id": "b191eb8bff3002757839f204ffc310f1bfe5ba1872a64dda3fc42bfc2c8ed688",
@@ -902,7 +902,7 @@ Then we can recompile and deploy it with:
 
 ```base
 eoscpp -o hello.wast hello.cpp 
-eosc set contract ${account} hello.wast hello.abi
+cleos set contract ${account} hello.wast hello.abi
 ```
 eosd will call init() again because of the redeploy
 ```base
@@ -912,7 +912,7 @@ Init World!
 ```
 Then we can execute transfer:
 ```base
-$ eosc push message ${account} transfer '{"from":"currency","to":"inita","quantity":50}' --scope ${account}
+$ cleos push message ${account} transfer '{"from":"currency","to":"inita","quantity":50}' --scope ${account}
 {
   "transaction_id": "a777539b7d5f752fb40e6f2d019b65b5401be8bf91c8036440661506875ba1c0",
   "processed": {
@@ -1019,7 +1019,7 @@ The EOS.IO software will take care of enforcing and validating the signatures, a
 ```
 After building and deploying we can attempt to transfer again:
 ```base
- $ eosc push message ${account} transfer '{"from":"initb","to":"inita","quantity":50}' --scope ${account}
+ $ cleos push message ${account} transfer '{"from":"initb","to":"inita","quantity":50}' --scope ${account}
  1881603ms thread-0   main.cpp:797                  operator()           ] Converting argument to binary...
  1881630ms thread-0   main.cpp:851                  main                 ] Failed with error: 10 assert_exception: Assert Exception
  status_code == 200: Error
@@ -1038,9 +1038,9 @@ Hello World: initc->transfer
 ```
 This shows that it attempted to apply your transaction, printed the initial "Hello World" and then aborted when `eosio::require_auth` failed to find authorization of account `initb`.
 
-We can fix that by telling eosc to add the required permission:
+We can fix that by telling cleos to add the required permission:
 ```base
-$ eosc push message ${account} transfer '{"from":"initb","to":"inita","quantity":50}' --scope ${account} --permission initb@active
+$ cleos push message ${account} transfer '{"from":"initb","to":"inita","quantity":50}' --scope ${account} --permission initb@active
 ```
 The `--permission` command defines the account and permission level, in this case we use the active authority which is the default.
 
@@ -1065,8 +1065,8 @@ A large part of contract development is verifying preconditions, such that the q
 We can now compile, deploy, and attempt to execute a transfer of 0:
 ```base
  $ eoscpp -o hello.wast hello.cpp
- $ eosc set contract ${account} hello.wast hello.abi
- $ eosc push message ${account} transfer '{"from":"initb","to":"inita","quantity":0}' --scope initc --permission initb@active
+ $ cleos set contract ${account} hello.wast hello.abi
+ $ cleos push message ${account} transfer '{"from":"initb","to":"inita","quantity":0}' --scope initc --permission initb@active
  3071182ms thread-0   main.cpp:851                  main                 ] Failed with error: 10 assert_exception: Assert Exception
  status_code == 200: Error
  : 10 assert_exception: Assert Exception
@@ -1083,7 +1083,7 @@ Use the following command to:
 - deploy a new contract, and
 - update an existing contract 
 ```base
-$ eosc set contract ${account} ${contract}.wast ${contract}.abi
+$ cleos set contract ${account} ${contract}.wast ${contract}.abi
 ```
 
 
@@ -1098,12 +1098,12 @@ Writing smart contract
 - Generate the .wast file `$ eoscpp -o ${contract}.wast ${contract}.cpp`
 
 Deploy smart contract
-- Connect to a node `$ eosc -H ${node_ip} -p ${port_num}`
-- Create a wallet `$ eosc wallet create`
+- Connect to a node `$ cleos -H ${node_ip} -p ${port_num}`
+- Create a wallet `$ cleos wallet create`
 - [Create an account] if you do not already hold an EOS keys
-- Import your account key `$ eosc wallet import ${private_key}`
-- Unlock your wallet `$ eosc wallet unlock ${wallet} `
-- Deploy the contract `$ eosc set contract ${account} ${contract}.wast ${contract}.abi`
+- Import your account key `$ cleos wallet import ${private_key}`
+- Unlock your wallet `$ cleos wallet unlock ${wallet} `
+- Deploy the contract `$ cleos set contract ${account} ${contract}.wast ${contract}.abi`
 
 ## 8. Debugging Smart Contract
 
@@ -1206,8 +1206,8 @@ extern "C" {
 Let's deploy it and send a message to it. Assume that you have `debug` account created and have its key in your wallet.
 ```bash
 $ eoscpp -o debug.wast debug.cpp
-$ eosc set contract debug debug.wast debug.abi
-$ eosc push message debug foo '{"from":"inita", "to":"initb", "amount":10}' --scope debug
+$ cleos set contract debug debug.wast debug.abi
+$ cleos push message debug foo '{"from":"inita", "to":"initb", "amount":10}' --scope debug
 ```
 
 When you check your local eosd node log, you will see the following lines after the above message is sent.
