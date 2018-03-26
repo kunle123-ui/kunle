@@ -21,7 +21,7 @@ This tutorial is for users who want to learn about wallet and account management
 
 #### Prerequisites
 
-- Built and running copy of `cleos` and `eos-walletd` on your system.
+- Built and running copy of `cleos` and `walleos` on your system.
 - Basic understanding of command line interface. 
 
 **Note:** Instructions require slight modification when applied to a docker installation. 
@@ -30,7 +30,7 @@ This tutorial is for users who want to learn about wallet and account management
 
 #### Open your terminal and change to the directory where EOS was built
 
-This will make it easier for us to interact with `cleos`, which is a command line interface for interacting with `nodeos` and `eos-walletd`. 
+This will make it easier for us to interact with `cleos`, which is a command line interface for interacting with `nodeos` and `walleos`. 
 
 ```bash
 $ cd /path_to_eos/build/programs/cleos
@@ -46,9 +46,9 @@ Without password imported keys will not be retrievable.
 "A MASTER PASSWORD"
 ```
 
-A wallet called _default_ is now inside `eos-walletd` and has returned the **master password** for this wallet. Be sure to save this password somewhere safe. This password is used to unlock (decrypt) your wallet file. 
+A wallet called _default_ is now inside `walleos` and has returned the **master password** for this wallet. Be sure to save this password somewhere safe. This password is used to unlock (decrypt) your wallet file. 
 
-The file for this wallet is named `default.wallet` and is located in the `data-dir` directory of your EOS directory (or the directory you specified with the `--data-dir` argument when launching `eos-walletd`)
+The file for this wallet is named `default.wallet` and is located in the `data-dir` directory of your EOS directory (or the directory you specified with the `--data-dir` argument when launching `walleos`)
 
 #### Managing Multiple Wallets and Wallet Names
 
@@ -122,7 +122,7 @@ Wonderful, the _periwinkle_ wallet is followed by an asterisk, so it is now unlo
 
 _**Note:** Interacting with the 'default' wallet using the wallet command does not require the `-n` parameter_
 
-Restart `eos-walletd` now, and then go back to where you were calling `cleos` and run the following command
+Restart `walleos` now, and then go back to where you were calling `cleos` and run the following command
 
 ```bash
 $ cleos wallet list
@@ -132,7 +132,7 @@ Wallets:
 
 Interesting, where did the wallet go?
 
-Wallets first need to be opened, and because you shut down `eos-walletd`, the wallet wasn't open. Run the following commands.
+Wallets first need to be opened, and because you shut down `walleos`, the wallet wasn't open. Run the following commands.
 
 ```bash
 $ cleos wallet open
