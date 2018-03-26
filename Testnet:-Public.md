@@ -3,7 +3,7 @@
 * [Nodes](#nodes)
 * [Public Testnet Endpoints](#public-testnet-endpoints)
 * [Connecting Local EOSD with Public Testnet](#connecting-local-eosd-node-with-public-testnet)
-* [Connecting Local EOSC with Public Testnet](#connecting-local-eosc-with-public-testnet)
+* [Connecting Local CLEOS with Public Testnet](#connecting-local-cleos-with-public-testnet)
 * [Testnet Accounts](#accounts-on-testnet)
 * [External Links](#external-links)
 
@@ -80,21 +80,21 @@ Synchronization is complete when you see log messages similar to:
 This eosd instance listens on 127.0.0.1:8888 for http requests, on all interfaces at port 9877
 for p2p requests, and includes the wallet plugins.
 
-## Connecting Local EOSC with Public Testnet
+## Connecting Local CLEOS with Public Testnet
 
-You can connect your local eosc with public testnet by using the http endpoint as the hostname and port 80:
+You can connect your local cleos with public testnet by using the http endpoint as the hostname and port 80:
 ```bash
-$ eosc -H ${http_endpoint} -p 80 ${options} ${subcommand}
+$ cleos -H ${http_endpoint} -p 80 ${options} ${subcommand}
 ```
-Furthermore, public testnet does not provide any wallet functionality. In order to be able to sign transaction/ push transaction/ wallet operation, you will need to connect your local wallet with eosc when you are connecting to public testnet.
+Furthermore, public testnet does not provide any wallet functionality. In order to be able to sign transaction/ push transaction/ wallet operation, you will need to connect your local wallet with cleos when you are connecting to public testnet.
 To do so, ensure that you have your local wallet running.
 ```
 $ eos-walletd
 # this will create a data-dir folder inside your current working directory, this data-dir folder will contain your private keys encrypted with the wallet password
 ```
-Then specify your local wallet endpoint and port when using eosc, unless you override it, wallet_endpoint will be `localhost` and wallet_port will be `8888`.
+Then specify your local wallet endpoint and port when using cleos, unless you override it, wallet_endpoint will be `localhost` and wallet_port will be `8888`.
 ```
-$ eosc -H ${http_endpoint} -p 80 ${options} --wallet-host ${wallet_endpoint} --wallet-port ${wallet_port} ${subcommand}
+$ cleos -H ${http_endpoint} -p 80 ${options} --wallet-host ${wallet_endpoint} --wallet-port ${wallet_port} ${subcommand}
 ```
 
 # Accounts on Testnet
@@ -122,8 +122,8 @@ Once you have your account name, you can choose how you would like to interact w
 
 ## Command Line (Developers)
 
-1. You'll need the `eos-walletd` and `eosc` binary from recent `eosd` build, see [Local Environment](https://github.com/EOSIO/eos/wiki/Local-Environment)
+1. You'll need the `eos-walletd` and `cleos` binary from recent `eosd` build, see [Local Environment](https://github.com/EOSIO/eos/wiki/Local-Environment)
 2. Connect to [Public Testnet](https://github.com/EOSIO/eos/wiki/Testnet:-Public)
-3. [Import your private key to the wallet](https://github.com/EOSIO/eos/wiki/Command%20Reference#import-key-to-wallet) with `eosc` 
-4. Learn how to use `eosc` by either figuring it out yourself with the [command reference](https://github.com/EOSIO/eos/wiki/Command-Reference) or with a comprehensive [tutorial](https://github.com/EOSIO/eos/wiki/Tutorials#1-accounts--wallets).
+3. [Import your private key to the wallet](https://github.com/EOSIO/eos/wiki/Command%20Reference#import-key-to-wallet) with `cleos` 
+4. Learn how to use `cleos` by either figuring it out yourself with the [command reference](https://github.com/EOSIO/eos/wiki/Command-Reference) or with a comprehensive [tutorial](https://github.com/EOSIO/eos/wiki/Tutorials#1-accounts--wallets).
 
