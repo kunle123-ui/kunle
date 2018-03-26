@@ -9,7 +9,7 @@ An **account** is a human-readable identifier that is stored on the blockchain. 
 
 ## 1. Wallets
 
-Wallets are clients that store keys that may or may not be associated with the permissions of one or more accounts. Ideally a wallet has a locked (encrypted) and unlocked (decrypted) state that is protected by a high entropy password. The EOSIO/eos repository comes bundled with a command line interface client called `eosc` that interfaces with a lite-client called `eos-walletd` and together, they demonstrate this pattern.
+Wallets are clients that store keys that may or may not be associated with the permissions of one or more accounts. Ideally a wallet has a locked (encrypted) and unlocked (decrypted) state that is protected by a high entropy password. The EOSIO/eos repository comes bundled with a command line interface client called `cleos` that interfaces with a lite-client called `walleos` and together, they demonstrate this pattern.
 
 ## 2. Accounts
 
@@ -47,7 +47,7 @@ This is how an account is configured after it has been created, it has a single 
 
 In the `@bob` account example, this table shows that @bob's owner key has a permissioned weight of 1, and the required threshold to push a transaction under that authority is 1. 
 
-To push a transaction under the owner authority, only **@bob** needs to sign the transaction with his owner key for the transaction to be eligible for validation. This key would be stored in a _wallet_, and then processed using `eosc`.
+To push a transaction under the owner authority, only **@bob** needs to sign the transaction with his owner key for the transaction to be eligible for validation. This key would be stored in a _wallet_, and then processed using `cleos`.
 
 ### 4.2 Multi-sig Account & Custom Permissions
 
