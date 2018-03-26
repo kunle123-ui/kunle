@@ -10,10 +10,10 @@
 * [3 Docker](#3-docker)
   - [3.1 Install Dependencies](#31-install-dependencies)
   - [3.2 Build eos image](#32-build-eos-image)
-  - [3.3 Start eosd docker container only](#33-start-eosd-docker-container-only)
+  - [3.3 Start nodeos docker container only](#33-start-nodeos-docker-container-only)
   - [3.4 Get chain info](#34-get-chain-info)
-  - [3.5 Start both eosd and walletd containers](#35-start-both-eosd-and-walletd-containers)
-    + [3.5.1 Execute eosc commands](#351-execute-eosc-commands)
+  - [3.5 Start both nodeos and walleos containers](#35-start-both-nodeos-and-walleos-containers)
+    + [3.5.1 Execute cleos commands](#351-execute-cleos-commands)
     + [3.5.2 Change default configuration](#352-change-default-configuration)
     + [3.5.3 Clear data-dir](#353-clear-data-dir)
 * [4 Creating and launching a single-node testnet](#4-creating-and-launching-a-single-node-testnet)
@@ -121,9 +121,9 @@ To run the test suite after building, run the `chain_test` executable in the `te
 
 EOS comes with a number of programs you can find in `~/eos/build/programs`. They are listed below:
 
-* eosd - server-side blockchain node component
-* eosc - command line interface to interact with the blockchain
-* eos-walletd - EOS wallet
+* nodeos - server-side blockchain node component
+* cleos - command line interface to interact with the blockchain
+* walleos - EOS wallet
 * launcher - application for nodes network composing and deployment; [more on launcher](Testnet%3A%20Private#the-launcher-application)
 
 Manual installation of the dependencies
@@ -313,22 +313,22 @@ $ cd eos/Docker
 $ docker build . -t eosio/eos
 ```
 
-### 3.3. Start eosd docker container only
+### 3.3. Start nodeos docker container only
 
 ```bash
-$ docker run --name eosd -p 8888:8888 -p 9876:9876 -t eosio/eos start_eosd.sh arg1 arg2
+$ docker run --name nodeos -p 8888:8888 -p 9876:9876 -t eosio/eos start_nodeos.sh arg1 arg2
 ```
 
 By default, all data is persisted in a docker volume. It can be deleted if the data is outdated or corrupted:
 ``` bash
-$ docker inspect --format '{{ range .Mounts }}{{ .Name }} {{ end }}' eosd
+$ docker inspect --format '{{ range .Mounts }}{{ .Name }} {{ end }}' nodeos
 fdc265730a4f697346fa8b078c176e315b959e79365fc9cbd11f090ea0cb5cbc
 $ docker volume rm fdc265730a4f697346fa8b078c176e315b959e79365fc9cbd11f090ea0cb5cbc
 ```
 
 Alternately, you can directly mount host directory into the container
 ```bash
-$ docker run --name eosd -v /path-to-data-dir:/opt/eos/bin/data-dir -p 8888:8888 -p 9876:9876 -t eosio/eos start_eosd.sh arg1 arg2
+$ docker run --name nodeos -v /path-to-data-dir:/opt/eos/bin/data-dir -p 8888:8888 -p 9876:9876 -t eosio/eos start_nodeos.sh arg1 arg2
 ```
 
 ### 3.4. Get chain info
@@ -337,35 +337,35 @@ $ docker run --name eosd -v /path-to-data-dir:/opt/eos/bin/data-dir -p 8888:8888
 $ curl http://127.0.0.1:8888/v1/chain/get_info
 ```
 
-### 3.5. Start both eosd and walletd containers
+### 3.5. Start both nodeos and walleos containers
 
 ```bash
 $ docker-compose up
 ```
 
-After `docker-compose up`, two services named eosd and walletd will be started. eosd service will expose ports 8888 and 9876 to the host. walletd service does not expose any port to the host, it is only accessible to eosc when runing eosc is running inside the walletd container as described in "Execute eosc commands" section.
+After `docker-compose up`, two services named nodeos and walleos will be started. nodeos service will expose ports 8888 and 9876 to the host. walleos service does not expose any port to the host, it is only accessible to cleos when runing cleos is running inside the walleos container as described in "Execute cleos commands" section.
 
 
-#### 3.5.1. Execute eosc commands
+#### 3.5.1. Execute cleos commands
 
-You can run the `eosc` commands via a bash alias.
+You can run the `cleos` commands via a bash alias.
 
 ```bash
-$ alias eosc='docker-compose exec walletd /opt/eos/bin/eosc -H eosd'
-$ eosc get info
-$ eosc get account inita
+$ alias cleos='docker-compose exec walleos /opt/eos/bin/cleos -H nodeos'
+$ cleos get info
+$ cleos get account inita
 ```
 
 Upload sample exchange contract
 
 ```bash
-$ eosc set contract exchange contracts/exchange/exchange.wast contracts/exchange/exchange.abi
+$ cleos set contract exchange contracts/exchange/exchange.wast contracts/exchange/exchange.abi
 ```
 
-If you don't need walletd afterwards, you can stop the walletd service using
+If you don't need walleos afterwards, you can stop the walleos service using
 
 ```bash
-$ docker-compose stop walletd
+$ docker-compose stop walleos
 ```
 #### 3.5.2. Change default configuration
 
@@ -375,9 +375,9 @@ You can use docker compose override file to change the default configurations. F
 version: "2"
 
 services:
-  eosd:
+  nodeos:
     volumes:
-      - eosd-data-volume:/opt/eos/bin/data-dir
+      - nodeos-data-volume:/opt/eos/bin/data-dir
       - ./config2.ini:/opt/eos/bin/data-dir/config.ini
 ```
 
@@ -392,12 +392,12 @@ $ docker-compose up
 The data volume created by docker-compose can be deleted as follows:
 
 ```bash
-$ docker volume rm docker_eosd-data-volume
+$ docker volume rm docker_nodeos-data-volume
 ```
 
 ## 4. Creating and launching a single-node testnet 
 
-After successfully building the project, the `eosd` binary should be present in the `build/programs/eosd` directory. Go ahead and run `eosd` -- it will probably exit with an error, but if not, close it immediately with <kbd>Ctrl-C</kbd>. Note that `eosd` created a directory named `data-dir` containing the default configuration (`config.ini`) and some other internals. This default data storage path can be overridden by passing `--data-dir /path/to/data` to `eosd`.
+After successfully building the project, the `nodeos` binary should be present in the `build/programs/nodeos` directory. Go ahead and run `nodeos` -- it will probably exit with an error, but if not, close it immediately with <kbd>Ctrl-C</kbd>. Note that `nodeos` created a directory named `data-dir` containing the default configuration (`config.ini`) and some other internals. This default data storage path can be overridden by passing `--data-dir /path/to/data` to `nodeos`.
 
 Edit the `config.ini` file, adding the following settings to the defaults already in place:
 
@@ -437,9 +437,9 @@ plugin = eosio::chain_api_plugin
 plugin = eosio::http_plugin
 ```
 
-Now it should be possible to run `eosd` and see it begin producing blocks.
+Now it should be possible to run `nodeos` and see it begin producing blocks.
 
-When running `eosd` you should get log messages similar to below. It means the blocks are successfully produced.
+When running `nodeos` you should get log messages similar to below. It means the blocks are successfully produced.
 
 ```
 1575001ms thread-0   chain_controller.cpp:235      _push_block          ] initm #1 @2017-09-04T04:26:15  | 0 trx, 0 pending, exectime_ms=0
@@ -451,7 +451,7 @@ When running `eosd` you should get log messages similar to below. It means the b
 
 ## 5. Troubleshooting Guide
 
-1. *You get an error such as `St9exception: content of memory does not match data expected by executable` when trying to start `eosd`*
-> Try restarting `eosd` with `--resync`
-2. How do I find which version of `eosd` I'm running or connecting to?
-> Use `eosc -H ${eosd_host} -p ${eosd_port} get info` and you will see the version number in the field called `server_version`
+1. *You get an error such as `St9exception: content of memory does not match data expected by executable` when trying to start `nodeos`*
+> Try restarting `nodeos` with `--resync`
+2. How do I find which version of `nodeos` I'm running or connecting to?
+> Use `cleos -H ${nodeos_host} -p ${nodeos_port} get info` and you will see the version number in the field called `server_version`
