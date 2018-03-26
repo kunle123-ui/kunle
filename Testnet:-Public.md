@@ -2,7 +2,7 @@
 * [Differences between Testnet and Mainnet](#differences-between-testnet-and-mainnet)
 * [Nodes](#nodes)
 * [Public Testnet Endpoints](#public-testnet-endpoints)
-* [Connecting Local EOSD with Public Testnet](#connecting-local-eosd-node-with-public-testnet)
+* [Connecting Local NODEOS with Public Testnet](#connecting-local-nodeos-node-with-public-testnet)
 * [Connecting Local CLEOS with Public Testnet](#connecting-local-cleos-with-public-testnet)
 * [Testnet Accounts](#accounts-on-testnet)
 * [External Links](#external-links)
@@ -35,7 +35,7 @@ You can test the connection using `curl`
 $ curl testnet1.eos.io/v1/chain/get_info
 ```
 
-## Connecting Local EOSD node with Public Testnet
+## Connecting Local NODEOS node with Public Testnet
 
 To run a local node connected to the public testnet operated by block.one, a script is provided.
 
@@ -49,12 +49,12 @@ This command will use the data folder provided for the instance called `testnet_
 You should see the following response:
 
 ```bash
-Launched eosd.
-See testnet_np/stderr.txt for eosd output.
+Launched nodeos.
+See testnet_np/stderr.txt for nodeos output.
 Synching requires at least 8 minutes, depending on network conditions.
 ```
 
-To confirm eosd operation and synchronization:
+To confirm nodeos operation and synchronization:
 
 ```bash
 tail -F testnet_np/stderr.txt
@@ -77,7 +77,7 @@ Synchronization is complete when you see log messages similar to:
 42793ms            chain_controller.cpp:208      _push_block          ] initd #351949 @2017-12-12T22:59:48  | 0 trx, 0 pending, exectime_ms=0
 ```
 
-This eosd instance listens on 127.0.0.1:8888 for http requests, on all interfaces at port 9877
+This nodeos instance listens on 127.0.0.1:8888 for http requests, on all interfaces at port 9877
 for p2p requests, and includes the wallet plugins.
 
 ## Connecting Local CLEOS with Public Testnet
@@ -122,7 +122,7 @@ Once you have your account name, you can choose how you would like to interact w
 
 ## Command Line (Developers)
 
-1. You'll need the `eos-walletd` and `cleos` binary from recent `eosd` build, see [Local Environment](https://github.com/EOSIO/eos/wiki/Local-Environment)
+1. You'll need the `eos-walletd` and `cleos` binary from recent `nodeos` build, see [Local Environment](https://github.com/EOSIO/eos/wiki/Local-Environment)
 2. Connect to [Public Testnet](https://github.com/EOSIO/eos/wiki/Testnet:-Public)
 3. [Import your private key to the wallet](https://github.com/EOSIO/eos/wiki/Command%20Reference#import-key-to-wallet) with `cleos` 
 4. Learn how to use `cleos` by either figuring it out yourself with the [command reference](https://github.com/EOSIO/eos/wiki/Command-Reference) or with a comprehensive [tutorial](https://github.com/EOSIO/eos/wiki/Tutorials#1-accounts--wallets).
