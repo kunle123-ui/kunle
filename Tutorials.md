@@ -30,7 +30,7 @@ This tutorial is for users who want to learn about wallet and account management
 
 #### Open your terminal and change to the directory where EOS was built
 
-This will make it easier for us to interact with `cleos`, which is a command line interface for interacting with `eosd` and `eos-walletd`. 
+This will make it easier for us to interact with `cleos`, which is a command line interface for interacting with `nodeos` and `eos-walletd`. 
 
 ```bash
 $ cd /path_to_eos/build/programs/cleos
@@ -228,10 +228,10 @@ The wallet will protect these keys when it's locked. Accessing the keys in a loc
 
 Now that your wallet contains keys, it's good to get into the habit of a backup, in case some unspeakable event results in the loss of this file. One example may be a flash drive. Without the password, the wallet file is encrypted with high entropy, and the keys inside are incredibly difficult (improbable by all reasonable measures) to access.
 
-You can find your wallet files in the `data-dir`. If you did not specify a `--data-dir` parameter when launching eos, you can file this in `/path/to/eos/build/programs/eosd` (the exact path to eos will differ from system to system).
+You can find your wallet files in the `data-dir`. If you did not specify a `--data-dir` parameter when launching eos, you can file this in `/path/to/eos/build/programs/nodeos` (the exact path to eos will differ from system to system).
 
 ```bash
-$ cd /path_to_eos/build/programs/eosd && ls
+$ cd /path_to_eos/build/programs/nodeos && ls
 blockchain   blocks   config.ini   default.wallet   periwinkle.wallet
 ```
 
@@ -734,7 +734,7 @@ $ eoscpp -o hello.wast hello.cpp
 
 Now that you have compiled your application it is time to deploy it. This will require you to do the following first:
 
-1. start eosd with wallet plugin enabled
+1. start nodeos with wallet plugin enabled
 2. create a wallet & import keys for at least one account
 3. keep your wallet unlocked
 
@@ -778,7 +778,7 @@ Publishing contract...
 }
 ```
 
-If you are monitoring the output of your eosd process you should see:
+If you are monitoring the output of your nodeos process you should see:
 
 ```bash
 ...] initt generated block #188249 @ 2017-09-13T22:00:24 with 0 trxs  0 pending
@@ -789,18 +789,18 @@ Init World!
 
 You will notice the lines "Init World!" are executed 3 times, this isn't a mistake.  When the blockchain is processing transactions the following happens:
 
-1. eosd receives a new transaction
+1. nodeos receives a new transaction
   * creates a temporary session
   * attempts to apply the transaction
   * **succeeds and prints "Init World!"**
   * or fails undoes the changes (potentially failing after printing "Init World!")
-2. eosd starts to produce a block
+2. nodeos starts to produce a block
   * undoes all pending state
   * pushes all transactions as it builds the block
   * **prints "Init World!" a second time**
   * finishes building the block
   * undoes all of the temporary changes while creating block
-3. eosd pushes the generated block as if it received it from the network
+3. nodeos pushes the generated block as if it received it from the network
   * **prints "Init World!" a third time**
 
 At this point your contract is ready to start receiving messages. Since the default message handler accepts all messages we can send it
@@ -843,7 +843,7 @@ The result is:
 }
 ```
 
-If you are following along in `eosd` then you should have seen the following scroll by the screen:
+If you are following along in `nodeos` then you should have seen the following scroll by the screen:
 
 ```bash
 Hello World: ${account}->hello
@@ -976,7 +976,7 @@ cleos push message ${account} transfer '{"from":"currency","to":"inita","quantit
 }
 ```
 
-If you observe the output of `eosd` you should see:
+If you observe the output of `nodeos` you should see:
 
 ```
 Hello World: ${account}->transfer
@@ -1059,7 +1059,7 @@ eoscpp -o hello.wast hello.cpp
 cleos set contract ${account} hello.wast hello.abi
 ```
 
-`eosd` will call init() again because of the redeploy
+`nodeos` will call init() again because of the redeploy
 
 ```bash
 Init World!
@@ -1102,7 +1102,7 @@ $ cleos push message ${account} transfer '{"from":"currency","to":"inita","quant
 }
 ```
 
-And on `eosd` we should see the following output:
+And on `nodeos` we should see the following output:
 
 ```bash
 Hello World: ${account}->transfer
@@ -1199,7 +1199,7 @@ After building and deploying we can attempt to transfer again:
 ...
 ```
 
-If you look on `eosd` you will see this:
+If you look on `nodeos` you will see this:
 ```
 Hello World: initc->transfer
 1881629ms thread-0   chain_api_plugin.cpp:60       operator()           ] Exception encountered while processing chain.push_transaction:
