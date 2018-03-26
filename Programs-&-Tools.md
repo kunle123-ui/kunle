@@ -1,8 +1,8 @@
 Tools/Programs included in eos resposity. 
 
 * [Programs](#programs)
-    * [eosd](#eosd)
-    * [eosc](#eosc)
+    * [nodeos](#nodeos)
+    * [cleos](#cleos)
     * [eos-walletd](#eos-walletd)
     * [launcher](#launcher)
     * [snapshot](#snapshot)
@@ -11,24 +11,24 @@ Tools/Programs included in eos resposity.
 
 ## Programs
 
-### eosd
+### nodeos
 
 The core EOS daemon that can be configured with plugins to run a node. Example uses are block production, dedicated API endpoints and local development. 
 
-### eosc
+### cleos
 
-`eosc` is a command line tool that interfaces with the REST api exposed by `eosd`. In order to use `eosc` you will need to have the end point (IP address and port number) to an `eosd` instance and also configure `eosc` to load the 'eosio::chain_api_plugin'. eosc contains documentation for all of its commands. For a list of all commands known to eosc, simply run it with no arguments:
+`cleos` is a command line tool that interfaces with the REST api exposed by `nodeos`. In order to use `cleos` you will need to have the end point (IP address and port number) to an `nodeos` instance and also configure `cleos` to load the 'eosio::chain_api_plugin'. cleos contains documentation for all of its commands. For a list of all commands known to cleos, simply run it with no arguments:
 
 ```base
-$ eosc
+$ cleos
 ERROR: RequiredError: Subcommand required
 Command Line Interface to Eos Client
-Usage: ./eosc [OPTIONS] SUBCOMMAND
+Usage: ./cleos [OPTIONS] SUBCOMMAND
 
 Options:
   -h,--help                   Print this help message and exit
-  -H,--host TEXT=localhost    the host where eosd is running
-  -p,--port UINT=8888         the port where eosd is running
+  -H,--host TEXT=localhost    the host where nodeos is running
+  -p,--port UINT=8888         the port where nodeos is running
   --wallet-host TEXT=localhost
                               the host where eos-walletd is running
   --wallet-port UINT=8888     the port where eos-walletd is running
@@ -48,20 +48,20 @@ Subcommands:
 
 To get help with any particular subcommand, run it with no arguments as well:
 ```base
-$ eosc create
+$ cleos create
 ERROR: RequiredError: Subcommand required
 Create various items, on and off the blockchain
-Usage: ./eosc create SUBCOMMAND
+Usage: ./cleos create SUBCOMMAND
 
 Subcommands:
   key                         Create a new keypair and print the public and private keys
   account                     Create a new account on the blockchain
   producer                    Create a new producer on the blockchain
 
-$ eosc create account
+$ cleos create account
 ERROR: RequiredError: creator
 Create a new account on the blockchain
-Usage: ./eosc create account [OPTIONS] creator name OwnerKey ActiveKey
+Usage: ./cleos create account [OPTIONS] creator name OwnerKey ActiveKey
 
 Positionals:
   creator TEXT                The name of the account creating the new account
@@ -81,7 +81,7 @@ An EOS wallet daemon that loads wallet related plugins, such as the HTTP interfa
 
 ### launcher
 
-The launcher application simplifies the distribution of multiple eosd nodes across a LAN or a wider network. It can be configured via CLI to compose per-node configuration files, distribute these files securely amongst the peer hosts and then start up the multiple instances of eosd.
+The launcher application simplifies the distribution of multiple nodeos nodes across a LAN or a wider network. It can be configured via CLI to compose per-node configuration files, distribute these files securely amongst the peer hosts and then start up the multiple instances of nodeos.
 
 ### snapshot
 
@@ -393,10 +393,10 @@ void apply( uint64_t code, uint64_t action ) {
 ### NOTE: table names and action names cannot use an underscore ("_").
 ### Calling contract with test values
 ```base
-eosc push message mycontract testaction '{"u32":"1000", "cplx":{"u64":"472", "str":"hello", "bytes":"B0CA", "pub":"EOS8CY2pCW5THmzvPTgEh5WLEAxgpVFXaPogPvgvVpVWCYMRdzmwx", "simple":{"u32":"164","s16":"small-string"}}}' -S mycontract
+cleos push message mycontract testaction '{"u32":"1000", "cplx":{"u64":"472", "str":"hello", "bytes":"B0CA", "pub":"EOS8CY2pCW5THmzvPTgEh5WLEAxgpVFXaPogPvgvVpVWCYMRdzmwx", "simple":{"u32":"164","s16":"small-string"}}}' -S mycontract
 ```
 
-#### Will produce the following output in eosd console
+#### Will produce the following output in nodeos console
 ```base
 test_action content
 u32:[1000]
