@@ -30,8 +30,8 @@ Options:
   -H,--host TEXT=localhost    the host where nodeos is running
   -p,--port UINT=8888         the port where nodeos is running
   --wallet-host TEXT=localhost
-                              the host where eos-walletd is running
-  --wallet-port UINT=8888     the port where eos-walletd is running
+                              the host where walleos is running
+  --wallet-port UINT=8888     the port where walleos is running
   -v,--verbose                output verbose messages on error
 
 Subcommands:
