@@ -715,7 +715,7 @@ Publishing contract...
 }
 ```
 
-If you are monitoring the output of your eosd process you should see:
+If you are monitoring the output of your nodeos process you should see:
 ```base
 ...] initt generated block #188249 @ 2017-09-13T22:00:24 with 0 trxs  0 pending
 Init World!
@@ -724,20 +724,20 @@ Init World!
 ```
 You will notice the lines "Init World!" are executed 3 times. This isn't a mistake. When the blockchain is processing transactions the following happens:
 
-1st : eosd receives a new transaction (validating transaction)
+1st : nodeos receives a new transaction (validating transaction)
 - creates a temporary session
 - attempts to apply the transaction
 - succeeds and prints "Init World!"
 - or fails undoes the changes (potentially failing after printing "Init World!")
 
-2nd : eosd starts to produce a block
+2nd : nodeos starts to produce a block
 - undoes all pending state
 - pushes all transactions as it builds the block
 - prints "Init World!" a second time
 - finishes building the block
 - undoes all of the temporary changes while creating block
 
-3rd : eosd pushes the generated block as if it is received it from the network
+3rd : nodeos pushes the generated block as if it is received it from the network
 - prints "Init World!" a third time
 
 At this point, your contract is ready to start receiving messages. Since the default message handler accepts all messages we can send it anything we want. Let's try sending it an empty message:
@@ -774,7 +774,7 @@ The result is:
   }
 }
 ```
-If you are following along in eosd, then you should have seen the following scroll by the screen:
+If you are following along in nodeos, then you should have seen the following scroll by the screen:
 ```base
 Hello World: ${account}->hello
 Hello World: ${account}->hello
@@ -832,7 +832,7 @@ cleos push message ${account} transfer '{"from":"currency","to":"inita","quantit
   }
 }
 ```
-If you observe the output of eosd you should see:
+If you observe the output of nodeos you should see:
 ```base
 Hello World: ${account}->transfer
 Hello World: ${account}->transfer
@@ -904,7 +904,7 @@ Then we can recompile and deploy it with:
 eoscpp -o hello.wast hello.cpp 
 cleos set contract ${account} hello.wast hello.abi
 ```
-eosd will call init() again because of the redeploy
+nodeos will call init() again because of the redeploy
 ```base
 Init World!
 Init World!
@@ -943,7 +943,7 @@ $ cleos push message ${account} transfer '{"from":"currency","to":"inita","quant
   }
 }
 ```
-And on eosd we should see the following output:
+And on nodeos we should see the following output:
 ```base
 Hello World: ${account}->transfer
 Transfer 50 from currency to inita
@@ -1029,7 +1029,7 @@ After building and deploying we can attempt to transfer again:
          thread-0  message_handling_contexts.cpp:19 require_authorization
 ...
 ```
-If you look on `eosd` you will see this:
+If you look on `nodeos` you will see this:
 
 ```base
 Hello World: initc->transfer
@@ -1107,14 +1107,14 @@ Deploy smart contract
 
 ## 8. Debugging Smart Contract
 
-In order to be able to debug your smart contract, you will need to setup local eosd node. This local eosd node can be run as separate private testnet or as an extension of public testnet (or the official testnet).
+In order to be able to debug your smart contract, you will need to setup local nodeos node. This local nodeos node can be run as separate private testnet or as an extension of public testnet (or the official testnet).
 
-When you are creating your smart contract for the first time, it is recommended to test and debug your smart contract on a private testnet first, since you have full control of the whole blockchain. This enables you to have unlimited amount of eos needed and you can just reset the state of the blockchain whenever you want. When it is ready for production, debugging  on the public testnet (or official testnet) can be done by connecting your local eosd to the public testnet (or official testnet) so you can see the log of the testnet in your local eosd.
+When you are creating your smart contract for the first time, it is recommended to test and debug your smart contract on a private testnet first, since you have full control of the whole blockchain. This enables you to have unlimited amount of eos needed and you can just reset the state of the blockchain whenever you want. When it is ready for production, debugging  on the public testnet (or official testnet) can be done by connecting your local nodeos to the public testnet (or official testnet) so you can see the log of the testnet in your local nodeos.
 
 The concept is the same, so for the following guide, debugging on the private testnet will be covered.
 
 
-If you haven't set up your own local eosd, please follow the [setup guide](https://github.com/EOSIO/eos/wiki/Local-Environment). By default, your local eosd will just run in a private testnet unless you modify the config.ini file to connect with public testnet (or official testnet) nodes as described in the following [guide](Testnet%3A%20Public).
+If you haven't set up your own local nodeos, please follow the [setup guide](https://github.com/EOSIO/eos/wiki/Local-Environment). By default, your local nodeos will just run in a private testnet unless you modify the config.ini file to connect with public testnet (or official testnet) nodes as described in the following [guide](Testnet%3A%20Public).
 
 ### 8.1. Method
 The main method used to debug smart contract is **Caveman Debugging**, where we utilize the printing functionality to inspect the value of a variable and check the flow of the contract. Printing in smart contract can be done through the Print API ([C](https://github.com/EOSIO/eos/blob/master/contracts/eoslib/print.h) and [C++](https://github.com/EOSIO/eos/blob/master/contracts/eoslib/print.hpp)). The C++ API is the wrapper for C API, so most often we will just use the C++ API.
@@ -1210,7 +1210,7 @@ $ cleos set contract debug debug.wast debug.abi
 $ cleos push message debug foo '{"from":"inita", "to":"initb", "amount":10}' --scope debug
 ```
 
-When you check your local eosd node log, you will see the following lines after the above message is sent.
+When you check your local nodeos node log, you will see the following lines after the above message is sent.
 ```
 Code is debug
 Action is foo
