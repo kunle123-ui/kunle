@@ -3,7 +3,7 @@ Tools/Programs included in eos resposity.
 * [Programs](#programs)
     * [nodeos](#nodeos)
     * [cleos](#cleos)
-    * [eos-walletd](#eos-walletd)
+    * [walleos](#walleos)
     * [launcher](#launcher)
     * [snapshot](#snapshot)
 * [Tools](#tools)
@@ -75,7 +75,7 @@ Options:
   -f,--force-unique           force the transaction to be unique. this will consume extra bandwidth and remove any protections against accidently issuing the same transaction multiple times
   ```
 
-### eos-walletd
+### walleos
 
 An EOS wallet daemon that loads wallet related plugins, such as the HTTP interface and RPC API
 
