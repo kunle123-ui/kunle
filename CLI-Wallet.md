@@ -5,8 +5,8 @@
 
 ## 1. Overview
 
-Program: eos-walletd
-Path: eos/build/programs/eos-walletd
+Program: walleos
+Path: eos/build/programs/walleos
 
 ## 2. Purpose
 
@@ -14,10 +14,10 @@ To store private keys that will be used to sign transactions sent to the block c
 
 ## 3. How to run the Wallet
 
-Start eos-walletd process on your local instance as follows:
+Start walleos process on your local instance as follows:
 
 ```
-$ eos-walletd 
+$ walleos 
 ```
 
 You will notice that it creates a folder called data-dir and contains a config.ini file. The configuration file contains the http server endpoint for incoming http connections and other parameters for cross origin resource sharing.
@@ -26,14 +26,14 @@ The default parameters should be sufficient for running a local instance of wall
 
 ## 4. Available Commands
 
-The command line tool to interact with eos-walletd is called “eosc”. It is found in eos/build/programs/eosc folder.
+The command line tool to interact with walleos is called “cleos”. It is found in eos/build/programs/cleos folder.
 
-It provides the following commands to interact with eos-walletd:
+It provides the following commands to interact with walleos:
 
 ### Create
 
 ```
-$ eosc wallet create ${options}
+$ cleos wallet create ${options}
 ```
 
 Options:
@@ -47,7 +47,7 @@ If you don’t provide an optional name it creates a default wallet.
 Open an already created wallet. You need to open a wallet (if you are not on default wallet) to operate on it.
 
 ```
-$ eosc wallet open ${options}
+$ cleos wallet open ${options}
 ```
 
 Options:
@@ -59,7 +59,7 @@ Options:
 Locks a wallet.
 
 ```
-$ eosc wallet lock ${options}
+$ cleos wallet lock ${options}
 ```
 
 Options:
@@ -69,7 +69,7 @@ Options:
 ### Unlock wallet
 
 ```
-$ eosc wallet unlock ${options}
+$ cleos wallet unlock ${options}
 ```
 
 Options:
@@ -80,7 +80,7 @@ Options:
 ### Import private key into wallet
 
 ```
-$ eosc wallet import ${options} key
+$ cleos wallet import ${options} key
 ```
 
 Positionals:
@@ -96,7 +96,7 @@ Options:
 List opened wallets, * = unlocked
 
 ```
-$ eosc wallet list
+$ cleos wallet list
 ```
 
 ### Keys
@@ -104,6 +104,6 @@ $ eosc wallet list
 List of private keys from all unlocked wallets in wif format.
 
 ```
-$ eosc wallet keys
+$ cleos wallet keys
 ```
 
