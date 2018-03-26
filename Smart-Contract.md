@@ -12,7 +12,7 @@
  * [3 Checklist](#3-checklist)
  * [4 Interacting with Smart Contract Examples](#4-interacting-with-smart-contract-examples)
     + [4.1 The Currency Contract](#41-the-currency-contract)
-    + [4.2 Tie-Tac-Toe](#42-tic-tac-toe)
+    + [4.2 Tic-Tac-Toe](#42-tic-tac-toe)
  * [5 Writing your first EOS Smart Contract](#5-writing-your-first-eos-smart-contract)
  * [6 Deploy and update Smart Contract](#6-deploy-and-update-smart-contract)
  * [7 Command Summary](#7-command-summary)
