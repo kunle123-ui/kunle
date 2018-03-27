@@ -4,7 +4,7 @@ Welcome to the EOS.IO wiki. This resource is intended as a guide for developers 
 **Wiki Navigation**
 
 - [Glossary](Glossary)
-- [Public Testnet: Dawn 2.0](Testnet%3A%20Public)
+- [Public Testnet](Testnet%3A%20Public)
   * [Overview](Testnet%3A%20Public#overview)
   * [Nodes](Testnet%3A%20Public#nodes)
   * [Public Testnet Endpoints](Testnet%3A%20Public#public-testnet-endpoints)
