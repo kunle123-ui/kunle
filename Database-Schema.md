@@ -1,8 +1,8 @@
-- [1. Primary Schema Relationships](#1-primary-schema-relationships)
-- [2. Blocks](#2-blocks)
-- [3. Transactions](#3-transaction)
-- [4. Messages](#4-message)
-- [5. Accounts](#5-accounts-collection)
+1. [Primary Schema Relationships](#1-primary-schema-relationships)
+2. [Blocks](#2-blocks)
+3. [Transactions](#3-transaction)
+4. [Messages](#4-message)
+5. [Accounts](#5-accounts-collection)
 
 ## 1. Primary Schema Relationships
 
