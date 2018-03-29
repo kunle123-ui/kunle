@@ -12,7 +12,7 @@
   - [3.2 Build eos image](#32-build-eos-image)
   - [3.3 Start nodeos docker container only](#33-start-nodeos-docker-container-only)
   - [3.4 Get chain info](#34-get-chain-info)
-  - [3.5 Start both nodeos and walleos containers](#35-start-both-nodeos-and-walleos-containers)
+  - [3.5 Start both nodeos and eosiowd containers](#35-start-both-nodeos-and-eosiowd-containers)
     + [3.5.1 Execute cleos commands](#351-execute-cleos-commands)
     + [3.5.2 Change default configuration](#352-change-default-configuration)
     + [3.5.3 Clear data-dir](#353-clear-data-dir)
@@ -123,7 +123,7 @@ EOS comes with a number of programs you can find in `~/eos/build/programs`. They
 
 * nodeos - server-side blockchain node component
 * cleos - command line interface to interact with the blockchain
-* walleos - EOS wallet
+* eosiowd - EOS wallet
 * launcher - application for nodes network composing and deployment; [more on launcher](Testnet%3A%20Private#the-launcher-application)
 
 Manual installation of the dependencies
@@ -337,13 +337,13 @@ $ docker run --name nodeos -v /path-to-data-dir:/opt/eos/bin/data-dir -p 8888:88
 $ curl http://127.0.0.1:8888/v1/chain/get_info
 ```
 
-### 3.5. Start both nodeos and walleos containers
+### 3.5. Start both nodeos and eosiowd containers
 
 ```bash
 $ docker-compose up
 ```
 
-After `docker-compose up`, two services named nodeos and walleos will be started. nodeos service will expose ports 8888 and 9876 to the host. walleos service does not expose any port to the host, it is only accessible to cleos when runing cleos is running inside the walleos container as described in "Execute cleos commands" section.
+After `docker-compose up`, two services named nodeos and eosiowd will be started. nodeos service will expose ports 8888 and 9876 to the host. eosiowd service does not expose any port to the host, it is only accessible to cleos when runing cleos is running inside the eosiowd container as described in "Execute cleos commands" section.
 
 
 #### 3.5.1. Execute cleos commands
@@ -351,7 +351,7 @@ After `docker-compose up`, two services named nodeos and walleos will be started
 You can run the `cleos` commands via a bash alias.
 
 ```bash
-$ alias cleos='docker-compose exec walleos /opt/eos/bin/cleos -H nodeos'
+$ alias cleos='docker-compose exec eosiowd /opt/eos/bin/cleos -H nodeos'
 $ cleos get info
 $ cleos get account inita
 ```
@@ -362,10 +362,10 @@ Upload sample exchange contract
 $ cleos set contract exchange contracts/exchange/exchange.wast contracts/exchange/exchange.abi
 ```
 
-If you don't need walleos afterwards, you can stop the walleos service using
+If you don't need eosiowd afterwards, you can stop the eosiowd service using
 
 ```bash
-$ docker-compose stop walleos
+$ docker-compose stop eosiowd
 ```
 #### 3.5.2. Change default configuration
 
