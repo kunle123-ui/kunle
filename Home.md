@@ -14,7 +14,7 @@ Welcome to the EOS.IO wiki. This resource is intended as a guide for developers 
 - [Programs & Tools](Programs-&-Tools)
   * [nodeos](Programs-&-Tools#nodeos)
   * [cleos](Programs-&-Tools#cleos)
-  * [eosiowd](Programs-&-Tools#eosiowd)
+  * [keosd](Programs-&-Tools#keosd)
   * [launcher](Programs-&-Tools#launcher)
   * [snapshot](Programs-&-Tools#snapshot)
   * [eoscpp](Programs-&-Tools#eoscpp)
