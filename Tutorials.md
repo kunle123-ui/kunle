@@ -456,7 +456,7 @@ Init() is being called once at the beginning of the lifetime of a
 contract. It can be used to setup the environment in order for the
 contract to function properly.
 
-Apply( uint64_t code, uint64_t action_name) is being used a message
+Apply( uint64_t code, uint64_t action_name) is being used as a message
 sink. Whenever a message is being sent to the contract, this function is
 the entry point; The two parameters have the following meaning:
 
@@ -493,7 +493,7 @@ void apply( uint64_t code, uint64_t action ) {
 ~~~~
 It is best practice to implement filters as in the above code sample in
 order to make sure that only the correct messages are being processed
-and then call the atual message handler after filtering.
+and then call the actual message handler after filtering.
 
 Notice that current_message<T>() is used before passing it to
 specific handler, current_message<T>() is converting the message
@@ -674,7 +674,7 @@ Make sure that the wallet is unlocked and contains the currency key.
 After the deployment the contracts action can be triggered from command
 line in the following way:
 ~~~~
-$ cleos push message currency transfer ‘{“from”:“currency”,“to”:“tester”,“quantity”:50}’ -S currency -S tester -p currency@active
+$ cleos push action currency transfer ‘{“from”:“currency”,“to”:“tester”,“quantity”:50}’ -S currency -S tester -p currency@active
 ~~~~
 
 ## 3. Smart Contract “Hello World”
@@ -807,7 +807,7 @@ At this point your contract is ready to start receiving messages. Since the defa
 anything we want. Let's try sending it an empty message:
 
 ```bash
-$ cleos push message ${account} hello '"abcd"' --scope ${account}
+$ cleos push action ${account} hello '"abcd"' --scope ${account}
 ```
 
 This command will send the message "hello" with binary data represented by the hex string "abcd". Note, in a bit we will show how to define the ABI so that
@@ -943,7 +943,7 @@ the `types` array to `name`, which is a built in type used to encode a uint64_t 
 Now that we have reviewed the ABI defined by the skeleton, we can construct a message call for `transfer`:
 
 ```bash
-cleos push message ${account} transfer '{"from":"currency","to":"inita","quantity":50}' --scope initc
+cleos push action ${account} transfer '{"from":"currency","to":"inita","quantity":50}' --scope initc
 2570494ms thread-0   main.cpp:797                  operator()           ] Converting argument to binary...
 {
   "transaction_id": "b191eb8bff3002757839f204ffc310f1bfe5ba1872a64dda3fc42bfc2c8ed688",
@@ -1070,7 +1070,7 @@ Init World!
 Then we can execute transfer:
 
 ```bash
-$ cleos push message ${account} transfer '{"from":"currency","to":"inita","quantity":50}' --scope ${account}
+$ cleos push action ${account} transfer '{"from":"currency","to":"inita","quantity":50}' --scope ${account}
 {
   "transaction_id": "a777539b7d5f752fb40e6f2d019b65b5401be8bf91c8036440661506875ba1c0",
   "processed": {
@@ -1188,7 +1188,7 @@ The EOS.IO software will take care of enforcing and validating the signatures, a
 After building and deploying we can attempt to transfer again:
 
 ```bash
- cleos push message ${account} transfer '{"from":"initb","to":"inita","quantity":50}' --scope ${account}
+ cleos push action ${account} transfer '{"from":"initb","to":"inita","quantity":50}' --scope ${account}
  1881603ms thread-0   main.cpp:797                  operator()           ] Converting argument to binary...
  1881630ms thread-0   main.cpp:851                  main                 ] Failed with error: 10 assert_exception: Assert Exception
  status_code == 200: Error
@@ -1211,7 +1211,7 @@ This shows that it attempted to apply your transaction, printed the initial "Hel
 We can fix that by telling `cleos` to add the required permission:
 
 ```bash
- cleos push message ${account} transfer '{"from":"initb","to":"inita","quantity":50}' --scope ${account} --permission initb@active
+ cleos push action ${account} transfer '{"from":"initb","to":"inita","quantity":50}' --scope ${account} --permission initb@active
 ```
 
 The `--permission` command defines the account and permission level, in this case we use the `active` authority which is the default.
@@ -1241,7 +1241,7 @@ We can now compile, deploy, and attempt to execute a transfer of 0:
 ```bash
  $ eoscpp -o hello.wast hello.cpp
  $ cleos set contract ${account} hello.wast hello.abi
- $ cleos push message ${account} transfer '{"from":"initb","to":"inita","quantity":0}' --scope initc --permission initb@active
+ $ cleos push action ${account} transfer '{"from":"initb","to":"inita","quantity":0}' --scope initc --permission initb@active
  3071182ms thread-0   main.cpp:851                  main                 ] Failed with error: 10 assert_exception: Assert Exception
  status_code == 200: Error
  : 10 assert_exception: Assert Exception
@@ -1839,20 +1839,20 @@ After the deployment and the transaction is confirmed, the contract is already a
 
 #### Create
 ```bash
-$ cleos push message tic.tac.toe create '{"challenger":"inita", "host":"initb"}' -S initb -S tic.tac.toe -p initb@active 
+$ cleos push action tic.tac.toe create '{"challenger":"inita", "host":"initb"}' -S initb -S tic.tac.toe -p initb@active 
 ```
 #### Move
 ```bash
-$ cleos push message tic.tac.toe move '{"challenger":"inita", "host":"initb", "by":"initb", "movement":{"row":0, "column":0} }' -S initb -S tic.tac.toe -p initb@active 
-$ cleos push message tic.tac.toe move '{"challenger":"inita", "host":"initb", "by":"inita", "movement":{"row":1, "column":1} }' -S initb -S tic.tac.toe -p inita@active 
+$ cleos push action tic.tac.toe move '{"challenger":"inita", "host":"initb", "by":"initb", "movement":{"row":0, "column":0} }' -S initb -S tic.tac.toe -p initb@active 
+$ cleos push action tic.tac.toe move '{"challenger":"inita", "host":"initb", "by":"inita", "movement":{"row":1, "column":1} }' -S initb -S tic.tac.toe -p inita@active 
 ```
 #### Restart
 ```bash
-$ cleos push message tic.tac.toe restart '{"challenger":"inita", "host":"initb", "by":"initb"}' -S initb -S tic.tac.toe -p initb@active 
+$ cleos push action tic.tac.toe restart '{"challenger":"inita", "host":"initb", "by":"initb"}' -S initb -S tic.tac.toe -p initb@active 
 ```
 #### Close
 ```bash
-$ cleos push message tic.tac.toe close '{"challenger":"inita", "host":"initb"}' -S initb -S tic.tac.toe -p initb@active
+$ cleos push action tic.tac.toe close '{"challenger":"inita", "host":"initb"}' -S initb -S tic.tac.toe -p initb@active
 ```
 #### See the game status
 ```
