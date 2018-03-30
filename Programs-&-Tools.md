@@ -3,7 +3,7 @@ Tools/Programs included in eos resposity.
 * [Programs](#programs)
     * [nodeos](#nodeos)
     * [cleos](#cleos)
-    * [eosiowd](#eosiowd)
+    * [keosd](#keosd)
     * [launcher](#launcher)
     * [snapshot](#snapshot)
 * [Tools](#tools)
@@ -30,8 +30,8 @@ Options:
   -H,--host TEXT=localhost    the host where nodeos is running
   -p,--port UINT=8888         the port where nodeos is running
   --wallet-host TEXT=localhost
-                              the host where eosiowd is running
-  --wallet-port UINT=8888     the port where eosiowd is running
+                              the host where keosd is running
+  --wallet-port UINT=8888     the port where keosd is running
   -v,--verbose                output verbose messages on error
 
 Subcommands:
@@ -75,7 +75,7 @@ Options:
   -f,--force-unique           force the transaction to be unique. this will consume extra bandwidth and remove any protections against accidently issuing the same transaction multiple times
   ```
 
-### eosiowd
+### keosd
 
 An EOS wallet daemon that loads wallet related plugins, such as the HTTP interface and RPC API
 
