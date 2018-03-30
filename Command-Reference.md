@@ -38,7 +38,7 @@
 
 | Action | Syntax | Example |
 |--|--|--|
-| Use separate wallet app | $ eosiowd --http-server-endpoint ${node}:{port} | [View](#using-separate-wallet-app) |
+| Use separate wallet app | $ keosd --http-server-endpoint ${node}:{port} | [View](#using-separate-wallet-app) |
 
 
 ## Examples
@@ -55,8 +55,8 @@ Options:
   -H,--host TEXT=localhost    the host where nodeos is running
   -p,--port UINT=8888         the port where nodeos is running
   --wallet-host TEXT=localhost
-                              the host where eosiowd is running
-  --wallet-port UINT=8888     the port where eosiowd is running
+                              the host where keosd is running
+  --wallet-port UINT=8888     the port where keosd is running
   -v,--verbose                output verbose messages on error
   
 Subcommands:
@@ -747,10 +747,10 @@ $ cleos ${command} ${subcommand} -s ${param}
 
 ### Using Separate Wallet App
 
-Instead of using the wallet functionality built-in to nodeos, you can also use a separate wallet app which can be found inside programs/eosiowd. By default, port 8888 is used by nodeos, so choose another port for the wallet app.
+Instead of using the wallet functionality built-in to nodeos, you can also use a separate wallet app which can be found inside programs/keosd. By default, port 8888 is used by nodeos, so choose another port for the wallet app.
 
 ```
-$ eosiowd --http-server-endpoint 127.0.0.1:8887
+$ keosd --http-server-endpoint 127.0.0.1:8887
 ```
 
 Then for any operation that requires signing, use the –wallet-host and –wallet-port option
