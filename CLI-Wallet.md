@@ -5,8 +5,8 @@
 
 ## 1. Overview
 
-Program: eosiowd
-Path: eos/build/programs/eosiowd
+Program: keosd
+Path: eos/build/programs/keosd
 
 ## 2. Purpose
 
@@ -14,10 +14,10 @@ To store private keys that will be used to sign transactions sent to the block c
 
 ## 3. How to run the Wallet
 
-Start eosiowd process on your local instance as follows:
+Start keosd process on your local instance as follows:
 
 ```
-$ eosiowd 
+$ keosd 
 ```
 
 You will notice that it creates a folder called data-dir and contains a config.ini file. The configuration file contains the http server endpoint for incoming http connections and other parameters for cross origin resource sharing.
@@ -26,9 +26,9 @@ The default parameters should be sufficient for running a local instance of wall
 
 ## 4. Available Commands
 
-The command line tool to interact with eosiowd is called “cleos”. It is found in eos/build/programs/cleos folder.
+The command line tool to interact with keosd is called “cleos”. It is found in eos/build/programs/cleos folder.
 
-It provides the following commands to interact with eosiowd:
+It provides the following commands to interact with keosd:
 
 ### Create
 
