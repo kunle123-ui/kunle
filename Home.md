@@ -63,19 +63,5 @@ Welcome to the EOS.IO wiki. This resource is intended as a guide for developers 
   * [Localhost Networks](Testnet%3A%20Private#localhost-networks)
   * [Network Topology](Testnet%3A%20Private#network-topology)
   * [The Launcher Application](Testnet%3A%20Private#the-launcher-application)
-- Core Development (Coming Soon)
-  * Code Standards
-  * Github Contribution
-  * Testing/Debugging
-  * Benchmarking
-- Block Producers (Coming Soon)
-  * Prerequisites
-  * Installation
-  * Configuration
-  * Tuning
-- Community Resources (Coming Soon)
-  * Software
-  * Guides
 - [Command Reference](Command%20Reference)
-- [Doxygen Guidelines](Doxygen%20Guidelines)
 - [Releases](Releases)
