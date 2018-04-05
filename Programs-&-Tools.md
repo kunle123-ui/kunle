@@ -1,4 +1,4 @@
-Tools/Programs included in eos resposity. 
+Tools/Programs included in eosio resposity. 
 
 * [Programs](#programs)
     * [nodeos](#nodeos)
@@ -7,22 +7,22 @@ Tools/Programs included in eos resposity.
     * [launcher](#launcher)
     * [snapshot](#snapshot)
 * [Tools](#tools)
-    * [eoscpp](#eoscpp)
+    * [eosiocpp](#eosiocpp)
 
 ## Programs
 
 ### nodeos
 
-The core EOS daemon that can be configured with plugins to run a node. Example uses are block production, dedicated API endpoints and local development. 
+The core EOSIO daemon that can be configured with plugins to run a node. Example uses are block production, dedicated API endpoints, and local development. 
 
 ### cleos
 
-`cleos` is a command line tool that interfaces with the REST api exposed by `nodeos`. In order to use `cleos` you will need to have the end point (IP address and port number) to an `nodeos` instance and also configure `cleos` to load the 'eosio::chain_api_plugin'. cleos contains documentation for all of its commands. For a list of all commands known to cleos, simply run it with no arguments:
+`cleos` is a command line tool that interfaces with the REST API exposed by `nodeos`. In order to use `cleos` you will need to have the end point (IP address and port number) to a `nodeos` instance and also configure `cleos` to load the 'eosio::chain_api_plugin'.  `cleos` contains documentation for all of its commands. For a list of all commands known to `cleos`, simply run it with no arguments:
 
 ```base
 $ cleos
 ERROR: RequiredError: Subcommand required
-Command Line Interface to Eos Client
+Command Line Interface to EOSIO Client
 Usage: ./cleos [OPTIONS] SUBCOMMAND
 
 Options:
@@ -77,7 +77,7 @@ Options:
 
 ### keosd
 
-An EOS wallet daemon that loads wallet related plugins, such as the HTTP interface and RPC API
+An EOSIO wallet daemon that loads wallet related plugins, such as the HTTP interface and RPC API
 
 ### launcher
 
@@ -89,11 +89,11 @@ A submodule referencing `EOSIO/genesis` repository that contains a nodejs applic
 
 ## Tools
 
-### eoscpp
+### eosiocpp
 
-#### Using eoscpp to generate the ABI specification file
+#### Using eosiocpp to generate the ABI specification file
 
-**eoscpp** can generate the ABI specification file by inspecting the content of types declared in the contract source code.
+**eosiocpp** can generate the ABI specification file by inspecting the content of types declared in the contract source code.
 
 To indicate that a type must be exported to the ABI (as an action or a table), the **@abi** annotation must be used in the **comment attached to the type declaration**.
 
@@ -101,16 +101,16 @@ The syntax for the annotation is as following.
 
 - @abi action [name name2 ... nameN]
 - @abi table [index_type name]
-To generate the ABI file, **eoscpp** must be called with the **-g** option.
+To generate the ABI file, **eosiocpp** must be called with the **-g** option.
 
 ```base
-➜ eoscpp -g abi.json types.hpp
+➜ eosiocpp -g abi.json types.hpp
 Generated abi.json ...
 ```
 
-**eoscpp** can also be used to generate helper functions that serialize/deserialize the types defined in the ABI spec.
+**eosiocpp** can also be used to generate helper functions that serialize/deserialize the types defined in the ABI spec.
 ```base
-➜ eoscpp -g abi.json -gs types.hpp
+➜ eosiocpp -g abi.json -gs types.hpp
 Generated abi.json ...
 Generated types.gen.hpp ...
 ```

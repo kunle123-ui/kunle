@@ -1,4 +1,4 @@
-| Taxonomy Term   | Synonym        | block.one Definition |
+| Taxonomy Term   | Synonym        | Block.one Definition |
 |-----------------|----------------|----------------------|
 | Account	      | 			   | An on-chain identifier made up of native and/or custom permissions that are assigned one or more keys or accounts. |
 | Authority		  |          	   | An abstract of permissions that represent how permissions are organized in reality that are bound to an individual or groups of individuals |

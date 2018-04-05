@@ -1,30 +1,26 @@
-- [1. Overview](#1-overview)
-- [2. Purpose](#2-purpose)
-- [3. How to run the Wallet](#3-how-to-run-the-wallet)
-- [4. Available Commands](#4-available-commands)
+- [Overview](#overview)
+- [How to Run keosd](#how-to-run-keosd)
+- [Command Reference](#command-reference)
 
-## 1. Overview
 
-Program: keosd
-Path: eos/build/programs/keosd
+## Overview
 
-## 2. Purpose
+The program `keosd`, located in the `eos/build/programs/keosd` folder within the EOSIO/eos repository, can be used to store private keys that will be used to sign transactions sent to the block chain. `keosd` runs on your local machine and stores your private keys locally.
 
-To store private keys that will be used to sign transactions sent to the block chain. Please note that this is a local process running on your local machine and that it also stores your private keys locally.
+## How to run `keosd`
 
-## 3. How to run the Wallet
-
-Start keosd process on your local instance as follows:
+Start `keosd` on as follows:
 
 ```
 $ keosd 
 ```
 
-You will notice that it creates a folder called data-dir and contains a config.ini file. The configuration file contains the http server endpoint for incoming http connections and other parameters for cross origin resource sharing.
+By default, `keosd` creates the folder `~/eosio-wallet` and populates it with a basic `config.ini` file.  The location of the config file can be specified on the command line using the `--config-dir` argument.  The configuration file contains the http server endpoint for incoming http connections and other parameters for cross origin resource sharing.
 
-The default parameters should be sufficient for running a local instance of wallet process.
+By default, `keosd` stores wallets in the `~/eosio-wallet` folder.  Wallet files follow the naming convention `<wallet-name>.wallet`.  For example, the default wallet will be stored in a file named `default.wallet`.  As other wallets are created, similar files will be created for each.  For example, a wallet named "foo" will have a corresponding wallet file named `foo.wallet`.  The location of the wallet data folder can be specified on the command line using the --data-dir argument.
 
-## 4. Available Commands
+
+## Command Reference
 
 The command line tool to interact with keosd is called “cleos”. It is found in eos/build/programs/cleos folder.
 
@@ -44,7 +40,7 @@ If you don’t provide an optional name it creates a default wallet.
 
 ### Open
 
-Open an already created wallet. You need to open a wallet (if you are not on default wallet) to operate on it.
+Open an already created wallet. You need to open a wallet to operate on it.
 
 ```
 $ cleos wallet open ${options}
@@ -101,7 +97,7 @@ $ cleos wallet list
 
 ### Keys
 
-List of private keys from all unlocked wallets in wif format.
+List of private keys from all unlocked wallets in WIF format.
 
 ```
 $ cleos wallet keys
