@@ -1,21 +1,21 @@
-- [1. Wallets](#1-wallets)
-- [2. Accounts](#2-accounts)
-- [3. Authorities and Permissions](#3-authorities-and-permissions)
-- [4. Putting it all Together](#4-putting-it-all-together)
-  * [4.1 Default Account Configuration (Single-Sig)](#41-default-account-configuration-single-sig)
-  * [4.2 Multi-sig Account & Custom Permissions](#42-multi-sig-account--custom-permissions)
+- [Wallets](#1-wallets)
+- [Accounts](#2-accounts)
+- [Authorities and Permissions](#3-authorities-and-permissions)
+- [Putting it all Together](#4-putting-it-all-together)
+  * [Default Account Configuration (Single-Sig)](#41-default-account-configuration-single-sig)
+  * [Multi-sig Account & Custom Permissions](#42-multi-sig-account--custom-permissions)
 
 An **account** is a human-readable identifier that is stored on the blockchain. Every transaction has its permissions evaluated under the configured authority of an account. Each named permission has a threshold that must be met for a transaction signed under that authority to be considered valid. Transactions are signed by utilizing a **client** that has a loaded and unlocked wallet. A wallet is software that protects and makes use of your keys. These keys may or may not be granted permission to an account authority on the blockchain.
 
-## 1. Wallets
+## Wallets
 
-Wallets are clients that store keys that may or may not be associated with the permissions of one or more accounts. Ideally a wallet has a locked (encrypted) and unlocked (decrypted) state that is protected by a high entropy password. The EOSIO/eos repository comes bundled with a command line interface client called `cleos` that interfaces with a lite-client called `keosd` and together, they demonstrate this pattern.
+Wallets are clients that store keys that may or may not be associated with the permissions of one or more accounts. Ideally, a wallet has a locked (encrypted) and unlocked (decrypted) state that is protected by a high entropy password. The EOSIO/eos repository comes bundled with a command line interface client called `cleos` that interfaces with a lite-client called `keosd` and together, they demonstrate this pattern.
 
-## 2. Accounts
+## Accounts
 
 An account is a human-readable name that is stored on the blockchain. It can be owned by an individual or group of individuals depending on permissions configuration. An account is required to transfer or otherwise push a transaction to the blockchain. 
 
-## 3. Authorities and Permissions
+## Authorities and Permissions
 
 Authorities determine whether or not any given action is properly authorized. 
 
@@ -28,11 +28,11 @@ In addition to the _native_ permissions, an account can possess custom named per
 
 Permission for any given authority can be assigned to one or multiple `public keys` or a valid `account name`. 
 
-## 4. Putting it all Together
+## Putting it all Together
 
 Below is the combination of all the above concepts and some loose examples of how they might be practically employed. 
 
-### 4.1 Default Account Configuration (Single-Sig)
+### Default Account Configuration (Single-Sig)
 
 This is how an account is configured after it has been created, it has a single key for both the **owner** and **active** permissions, both keys with a weight of **1** and permissions both with a threshold of **1**. The default configuration requires a single signature to authorize a action for the native permissions.
 
@@ -49,7 +49,7 @@ In the `@bob` account example, this table shows that @bob's owner key has a perm
 
 To push a transaction under the owner authority, only **@bob** needs to sign the transaction with his owner key for the transaction to be eligible for validation. This key would be stored in a _wallet_, and then processed using `cleos`.
 
-### 4.2 Multi-sig Account & Custom Permissions
+### Multi-sig Account & Custom Permissions
 
 The below examples are authorities for a fictional account named `@multisig`. In this scenario, two users are authoritized to both the `owner` and `active` permissions of a fictional `@multisig` account, with three users permissioned to a custom `publish` permission with varying weight. 
 
@@ -74,7 +74,7 @@ To send a transaction which requires the *active* authority, the threshold is se
 
 There's also a third *custom named permission* called *publish*. For the sake of this example, the *publish* permission is used to publish posts to the @multisig's blog using a theoretical blog dApp. The *publish* permission has a threshold of **2**, **@bob** and **@stacy** both have a weight of *2*, and a **public key** has a weight of **1**. This implies that both **@bob** and **@stacy** can publish without an additional signature, whereas the **public key** requires an additional signature in order for a action under the public permission to be authorized. 
 
-Thus the above permissions table implies that **@bob** and **@stacy**, as owners of the account, have _elevated priviledges_ similar to a moderator or editor. While this primitive example has limitations particularly with scalability and is not necessarily a good design, it does adequately demonstrate the flexible nature of the EOS permissions system.
+Thus the above permissions table implies that **@bob** and **@stacy**, as owners of the account, have _elevated priviledges_ similar to a moderator or editor. While this primitive example has limitations particularly with scalability and is not necessarily a good design, it does adequately demonstrate the flexible nature of the EOSIO permissions system.
 
 Also, notice in the above table, permissions are set using both an **account name** and a **key**. At first glance this may seem trivial, however it does suggest some added dimensions of flexibility. 
 
