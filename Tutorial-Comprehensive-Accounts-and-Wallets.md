@@ -224,8 +224,6 @@ If you've been following the steps of this tutorial, you will the two files, `de
 
 ### Creating an Account
 
-**TODO:  the following steps don't work.  Need to align keosd 
-
 Performing actions on the blockchain requires the use of accounts.  We use `cleos` to request `nodeos` to create accounts and publish them on the blockchain.
 
 First *examine* the `create account` command and its positional arguments.
