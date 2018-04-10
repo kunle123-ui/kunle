@@ -134,7 +134,7 @@ Wallets:
 
 _**Note:** If you wanted to open a named wallet, you would run `$ cleos wallet open -n periwinkle`._
 
-You'll notice in the last response that the default wallet is locked by default.  Unlock the now; you'll need it in the subsequent steps. 
+You'll notice in the last response that the default wallet is locked by default.  Unlock it now; you'll need it in the subsequent steps. 
 
 Run the `wallet unlock` command and paste your _default_ wallet's master password when the password prompt appears.
 
