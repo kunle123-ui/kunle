@@ -66,6 +66,11 @@ There is an automated build script that can install all dependencies and build E
 5. Ubuntu 16.04 (Ubuntu 16.10 recommended).  
 6. MacOS Darwin 10.12 and higher (MacOS 10.13.x recommended).  
 
+### System Requirements (all platforms)
+- 8GB RAM free required
+- 20GB Disk free required
+
+### Run the build script
 Run the build script from the `eos` folder.
 
 ```bash
