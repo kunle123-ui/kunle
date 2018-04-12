@@ -1,13 +1,14 @@
 - [Overview](#overview)
-- [How to Run keosd](#how-to-run-keosd)
+- [How to Run `keosd`](#how-to-run-keosd)
 - [Command Reference](#command-reference)
+- [Managing Wallets with `nodeos`](#managing-wallets-with-nodeos)
 
 
 ## Overview
 
 The program `keosd`, located in the `eos/build/programs/keosd` folder within the EOSIO/eos repository, can be used to store private keys that will be used to sign transactions sent to the block chain. `keosd` runs on your local machine and stores your private keys locally.
 
-## How to run `keosd`
+## How to Run `keosd`
 
 Start `keosd` on as follows:
 
@@ -62,6 +63,8 @@ Options:
 
   -n,--name TEXT              The name of the wallet to lock
 
+_**Note:** Your wallets will be locked when your wallet manager (`keosd` or `nodeos`) is shut down.  You will need to unlock your wallets after restarting the wallet manager._
+
 ### Unlock wallet
 
 ```
@@ -103,3 +106,18 @@ List of private keys from all unlocked wallets in WIF format.
 $ cleos wallet keys
 ```
 
+
+## Managing Wallets with `nodeos`
+
+As an alternative to using `keosd` to manage your wallets, you can use `nodeos` to manage them.  Using `nodeos` for wallet management is not the preferred configuration, but is suitable for development and test. _It is not recommended to simultaneously have `keosd` and `nodeos` doing wallet management; it won't break anything, but you will likely find it very confusing!_
+
+To use `nodeos` for wallet management, you must configure `nodeos` to use the `eosio::wallet_api_plugin`. You can do this on the command line argument when starting `nodeos`, or by defining it in the `nodeos` config file.  You will still use `cleos` as your interface to perform wallet management tasks, the difference being that `cleos` will direct its requests to `nodeos`.
+
+To start `nodeos` with the wallet plugin, include `--plugin eosio::wallet_api_plugin` on the `nodeos` command line.
+
+To include the wallet using the `nodeos` config file, add the following line to the `nodeos` `config.ini` file:
+```
+plugin = eosio::wallet_api_plugin 
+```
+
+_**Note:** If you use `nodeos` for wallet management, your wallets will be locked when `nodeos` is shut down.  You will need to unlock your wallets after restarting `nodeos`._

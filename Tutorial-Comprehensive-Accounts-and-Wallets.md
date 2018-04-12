@@ -1,27 +1,40 @@
 ## Comprehensive Accounts & Wallets Tutorial
 
-**Notice** This tutorial is geared towards use on a **private testnet**, but will work on public testnet with minor modifications. 
+**Note** _This tutorial is geared towards use on a **private single node testnet**, but will work on a public testnet with minor modifications._ 
 
-#### What you'll learn
+#### Tutorial Audience
 
-You'll learn how to create and manage wallets, their keys and then use this wallet to interact with the blockchain through `cleos`.
+This tutorial is for users who want to learn about wallet and account management, how to use `cleos` to manage wallets and accounts, and how the wallet and account management EOSIO components interact with each other.  Additional information can be found in the **[Command Reference](Command%20Reference)**.
 
-#### Who this Tutorial is For
+#### What You'll Learn
 
-This tutorial is for users who want to learn about wallet and account management. It will attempt to teach you as much about `cleos` and how wallets and accounts on EOS interact with each other. Advanced users may be better suited to check out the **[Command Reference](Command%20Reference)**
+You'll learn how to create and manage wallets, their keys and then use this wallet to interact with the blockchain through `cleos`.  You will then learn how to create accounts using `cleos`.  The tutorial will introduce you to some of the interaction between `cleos`, `keosd`, and `nodeos` to sign content published to the blockchain.
 
 #### Prerequisites
 
 - Built and running copy of `cleos` and `keosd` on your system.
-- Basic understanding of command line interface. 
+- Built and _ready to run_ copy of `nodeos` on your system.
+- Basic understanding of command line interfaces. 
 
 **Note:** Instructions require slight modification when applied to a docker installation. 
 
+### EOSIO Accounts and Wallets Conceptual Overview
+
+The diagram below provides a simple conceptual view of accounts and wallets in EOSIO.  While there are other supported deployment configurations, this view matches the one that we will use for this tutorial.
+
+![Accounts and Wallets Conceptual Overview](assets/Accounts-and-Wallets-Overview.png)
+
+The wallet can be thought of as a repository of public-private key pairs.  These are needed to sign operations performed on the blockchain.  Wallets and their content are managed by `keosd`.  Wallets are accessed using `cleos`.
+
+An account can be thought of as an on-chain identifier that has access permissions associated with it (i.e., a security principal).  `nodeos` manages the publishing of accounts and account-related actions on the blockchain.  The account management capabilities of `nodeos` are also accessed using `cleos`.
+
+There is no inherent relationship between accounts and wallets.  Accounts do not know about wallets, and vice versa.  Correspondingly, there is no inherent relationship between `nodeos` and `keosd`.  Their basic functions are fundamentally different.  (_Having said that, there are deployment configurations that blur the distinction.  However, that topic is beyond the scope of this tutorial._)
+
+Where overlap occurs is when signatures are required, e.g., to sign transactions.  The wallet facilitates obtaining signatures in a secure manner by storing keys locally in an encrypted store that can be locked.  `cleos` effectively serves as an intermediary between `keosd` key retrieval operations and `nodeos` account (and other) blockchain actions that require signatures generated using those keys.
+
 ### Creating and Managing Wallets
 
-#### Open your terminal and change to the directory where EOSIO was built
-
-This will make it easier for us to interact with `cleos`, which is a command line interface for interacting with `nodeos` and `keosd`. 
+Open your terminal and change to the directory where EOSIO was built.  This will make it easier for us to interact with `cleos`, which is a command line interface for interacting with `nodeos` and `keosd`. 
 
 ```bash
 $ cd /path_to_eos/build/programs/cleos
@@ -134,7 +147,7 @@ Wallets:
 
 _**Note:** If you wanted to open a named wallet, you would run `$ cleos wallet open -n periwinkle`._
 
-You'll notice in the last response that the default wallet is locked by default.  Unlock it now; you'll need it in the subsequent steps. 
+You'll notice in the last response that the default wallet is locked by default.  Unlock the now; you'll need it in the subsequent steps. 
 
 Run the `wallet unlock` command and paste your _default_ wallet's master password when the password prompt appears.
 
@@ -224,72 +237,84 @@ If you've been following the steps of this tutorial, you will the two files, `de
 
 ### Creating an Account
 
-Performing actions on the blockchain requires the use of accounts.  We use `cleos` to request `nodeos` to create accounts and publish them on the blockchain.
+Performing actions on the blockchain requires the use of accounts.  We use `cleos` to request `nodeos` to create accounts and publish them on the blockchain.  At this point in our tutorial, we need to start `nodeos`.  The following command will start a single node testnet.  See [Creating and Launching a Single Node Testnet](Local-Environment#4-creating-and-launching-a-single-node-testnet) for more on setting up a local environment.
 
-First *examine* the `create account` command and its positional arguments.
+>  For this part of the tutorial, we need keosd and nodeos to run simultaneously.  Presently, the default port for
+>  `keosd` and `nodeos` is the same (port 8888).  To simplify running nodeos for this part of the tutorial, we will
+>  change the port for `keosd` to 8899.  There are two ways that we can do this:
+> 
+>  1.  Edit the `keosd` config file (`~/eosio-wallet/config.ini`) and change the http-server-address property to:
+>    
+>       http-server-address = 127.0.0.1:8899 
+>   
+>  2.  Start keosd using the command line argument --http-server-address=localhost:8899
+>
+>  Restart keosd using the comand line argument:
+>     
+>       $ pkill keosd
+>       $ keosd --http-server-address=localhost:8899
+>    
+>  Unlock your default wallet (it was locked when keosd was restarted).  Since keosd was started listening on
+>  port 8899, you will need to use the --wallet-port command line argument to cleos.
+>    
+>       cleos --wallet-port=8899 wallet unlock
+>   
+>  When prompted for the password, enter the wallet password generated in the previous section when the wallet
+>  was created.
 
-```bash
-$ cleos create account inita ${desired_account_name} ${public_key_1} ${public_key_2}
-```
-
-**Breakdown of the positional arguments for `create account` command**
-
-- `inita` is the name of the **account name** that will fund the account creation, and subsequently the new account.
-- `desired_account_name` is the name of the account you would like to create
-- `public_key_1` and `public_key_2` are public keys, the first one will be permissioned as the owner authority of your account, and the second one will be permissioned for the active authority of your account. 
-
-You generated two keypairs previously, you can either scroll up in your console, as you executed this command only moments ago, or execute `wallet keys` if you disdain scrolling or have cleared your screen
-
-```bash
-$ cleos wallet keys
-[[
-    "EOS6....",
-    "5KQwr..."
-  ],
-  [
-    "EOS3....",
-    "5Ks0e..."
-  ]
-]
-```
-
-As a reminder, your public keys start with `EOS...`. The keys above are arbitrary until you have added them to an authority, which one you decide to user for active and owner are inconsequential until you have created your account.
-
-_Reminder,_ your owner key equates to full control of your account, whereas your active key equates to full access over funds in your account. 
-
-With all you've just learned, replace the placeholders in the following command and press enter. 
+To start `nodeos`, open a new terminal window, go to the folder that contains your `nodeos` executable, and run the following:
 
 ```bash
-$ cleos create account inita ${desired_account_name} ${public_key_1} ${public_key_2}
+$ cd eos/build/programs/nodeos
+$ nodeos -e -p eosio --plugin eosio::chain_api_plugin --plugin eosio::account_history_api_plugin
 ```
-Did you recieve an error mentioning "authorities" somewhere? The reason you got an error, is that you do not have the **@inita**  account keys loaded.
 
-**inita's** keys are included in `config.ini` but for your convenience I've went ahead and grabbed the key and provided it below. Just execute the provided command, maybe that makes up for forcing you through an error?
+Now we can create the account.  Here is the structure of the `cleos create account` command.
 
 ```bash
-$ cleos wallet import 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3
+$ cleos create account ${authorizing_account} ${new_account} ${owner_key} ${active_key}
 ```
-it will respond with 
+
+- `authorizing_account` is the name of the account that will fund the account creation, and subsequently the new account.
+- `new_account` is the name of the account you would like to create
+- `owner_key` is a public key to be assigned to the **owner** authority of the account.  (See [Accounts & Permissions](Accounts%20%26%20Permissions))
+- `active_key` is a public key to be assigned to the **active** authority of the account. of your account, and the second one will be permissioned for the active authority of your account. 
+
+In this tutorial, `eosio` is the authorizing account.  The actions performed on the blockchain must be signed using the keys associated with the `eosio` account.  The `eosio` account is a special account used to bootstrap EOSIO nodes.  The keys for this account can be found in the `nodeos` config file, located at `~/.local/shared/eosio/config/config.ini` on Linux platforms, and `~/Libraries/Application Support/eosio/nodeos/config/config.ini` on MacOS.
+
+We need a name for our new account.  Account names must conform to the following guidelines:
+
+- Must be less than 13 characters
+- Can only contain the following symbols:   .12345abcdefghijklmnopqrstuvwxyz 
+
+We will use the name "myaccount" for the new account.
+
+We will use the public keys that you generated above and imported into your wallet (recall that the public keys begin with `EOS`).  The keys are arbitrary until you have assigned them to an authority.  However, once assigned, it is important to remember the assignments.  Your owner key equates to full control of your account, whereas your active key equates to full access over funds in your account. 
+
+Use `cleos create account` to create your account:
 
 ```bash
-imported private key for: EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV
+$ cleos --wallet-port=8899 create account eosio myaccount ${public_key_1} ${public_key_2}
 ```
 
-Now that the **@inita** account's keys are loaded, execute the `create account` command you tried earlier.
+If successful, you will see output similar to the following.
 
-If all goes well, `cleos` will return a json object with a transaction ID similar to the following
-
-```
-{
-  "transaction_id": "6acd2ece68c4b86c1fa209c3989235063384020781f2c67bbb80bc8d540ca120",
-  "processed": {
-    "refBlockNum": "25217",
-    "refBlockPrefix": "2095475630",
-    "expiration": "2017-07-25T17:54:55",
-    "scope": [
-      "eos"...
+```bash
+executed transaction: 7f1c6b87cd6573365a7bb3c6aa12f8162c3373d57d148f63f2a2d3373ad2fd54  352 bytes  102400 cycles
+#         eosio <= eosio::newaccount            {"creator":"eosio","name":"myaccount","owner":{"threshold":1,"keys":[{"key":"EOS5kkAs8HZ88m2N7iZWy4J...
 ```
 
-Great! You now have an account and it is on a blockchain. 
+#### Account Related Operations
+There are a number of `cleos` commands specific to accounts.
 
-Go ahead and pat yourself on the back, you've created a wallet, learned a bit about how wallets work, generated keys, imported them into your wallet and created an account.
+`cleos` command | Description
+----- | -----
+`create account` | Create a new account on the blockchain
+`get account` | Retrieve an account from the blockchain
+`get code` | Retrieve the code and ABI for an account
+`get accounts` | Retrieve accounts associated with a public key
+`get servants` | Retrieve accounts which are servants of a given account 
+`get transactions` | Retrieve all transactions with specific account name referenced in their scope
+`set contract` | Create or update the contract on an account
+`set account` | set or update blockchain account state
+`transfer` | Transfer EOS from account to account
