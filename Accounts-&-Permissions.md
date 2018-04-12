@@ -1,9 +1,9 @@
-- [Wallets](#1-wallets)
-- [Accounts](#2-accounts)
-- [Authorities and Permissions](#3-authorities-and-permissions)
-- [Putting it all Together](#4-putting-it-all-together)
-  * [Default Account Configuration (Single-Sig)](#41-default-account-configuration-single-sig)
-  * [Multi-sig Account & Custom Permissions](#42-multi-sig-account--custom-permissions)
+- [Wallets](#wallets)
+- [Accounts](#accounts)
+- [Authorities and Permissions](#authorities-and-permissions)
+- [Putting it all Together](#putting-it-all-together)
+  * [Default Account Configuration (Single-Sig)](#default-account-configuration-single-sig)
+  * [Multi-sig Account & Custom Permissions](#multi-sig-account--custom-permissions)
 
 An **account** is a human-readable identifier that is stored on the blockchain. Every transaction has its permissions evaluated under the configured authority of an account. Each named permission has a threshold that must be met for a transaction signed under that authority to be considered valid. Transactions are signed by utilizing a **client** that has a loaded and unlocked wallet. A wallet is software that protects and makes use of your keys. These keys may or may not be granted permission to an account authority on the blockchain.
 
