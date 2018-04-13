@@ -22,7 +22,7 @@ class hello : public eosio::contract {
 EOSIO_ABI( hello, (hi) )
 ```
 
-You can compile your code to web assmebly (.wast) as follows:
+You can compile your code to web assembly (.wast) as follows:
 ```
 $ eosiocpp -o hello.wast hello.cpp
 ```
