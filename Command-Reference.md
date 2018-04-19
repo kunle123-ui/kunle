@@ -452,19 +452,19 @@ To modify permissions of an account, you must have the authority over the accoun
 The first example associates a new key to the active permissions of an account
 
 ```bash
-$ cleos set account permission test active '{"threshold" : 1, "keys" : [{"permission":{"key":"EOS8X7Mp7apQWtL6T2sfSZzBcQNUqZB7tARFEm9gA9Tn9nbMdsvBB","permission":"active"},"weight":1}], "accounts" : [{"permission":{"account":"acc2","permission":"active"},"weight":50}]}' owner
+$ cleos set account permission test active '{"threshold" : 1, "keys" : [{"permission":{"key":"EOS8X7Mp7apQWtL6T2sfSZzBcQNUqZB7tARFEm9gA9Tn9nbMdsvBB","permission":"active"},"weight":1}], "accounts" : [{"permission":{"actor":"acc2","permission":"active"},"weight":50}]}' owner
 ```
 
 This second example modifies the same account permission, but removes the *key* set in the last example, and grants active authority of the **@test** account to another *account*. 
 
 ```bash
-$ cleos set account permission test active '{"threshold" : 1, "keys" : [], "accounts" : [{"permission":{"account":"sandwich","permission":"active"},"weight":1},{"permission":{"account":"acc1","permission":"active"},"weight":50}]}' owner
+$ cleos set account permission test active '{"threshold" : 1, "keys" : [], "accounts" : [{"permission":{"actor":"sandwich","permission":"active"},"weight":1},{"permission":{"actor":"acc1","permission":"active"},"weight":50}]}' owner
 ```
 
 The third example demonstrates how to setup permissions for multisig
 
 ```bash
-$ cleos set account permission test active '{"threshold" : 100, "keys" : [{"permission":{"key":"EOS8X7Mp7apQWtL6T2sfSZzBcQNUqZB7tARFEm9gA9Tn9nbMdsvBB","permission":"active"},"weight":25}], "accounts" : [{"permission":{"account":"@sandwich","permission":"active"},"weight":75}]}' owner
+$ cleos set account permission test active '{"threshold" : 100, "keys" : [{"permission":{"key":"EOS8X7Mp7apQWtL6T2sfSZzBcQNUqZB7tARFEm9gA9Tn9nbMdsvBB","permission":"active"},"weight":25}], "accounts" : [{"permission":{"actor":"@sandwich","permission":"active"},"weight":75}]}' owner
 ```
 
 The JSON object used in this command is actually composed of two different types of objects
@@ -494,8 +494,8 @@ The JSON object used in this command is actually composed of two different types
 /*Set Permission with Account*/
 {
   "permission" : {
-    "account"       : "sandwich",
-    "permission"    : "active"
+    "actor"       : "sandwich",
+    "permission"  : "active"
   },
   weight            : 75      /*Set the weight of a signature from this permission*/
 }
