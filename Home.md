@@ -8,7 +8,6 @@ Welcome to the EOSIO wiki. This resource is intended as a guide for developers l
   * [Getting the code](Local-Environment#1-getting-the-code)
   * [Building EOSIO](Local-Environment#2-building-eosio)
   * [Creating and Launching a Single Node Testnet](Local-Environment#4-creating-and-launching-a-single-node-testnet)
-  * [Manually Building EOSIO](Local-Environment#manually-building-eosio)
   * [Docker](Local-Environment#3-docker)
   * [Troubleshooting Guide](Local-Environment#5-troubleshooting-guide)
 - [Programs & Tools](Programs-&-Tools)
