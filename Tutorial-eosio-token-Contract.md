@@ -6,7 +6,7 @@ At this stage the blockchain doesn't do much, so let's deploy the `eosio.token` 
 Before we can deploy the token contract we must create an account to deploy it to.
 
 ```
-$ cleos create account eosio eosio.token  EOS7ijWCBmoXBi3CgtK7DJxentZZeTkeUnaSDvyro9dq7Sd1C3dC4 EOS7ijWCBmoXBi3CgtK7DJxentZZeTkeUnaSDvyro9dq7Sd1C3dC4
+$ cleos create account eosio eosio.token EOS7ijWCBmoXBi3CgtK7DJxentZZeTkeUnaSDvyro9dq7Sd1C3dC4 EOS7ijWCBmoXBi3CgtK7DJxentZZeTkeUnaSDvyro9dq7Sd1C3dC4
 ...
 ```
 
