@@ -104,12 +104,12 @@ sudo make install
 <a name="4-creating-and-launching-a-single-node-testnet"></a>
 ## Creating and Launching a Single Node Testnet
 
-After successfully building the project, the `nodeos` binary should be present in the `build/programs/nodeos` folder.  `nodeos` can be run directly from the `build` folder using `programs/nodeos/nodeos`, or you can `cd programs/nodeos` to change into the folder and run the `nodeos` command from there.  Here, we run the command within the `programs/nodeos` folder.
+After successfully building the project, the `nodeos` binary should be present in the `build/programs/nodeos` folder.  `nodeos` can be run directly from the `build` folder using `programs/nodeos/nodeos`, or you can `cd build/programs/nodeos` to change into the folder and run the `nodeos` command from there.  Here, we run the command within the `build/programs/nodeos` folder.
 
 You can start your own single-node blockchain with this single command:
 
 ```
-cd programs/nodeos
+cd build/programs/nodeos
 ./nodeos -e -p eosio --plugin eosio::wallet_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::account_history_api_plugin 
 ```
 
