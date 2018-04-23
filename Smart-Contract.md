@@ -380,7 +380,7 @@ extern "C" {
     }
 } // extern "C"
 ```
-- debug.hpp
+- debug.abi
 ```cpp
 {
   "structs": [{
