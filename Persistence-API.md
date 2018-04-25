@@ -267,8 +267,8 @@ we must convert to the `account_name` encoding of the customer stored in the tab
 customer_table.emplace(mechanic, [&]( auto& c_rec ) {
     c_rec.customer_id = eosio::chain::string_to_name(customer_name);
     c_rec.last_service_date = current_date;
+    c_rec.odometer_at_last_service = current_odometer;
     c_rec.latest_odometer = current_odometer;
-    c_rec.miles_since_service = 0;
 });
 ```
 We can `find` a customer using the primary key, `customer_id`.
@@ -281,7 +281,6 @@ To update the `latest_odometer` property, use something similar to the following
 account_name customer_id = eosio::chain::string_to_name(customer_name);
 customer_table.modify(customer_table.get(customer_id), mechanic, [&]( auto& c_rec) {
     c_rec.latest_odometer = customer_provided_odometer_reading;     // customer provided input
-    c_rec.miles_since_service = customer_odometer_at_last_service;  // obtained from the service_table
 });
 ```
 Parameter `mechanic` is the payer for the update action.  Our example allows the mechanic or
