@@ -759,7 +759,7 @@ $ keosd --http-server-endpoint 127.0.0.1:8887
 Then for any operation that requires signing, use the –wallet-host and –wallet-port option
 
 ```
-$ cleos --wallet-host 127.0.0.1 --wallet-port 8887 ${command} ${subcommand} ${param}
+$ cleos —-wallet-url 127.0.0.1:8887 ${command} ${subcommand} ${param}
 ```
 
 ## Error Examples
