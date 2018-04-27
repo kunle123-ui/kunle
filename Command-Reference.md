@@ -48,17 +48,17 @@ cleos contains documentation for all of its commands. For a list of all commands
 ```
 $ cleos
 ERROR: RequiredError: Subcommand required
-Command Line Interface to Eos Daemon
-Usage: ./cleos [OPTIONS] SUBCOMMAND
+Command Line Interface to EOSIO Client
+Usage: cleos [OPTIONS] SUBCOMMAND
+
 Options:
   -h,--help                   Print this help message and exit
-  -H,--host TEXT=localhost    the host where nodeos is running
-  -p,--port UINT=8888         the port where nodeos is running
-  --wallet-host TEXT=localhost
-                              the host where keosd is running
-  --wallet-port UINT=8888     the port where keosd is running
-  -v,--verbose                output verbose messages on error
-  
+  -u,--url TEXT=http://localhost:8888/
+                              the http/https URL where nodeos is running
+  --wallet-url TEXT=http://localhost:8888/
+                              the http/https URL where keosd is running
+  -v,--verbose                output verbose actions on error
+
 Subcommands:
   version                     Retrieve version information
   create                      Create various items, on and off the blockchain
@@ -67,8 +67,10 @@ Subcommands:
   transfer                    Transfer EOS from account to account
   net                         Interact with local p2p network connections
   wallet                      Interact with local wallet
-  benchmark                   Configure and execute benchmarks
+  sign                        Sign a transaction
   push                        Push arbitrary transactions to the blockchain
+  multisig                    Multisig contract commands
+  system                      Send eosio.system contract action to the blockchain.
 ```
   
 ### All subcommand  
