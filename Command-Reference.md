@@ -4,7 +4,7 @@
 |--|--|--|
 | Get ALL commands | $ cleos | [View](#all-command) |
 | Get ALL subcommands | $ cleos ${command} | [View](#all-subcommand) |
-| Connect to node | $ cleos --url {node}:{port} | [View](#connect-to-node) |
+| Connect to node | $ cleos --url ${node}:${port} | [View](#connect-to-node) |
 | Query blockchain state | $ cleos get info | [View](#query-blockchain-state) |
 | Get transaction by id | $ cleos get transaction ${transaction_id} | [View](#get-transaction-by-transaction_id) |
 | Get transactions by account | $ cleos get transaction ${account} | [View](#get-transaction-by-account) |
