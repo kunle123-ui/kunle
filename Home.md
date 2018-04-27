@@ -26,7 +26,7 @@ Welcome to the EOSIO wiki. This resource is intended as a guide for developers l
 - [CLI Wallet](CLI%20Wallet)
   * [Overview](CLI%20Wallet#overview)
   * [How to run keosd](CLI%20Wallet#how-to-run-keosd)
-  * [Command Reference](CLI%20Wallet#command-reference)
+  * [Command Reference](Command%20Reference)
 - [Persistence API](Persistence-API)
   * [Overview](Persistence-API#overview)
   * [The EOSIO Multi-Index API](Persistence-API#the-eosio-multi-index-api)
