@@ -3,7 +3,6 @@
 - [Command Reference](#command-reference)
 - [Managing Wallets with `nodeos`](#managing-wallets-with-nodeos)
 
-
 ## Overview
 
 The program `keosd`, located in the `eos/build/programs/keosd` folder within the EOSIO/eos repository, can be used to store private keys that will be used to sign transactions sent to the block chain. `keosd` runs on your local machine and stores your private keys locally.
@@ -106,6 +105,7 @@ List of private keys from all unlocked wallets in WIF format.
 $ cleos wallet keys
 ```
 
+Read the full [Cleos Command Reference](Command%20Reference)
 
 ## Managing Wallets with `nodeos`
 
