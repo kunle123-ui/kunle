@@ -99,7 +99,7 @@ Every smart contract must have a matching Ricardian contract.  The Ricardian Con
 ## CONTRACT FOR HELLO WORLD
 
 ### Parameters
-Input paramters: NONE
+Input parameters: NONE
 
 Implied parameters: 
 
