@@ -81,15 +81,6 @@ Locked: default
 
 You will need your wallet unlocked for the rest of this tutorial.
 
-All new blockchains start out with a master key for the sole initial account, `eosio`. To interact with the blockchain you will need to import this initial account's private key into your wallet.
-
-Import the master key for the `eosio` account into your wallet.  The master key can be found in the `config.ini` file in the config folder for `nodeos`.  In this example, the default config folder is used.  On Linux systems, this will be in `~/.local/share/eosio/nodeos/config` and on MacOS, this will be in `~/Library/Application Support/eosio/nodeos/config`.
-
-```
-$ cleos wallet import 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3
-imported private key for: EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV
-```
-
 ## Loading the Bios Contract
 
 Now that we have a wallet with the key for the `eosio` account loaded, we can set a default system contract.  For the purposes of development, the default `eosio.bios` contract can be used.  This contract enables you to have direct control over the resource allocation of other accounts and to access other privileged API calls. In a public blockchain, this contract will manage the staking and unstaking of tokens to reserve bandwidth for CPU and network activity, and memory for contracts. 
@@ -127,7 +118,6 @@ This can be read as: The action `setcode` as defined by `eosio` was executed by 
 As we will see in a bit, actions can be processed by more than one contract.
 
 The last argument to this call was `-p eosio`.  This tells `cleos` to sign this action with the active authority of the `eosio` account, i.e., to sign the action using the private key for the `eosio` account that we imported earlier. 
-
 
 ## Creating Accounts
 
