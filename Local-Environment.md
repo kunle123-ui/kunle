@@ -42,9 +42,7 @@ Throughout the EOSIO documentation and tutorials, reference will be made to the 
 
 <a name="2-building-eosio"></a>
 ## Building EOSIO
-The simple approach to building EOSIO is to use the automated build script.  The automated approach is documented next.  Instructions to build EOSIO manually are described in the section [Manually Building EOSIO](#manually-building-eosio), farther down in this document.
-
-The build places content in the `eos/build` folder.  The executables can be found in subfolders within the `eos/build/programs` folder.
+Building EOSIO is done via an automated build script.  The build places content in the `eos/build` folder.  The executables can be found in subfolders within the `eos/build/programs` folder.
 
 <a name="autobuild"></a>
 ### Automated build script
