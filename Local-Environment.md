@@ -272,7 +272,7 @@ $ docker volume rm docker_nodeos-data-volume
 <a name="5-troubleshooting-guide"></a>
 ## Troubleshooting Guide
 
-1. *You get an error such as `St9exception: content of memory does not match data expected by executable` when trying to start `nodeos`*
+1. You get an error such as `St9exception: content of memory does not match data expected by executable` when trying to start `nodeos`
 > Try restarting `nodeos` with `--resync`
 2. How do I find which version of `nodeos` I'm running or connecting to?
-> Use `cleos -H ${nodeos_host} -p ${nodeos_port} get info` and you will see the version number in the field called `server_version`
+> Use `cleos -u http://${nodeos_host}:${nodeos_port} get info` (for example, `cleos -u http://localhost:8888 get info`) and you will see the version number in the field called `server_version`

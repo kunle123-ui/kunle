@@ -20,6 +20,7 @@
 | DAWN-2018-03-29-ALPHA           | 2018 Mar 29 | d6c3633  | ALPHA Pre-release for DAWN 3.0 |
 | DAWN-2018-03-30-ALPHA           | 2018 Mar 30 | 1c1e93d  | ALPHA Pre-release for DAWN 3.0 |
 | EOSIO DAWN 3.0           | 2018 Apr 5 | d9ad8ee  | DAWN 3.0 Official Release |
+| EOSIO DAWN 4.0           | 2018 May 11 | 9be8910  | DAWN 4.0 Official Release |
 
 [1] This release is not self-identifying
 
