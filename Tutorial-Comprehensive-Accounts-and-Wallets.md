@@ -266,7 +266,7 @@ To start `nodeos`, open a new terminal window, go to the folder that contains yo
 
 ```bash
 $ cd eos/build/programs/nodeos
-$ nodeos -e -p eosio --plugin eosio::chain_api_plugin --plugin eosio::account_history_api_plugin
+$ nodeos -e -p eosio --plugin eosio::chain_api_plugin --plugin eosio::history_api_plugin
 ```
 
 Now we can create the account.  Here is the structure of the `cleos create account` command.

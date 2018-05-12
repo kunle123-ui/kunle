@@ -108,7 +108,7 @@ You can start your own single-node blockchain with this single command:
 
 ```
 cd build/programs/nodeos
-./nodeos -e -p eosio --plugin eosio::wallet_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::account_history_api_plugin 
+./nodeos -e -p eosio --plugin eosio::wallet_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::history_api_plugin 
 ```
 
 When running `nodeos` you should get log messages similar to below. It means the blocks are successfully produced.
@@ -154,7 +154,7 @@ The following diagram depicts the single host testnet that we just created.  For
 >    plugin = eosio::chain_api_plugin
 >    plugin = eosio::http_plugin
 >    # This will be used by the validation step below, to view account history
->    plugin = eosio::account_history_api_plugin
+>    plugin = eosio::history_api_plugin
 > ```
 > 
 > Now it should be possible to run `nodeos` and see it begin producing blocks.

@@ -132,7 +132,7 @@ $ cleos get info
 ```
 
 ### Get Transaction by transaction_id
-With account_history_api_plugin loaded in nodeos, we can query for particular transaction using the transaciton_id
+With history_api_plugin loaded in nodeos, we can query for particular transaction using the transaciton_id
 ```
 $ cleos get transaction eb4b94b72718a369af09eb2e7885b3f494dd1d8a20278a6634611d5edd76b703
 {
