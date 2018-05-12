@@ -161,6 +161,3 @@ executed transaction: a113a7db8c878dfd894671792770b59a04efb3aa8295f5b3d585daf89c
 #         eosio <= eosio::setcode               {"account":"eosio.msig","vmtype":0,"vmversion":0,"code":"0061736d0100000001bd011b60047f7e7e7f0060047...
 #         eosio <= eosio::setabi                {"account":"eosio.msig","abi":{"types":[{"new_type_name":"account_name","type":"name"},{"new_type_na...
 ```
-
-## Next Step - Hello World Tutorial
-Please proceed to the [Hello World Tutorial](Tutorial-Hello-World-Contract).
