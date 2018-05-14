@@ -54,7 +54,7 @@ a couple of minutes, but either way `nodeos` will keep you posted on the status.
 We will now deposit some funds to exchange:
 
 ```
-./cleos transfer scott exchange "1.0000 EOS"
+./cleos transfer scott exchange "1.0000 EOS" deposit
 executed transaction: 5ec797175dd24612acd8fc5a8685fa44caa8646cec0a87b12568db22a3df02fb  256 bytes  8k cycles
 #   eosio.token <= eosio.token::transfer        {"from":"scott","to":"exchange","quantity":"1.0000 EOS","memo":""}
 >> transfer

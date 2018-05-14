@@ -38,6 +38,7 @@ Welcome to the EOSIO wiki. This resource is intended as a guide for developers l
 - Tutorials
   * [Getting Started with Smart Contracts](Tutorial-Getting-Started-With-Contracts)
   * [Eosio.token, Exchange, and Eosio.msig Contracts](Tutorial-eosio-token-Contract)
+  * [Exchange Deposit and Withdrawal](Tutorial-Exchange-Deposit-Withdraw)
   * [Hello World Tutorial](Tutorial-Hello-World-Contract)
   * [Comprehensive Accounts & Wallets Tutorial](Tutorial-Comprehensive-Accounts-and-Wallets)
   * [Tic-Tac-Toe](Tutorial-Tic-Tac-Toe)
