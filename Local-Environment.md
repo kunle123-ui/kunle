@@ -19,7 +19,8 @@ EOSIO comes with a number of programs.  The primary ones that you will use, and 
 * `cleos` - command line interface to interact with the blockchain and to manage wallets
 * `keosd` - component that manages EOSIO wallets
 
-The basic relationship between these components is illustrated in the following diagram.  In the sections that follow, you will build the EOSIO components, and deploy them in a single host, single node test network (testnet) configuration. 
+The basic relationship between these components is illustrated in the following diagram.  In the sections that follow,
+you will build the EOSIO components, and deploy them in a single host, single node test network (testnet) configuration. 
 ![Basic Relationships Between EOSIO Components](assets/Basic-EOSIO-System-Architecture.png)
 
 
@@ -32,22 +33,31 @@ To download all of the code, clone the `eos` repository and its submodules.
 git clone https://github.com/EOSIO/eos --recursive
 ```
 
-If a repository is cloned without the `--recursive` flag, the submodules can be retrieved after the fact by running this command from within the repo:
+If a repository is cloned without the `--recursive` flag, the submodules can be retrieved after the fact by running this
+command from within the repo:
 
 ```bash
 git submodule update --init --recursive
 ```
 
-Throughout the EOSIO documentation and tutorials, reference will be made to the top level of your local EOSIO source repository.  The location where you just cloned the `eos` repository is that location.  The notation ${EOSIO_SOURCE} represents the same thing.  For example, if you ran the `git clone` operation in a folder called `~/myprojects`, then `${EOSIO_SOURCE}=~/myprojects/eos`.  _**Note that ${EOSIO_SOURCE} is used in the documentation for notational purposes only.  No environment variable is implied or required.**_ More commonly, for simplicity, this and other documents might simply refer to `eos`.  This is equivalent to `${EOSIO_SOURCE}`.
+Throughout the EOSIO documentation and tutorials, reference will be made to the top level of your local EOSIO source
+repository.  The location where you just cloned the `eos` repository is that location.  The notation ${EOSIO_SOURCE}
+represents the same thing.  For example, if you ran the `git clone` operation in a folder called `~/myprojects`, then `${EOSIO_SOURCE}=~/myprojects/eos`.  _**Note that ${EOSIO_SOURCE} is used in the documentation for notational purposes only.  No environment variable is implied or required.**_ More commonly, for simplicity, this and other documents might simply refer to `eos`.  This is equivalent to `${EOSIO_SOURCE}`.
 
 <a name="2-building-eosio"></a>
 ## Building EOSIO
-Building EOSIO is done via an automated build script.  The build places content in the `eos/build` folder.  The executables can be found in subfolders within the `eos/build/programs` folder.
+The simple approach to building EOSIO is to use the automated build script.  The automated approach is documented next.
+Instructions to build EOSIO manually are described in the section [Manually Building EOSIO](#manually-building-eosio),
+farther down in this document.
+
+The build places content in the `eos/build` folder.  The executables can be found in subfolders within the `eos/build/programs`
+folder.
 
 <a name="autobuild"></a>
 ### Automated build script
 
-There is an automated build script that can install all dependencies and build EOSIO.  The script supports the following operating systems. We are working on supporting other Linux/Unix distributions in future releases.
+There is an automated build script that can install all dependencies and build EOSIO.  The script supports the following
+operating systems. We are working on supporting other Linux/Unix distributions in future releases.
 
 1. Amazon 2017.09 and higher.  
 2. Centos 7.  
@@ -71,7 +81,8 @@ cd eos
 <a name="basicvalidation"></a>
 ### Build validation 
 
-Optionally, a set of tests can be run against your build to perform some basic validation.  To run the test suite after building, start `mongod` and the run `make test`.
+Optionally, a set of tests can be run against your build to perform some basic validation.  To run the test suite after
+building, start `mongod` and the run `make test`.
 
 On Linux platforms:
 ```bash
@@ -108,7 +119,7 @@ You can start your own single-node blockchain with this single command:
 
 ```
 cd build/programs/nodeos
-./nodeos -e -p eosio --plugin eosio::wallet_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::history_api_plugin 
+./nodeos -e -p eosio --plugin eosio::chain_api_plugin --plugin eosio::history_api_plugin 
 ```
 
 When running `nodeos` you should get log messages similar to below. It means the blocks are successfully produced.
@@ -125,8 +136,10 @@ eosio generated block 5e527ee2... #101528 @ 2018-04-01T14:24:58.500 with 0 trxs
 ```
 At this point, `nodeos` is running with a single producer, `eosio`.
 
-The following diagram depicts the single host testnet that we just created.  For the curious, in this configuration, we chose to use `nodeos` for wallet management. The `eosio::wallet_api_plugin` that we specified on the `nodeos` command line has a dependency on `eosio::wallet_plugin` that does the wallet management, causing it to load automatically.  Other alternatives are discussed in the [Comprehensive Accounts & Wallets Tutorial](Tutorial-Comprehensive-Accounts-and-Wallets) tutorial.  Regardless of configuration chosen, `cleos` is used to manage the wallets, manage the accounts, and invoke actions on the blockchain.
-![Single Node Testnet without `keosd`](assets/Single-Host-Testnet-No-keosd.png)
+_Note: Previous EOSIO releases used `nodeos` for
+wallet management in the single node test configuration. Now, `keosd` is automatically started and
+wallet management is done by it. Other alternatives are discussed in
+the [Comprehensive Accounts & Wallets Tutorial](Tutorial-Comprehensive-Accounts-and-Wallets) tutorial._
 
 > ### Advanced Steps
 > The more advanced user will likely have need to modify the configuration.  `nodeos` uses a custom configuration folder.  The location of this folder is determined by your system.
@@ -154,7 +167,7 @@ The following diagram depicts the single host testnet that we just created.  For
 >    plugin = eosio::chain_api_plugin
 >    plugin = eosio::http_plugin
 >    # This will be used by the validation step below, to view account history
->    plugin = eosio::history_api_plugin
+>    plugin = eosio::account_history_api_plugin
 > ```
 > 
 > Now it should be possible to run `nodeos` and see it begin producing blocks.
@@ -272,7 +285,7 @@ $ docker volume rm docker_nodeos-data-volume
 <a name="5-troubleshooting-guide"></a>
 ## Troubleshooting Guide
 
-1. You get an error such as `St9exception: content of memory does not match data expected by executable` when trying to start `nodeos`
+1. *You get an error such as `St9exception: content of memory does not match data expected by executable` when trying to start `nodeos`*
 > Try restarting `nodeos` with `--resync`
 2. How do I find which version of `nodeos` I'm running or connecting to?
-> Use `cleos -u http://${nodeos_host}:${nodeos_port} get info` (for example, `cleos -u http://localhost:8888 get info`) and you will see the version number in the field called `server_version`
+> Use `cleos -H ${nodeos_host} -p ${nodeos_port} get info` and you will see the version number in the field called `server_version`
