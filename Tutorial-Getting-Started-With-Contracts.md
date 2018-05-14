@@ -25,7 +25,7 @@ This tutorial assumes that you have installed EOSIO and that `nodeos` and
 You can start your own single-node blockchain with this single command:
 
 ```
-$ nodeos -e -p eosio --plugin eosio::wallet_api_plugin --plugin eosio::chain_api_plugin --plugin eosio::history_api_plugin 
+$ nodeos -e -p eosio --plugin eosio::chain_api_plugin --plugin eosio::history_api_plugin 
 ...
 eosio generated block 046b9984... #101527 @ 2018-04-01T14:24:58.000 with 0 trxs
 eosio generated block 5e527ee2... #101528 @ 2018-04-01T14:24:58.500 with 0 trxs
