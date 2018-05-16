@@ -287,5 +287,7 @@ $ docker volume rm docker_nodeos-data-volume
 
 1. *You get an error such as `St9exception: content of memory does not match data expected by executable` when trying to start `nodeos`*
 > Try restarting `nodeos` with `--resync`
-2. How do I find which version of `nodeos` I'm running or connecting to?
+2. You get an error such as `could not grow database file to requested size.`
+> Start `nodeos` with `--shared-memory-size-mb 1024`. A 1 GB shared memory file allows approximately half a million transactions.
+3. How do I find which version of `nodeos` I'm running or connecting to?
 > Use `cleos -H ${nodeos_host} -p ${nodeos_port} get info` and you will see the version number in the field called `server_version`
