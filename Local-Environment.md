@@ -167,7 +167,7 @@ the [Comprehensive Accounts & Wallets Tutorial](Tutorial-Comprehensive-Accounts-
 >    plugin = eosio::chain_api_plugin
 >    plugin = eosio::http_plugin
 >    # This will be used by the validation step below, to view account history
->    plugin = eosio::account_history_api_plugin
+>    plugin = eosio::history_api_plugin
 > ```
 > 
 > Now it should be possible to run `nodeos` and see it begin producing blocks.
