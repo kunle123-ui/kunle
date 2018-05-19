@@ -1,12 +1,7 @@
 # Bios Boot Sequence Tutorial 
-The description below describes the process to bring up a full set of EOSIO blockchain producers all operating on a single
-server. With this example, you can bring up many `nodeos` nodes, have them communicate with each other, and vote on
-producers.
+The description below covers the bios boot sequence to start a blockchain from a single "genesis" node, transitioning to a voted on set of producers.
 
-The script `bios-boot-tutorial.py` implements these steps in a single-server installation. It emulates a scenario starting
-from a single "genesis" node, to a fully running blockchain with voted-in producers.
-
-The script can be run with no arguments directly from the `programs/bios-boot-tutorial` directory.
+The script `bios-boot-tutorial.py` implements these steps in a single-server installation (all `nodeos` nodes running on the same server). The script can be run with no arguments directly from the `programs/bios-boot-tutorial` directory.
 
 ```
 cd programs/bios-boot-tutorial
