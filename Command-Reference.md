@@ -64,7 +64,7 @@ Subcommands:
   create                      Create various items, on and off the blockchain
   get                         Retrieve various items and information from the blockchain
   set                         Set or update blockchain state
-  transfer                    Transfer EOS from account to account
+  transfer                    Transfer currency from account to account
   net                         Interact with local p2p network connections
   wallet                      Interact with local wallet
   sign                        Sign a transaction
@@ -364,7 +364,7 @@ private: 5Hv22aPcjnENBv6X9o9nKGdkfrW44En6z4zJUt2PobAvbQXrT9z
 Note: cleos does not save the generated private key.
 
 ### Create account
-You will need your EOS keys in order to create an account, you must either have your EOS keys registered on the Ethereum network or you can use the [create keys](#create-keys) function to create a new sets of keys 
+You will need your EOSIO keys in order to create an account, you must either have your EOSIO keys registered on the Ethereum network or you can use the [create keys](#create-keys) function to create a new sets of keys 
 
 ```base
 $ cleos create account inita tester EOS4toFS3YXEQCkuuw1aqDLrtHim86Gz9u3hBdcBw5KNPZcursVHq EOS7d9A3uLe6As66jzN8j44TXJUqJSK3bFjjEEqR4oTvNAB3iM9SA
