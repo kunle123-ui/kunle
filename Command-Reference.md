@@ -8,7 +8,7 @@
 | Query blockchain state | $ cleos get info | [View](#query-blockchain-state) |
 | Get transaction by id | $ cleos get transaction ${transaction_id} | [View](#get-transaction-by-transaction_id) |
 | Get transactions by account | $ cleos get transaction ${account} | [View](#get-transaction-by-account) |
-| Transfer EOS | $ cleos transfer ${from_account} ${to_account} ${quantity} | [View](#transfer-eos) |
+| Transfer currency | $ cleos transfer ${from_account} ${to_account} ${quantity} | [View](#transfer-eos) |
 | Wallet - Create wallet | $ cleos wallet create {-n} ${wallet_name} | [View](#create-wallet) |
 | Wallet - List wallets | $ cleos wallet list | [View](#list-wallets) |
 | Wallet - Import key | $ cleos wallet import ${key} | [View](#import-key-to-wallet) |
@@ -132,7 +132,7 @@ $ cleos get info
 ```
 
 ### Get Transaction by transaction_id
-With history_api_plugin loaded in nodeos, we can query for particular transaction using the transaciton_id
+With history_api_plugin loaded in nodeos, we can query for particular transaction using the transaction_id
 ```
 $ cleos get transaction eb4b94b72718a369af09eb2e7885b3f494dd1d8a20278a6634611d5edd76b703
 {
@@ -208,7 +208,7 @@ $ cleos get transactions inita
 ]
 ```
 
-### Transfer EOS
+### Transfer Currency
 
 ```
 $ cleos transfer inita tester 1000
@@ -477,8 +477,8 @@ The JSON object used in this command is actually composed of two different types
 ```javascript
 {
   "threshold"       : 100,    /*An integer that defines cumulative signature weight required for authorization*/
-  "keys"            : [],     /*An array made up of individual permissions defined with an EOS PUBLIC KEY*/
-  "accounts"        : []      /*An array made up of individual permissions defined with an EOS ACCOUNT*/
+  "keys"            : [],     /*An array made up of individual permissions defined with an EOS-style PUBLIC KEY*/
+  "accounts"        : []      /*An array made up of individual permissions defined with an EOS-style ACCOUNT*/
 }
 ```
 
@@ -524,7 +524,7 @@ Publishing contract...
     "expiration": "2017-08-24T18:29:52",
     "scope": [
       "currency",
-      "eos"
+      "SYS"
     ],
     "signatures": [],
     "messages": [{
