@@ -41,6 +41,7 @@ Welcome to the EOSIO wiki. This resource is intended as a guide for developers l
   * [Exchange Deposit and Withdrawal](Tutorial-Exchange-Deposit-Withdraw)
   * [Hello World Tutorial](Tutorial-Hello-World-Contract)
   * [Comprehensive Accounts & Wallets Tutorial](Tutorial-Comprehensive-Accounts-and-Wallets)
+  * [Bios Boot Sequence](Tutorial-Bios-Boot-Sequence)
   * [Tic-Tac-Toe](Tutorial-Tic-Tac-Toe)
 - Testnet
   * [Single Host Multi-Node (Private) Testnet](Testnet-Single-Host-Multinode)
