@@ -47,19 +47,19 @@ a couple of minutes, but either way `nodeos` will keep you posted on the status.
 
 ### Initial Condition
 ```
-./cleos get currency balance eosio.token scott EOS
-900.0000 EOS
+./cleos get currency balance eosio.token scott SYS
+900.0000 SYS
 ```
 
 We will now deposit some funds to exchange:
 
 ```
-./cleos transfer scott exchange "1.0000 EOS" deposit
+./cleos transfer scott exchange "1.0000 SYS" deposit
 executed transaction: 5ec797175dd24612acd8fc5a8685fa44caa8646cec0a87b12568db22a3df02fb  256 bytes  8k cycles
-#   eosio.token <= eosio.token::transfer        {"from":"scott","to":"exchange","quantity":"1.0000 EOS","memo":""}
+#   eosio.token <= eosio.token::transfer        {"from":"scott","to":"exchange","quantity":"1.0000 SYS","memo":""}
 >> transfer
-#         scott <= eosio.token::transfer        {"from":"scott","to":"exchange","quantity":"1.0000 EOS","memo":""}
-#      exchange <= eosio.token::transfer        {"from":"scott","to":"exchange","quantity":"1.0000 EOS","memo":""}
+#         scott <= eosio.token::transfer        {"from":"scott","to":"exchange","quantity":"1.0000 SYS","memo":""}
+#      exchange <= eosio.token::transfer        {"from":"scott","to":"exchange","quantity":"1.0000 SYS","memo":""}
 warning: transaction executed locally, but may not be confirmed by the network yet
 ```
 
@@ -79,7 +79,7 @@ can tell whether a transaction is confirmed or not by the first character: '#' f
 ./cleos get actions exchange
 #  seq  when                              contract::action => receiver      trx id...   args
 ================================================================================================================
-#    0   2018-04-29T01:09:45.000     eosio.token::transfer => exchange      5ec79717... {"from":"scott","to":"exchange","quantity":"1.0000 EOS","mem...
+#    0   2018-04-29T01:09:45.000     eosio.token::transfer => exchange      5ec79717... {"from":"scott","to":"exchange","quantity":"1.0000 SYS","mem...
 ```
 
 Do a few more transfers:
@@ -88,9 +88,9 @@ Do a few more transfers:
 ./cleos get actions exchange
 #  seq  when                              contract::action => receiver      trx id...   args
 ================================================================================================================
-#    0   2018-04-29T01:09:45.000     eosio.token::transfer => exchange      5ec79717... {"from":"scott","to":"exchange","quantity":"1.0000 EOS","mem...
-#    1   2018-04-29T01:16:25.000     eosio.token::transfer => exchange      2269828c... {"from":"scott","to":"exchange","quantity":"1.0000 EOS","mem...
-?    2   2018-04-29T01:19:54.000     eosio.token::transfer => exchange      213f3797... {"from":"scott","to":"exchange","quantity":"1.0000 EOS","mem...
+#    0   2018-04-29T01:09:45.000     eosio.token::transfer => exchange      5ec79717... {"from":"scott","to":"exchange","quantity":"1.0000 SYS","mem...
+#    1   2018-04-29T01:16:25.000     eosio.token::transfer => exchange      2269828c... {"from":"scott","to":"exchange","quantity":"1.0000 SYS","mem...
+?    2   2018-04-29T01:19:54.000     eosio.token::transfer => exchange      213f3797... {"from":"scott","to":"exchange","quantity":"1.0000 SYS","mem...
 ```
 
 The last transfer is still pending, waiting on irreversibility. 
@@ -122,7 +122,7 @@ To get only the last action you would do the following:
 ./cleos get actions exchange -1 -1
 #  seq  when                              contract::action => receiver      trx id...   args
 ================================================================================================================
-#    2   2018-04-29T01:19:54.000     eosio.token::transfer => exchange      213f3797... {"from":"scott","to":"exchange","quantity":"1.0000 EOS","mem...
+#    2   2018-04-29T01:19:54.000     eosio.token::transfer => exchange      213f3797... {"from":"scott","to":"exchange","quantity":"1.0000 SYS","mem...
 ```
 
 This command says to go to the last sequence number (indicated by pos = -1) and then fetch "1" item prior to it (offset = -1).
@@ -140,7 +140,7 @@ We pass pos=1 and offset=0 to get the range [1,1+0] or [1,1].
 ./cleos get actions exchange 1 0
 #  seq  when                              contract::action => receiver      trx id...   args
 ================================================================================================================
-#    1   2018-04-29T01:16:25.000     eosio.token::transfer => exchange      2269828c... {"from":"scott","to":"exchange","quantity":"1.0000 EOS","mem...
+#    1   2018-04-29T01:16:25.000     eosio.token::transfer => exchange      2269828c... {"from":"scott","to":"exchange","quantity":"1.0000 SYS","mem...
 ```
 
 We can call this in a loop, processing each confirmed action (those starting with #) until we either run out of items or
@@ -190,7 +190,7 @@ Here is the JSON returned when querying sequence 2.
           "data": {
             "from": "scott",
             "to": "exchange",
-            "quantity": "1.0000 EOS",
+            "quantity": "1.0000 SYS",
             "memo": ""
           },
           "hex_data": "00000000809c29c20000008a4dd35057102700000000000004454f530000000000"
@@ -215,7 +215,7 @@ You can identify irreversible deposits by the following:
 ```
     actions[0].action_trace.act.account == "eosio.token" &&
     actions[0].action_trace.act.name == "transfer" &&
-    actions[0].action_trace.act.data.quantity == "X.0000 EOS" &&
+    actions[0].action_trace.act.data.quantity == "X.0000 SYS" &&
     actions[0].action_trace.to == "exchange" && 
     actions[0].action_trace.memo == "KEY TO IDENTIFY INTERNAL ACCOUNT" && 
     actions[0].action_trace.receipt.receiver == "exchange"  &&
@@ -238,30 +238,30 @@ then you may process "false deposits".
 
 ### Validating Balance
 
-Now that we have received three deposits, we should see that the exchange has a balance of 3.0000 EOS.
+Now that we have received three deposits, we should see that the exchange has a balance of 3.0000 SYS.
 
 ```
-./cleos get currency balance eosio.token exchange EOS
-3.0000 EOS
+./cleos get currency balance eosio.token exchange SYS
+3.0000 SYS
 ```
 
 ## Processing Withdrawals
 
-(_Note: while generating this tutorial, **scott** deposited another 1.0000 EOS (seq 3) for a total exchange balance of 4.0000 EOS._)
+(_Note: while generating this tutorial, **scott** deposited another 1.0000 SYS (seq 3) for a total exchange balance of 4.0000 SYS._)
 
 When a user requests a withdrawal from your exchange, they will need to provide you with their eosio account name and
 the amount to be withdrawn.  You can then run the `cleos` command to perform the withdrawal. `cleos` will interact with
 the "unlocked" wallet running on `nodeos`, which should only enable localhost connections. More advanced usage will have
 a separate key-server (`keosd`), but that will be covered later.
 
-Let's assume _scott_ wants to withdraw `1.0000 EOS`:
+Let's assume _scott_ wants to withdraw `1.0000 SYS`:
 ```
-./cleos transfer exchange scott  "1.0000 EOS"
+./cleos transfer exchange scott  "1.0000 SYS"
 executed transaction: 93e785202e7502bb1383ad10e786cc20f7dd738d3fd3da38712b3fb38fb9af26  256 bytes  8k cycles
-#   eosio.token <= eosio.token::transfer        {"from":"exchange","to":"scott","quantity":"1.0000 EOS","memo":""}
+#   eosio.token <= eosio.token::transfer        {"from":"exchange","to":"scott","quantity":"1.0000 SYS","memo":""}
 >> transfer
-#      exchange <= eosio.token::transfer        {"from":"exchange","to":"scott","quantity":"1.0000 EOS","memo":""}
-#         scott <= eosio.token::transfer        {"from":"exchange","to":"scott","quantity":"1.0000 EOS","memo":""}
+#      exchange <= eosio.token::transfer        {"from":"exchange","to":"scott","quantity":"1.0000 SYS","memo":""}
+#         scott <= eosio.token::transfer        {"from":"exchange","to":"scott","quantity":"1.0000 SYS","memo":""}
 warning: transaction executed locally, but may not be confirmed by the network yet
 ```
 
@@ -277,13 +277,13 @@ state transitions based upon the action.
 ./cleos get actions exchange -1 -8
 #  seq  when                              contract::action => receiver      trx id...   args
 ================================================================================================================
-#    0   2018-04-29T01:09:45.000     eosio.token::transfer => exchange      5ec79717... {"from":"scott","to":"exchange","quantity":"1.0000 EOS","mem...
-#    1   2018-04-29T01:16:25.000     eosio.token::transfer => exchange      2269828c... {"from":"scott","to":"exchange","quantity":"1.0000 EOS","mem...
-#    2   2018-04-29T01:19:54.000     eosio.token::transfer => exchange      213f3797... {"from":"scott","to":"exchange","quantity":"1.0000 EOS","mem...
-#    3   2018-04-29T01:53:57.000     eosio.token::transfer => exchange      8b7766ac... {"from":"scott","to":"exchange","quantity":"1.0000 EOS","mem...
-#    4   2018-04-29T01:54:17.500     eosio.token::transfer => eosio.token   93e78520... {"from":"exchange","to":"scott","quantity":"1.0000 EOS","mem...
-#    5   2018-04-29T01:54:17.500     eosio.token::transfer => exchange      93e78520... {"from":"exchange","to":"scott","quantity":"1.0000 EOS","mem...
-#    6   2018-04-29T01:54:17.500     eosio.token::transfer => scott         93e78520... {"from":"exchange","to":"scott","quantity":"1.0000 EOS","mem...
+#    0   2018-04-29T01:09:45.000     eosio.token::transfer => exchange      5ec79717... {"from":"scott","to":"exchange","quantity":"1.0000 SYS","mem...
+#    1   2018-04-29T01:16:25.000     eosio.token::transfer => exchange      2269828c... {"from":"scott","to":"exchange","quantity":"1.0000 SYS","mem...
+#    2   2018-04-29T01:19:54.000     eosio.token::transfer => exchange      213f3797... {"from":"scott","to":"exchange","quantity":"1.0000 SYS","mem...
+#    3   2018-04-29T01:53:57.000     eosio.token::transfer => exchange      8b7766ac... {"from":"scott","to":"exchange","quantity":"1.0000 SYS","mem...
+#    4   2018-04-29T01:54:17.500     eosio.token::transfer => eosio.token   93e78520... {"from":"exchange","to":"scott","quantity":"1.0000 SYS","mem...
+#    5   2018-04-29T01:54:17.500     eosio.token::transfer => exchange      93e78520... {"from":"exchange","to":"scott","quantity":"1.0000 SYS","mem...
+#    6   2018-04-29T01:54:17.500     eosio.token::transfer => scott         93e78520... {"from":"exchange","to":"scott","quantity":"1.0000 SYS","mem...
 ```
 
 By processing the history, we can be informed when our transaction was confirmed. In practice, we expect you will maintain private
@@ -302,7 +302,7 @@ when you least expect.
 By default, `cleos` sets an expiration window of 2 minutes.  This is long enough to allow all 21 producers an opportunity to include the transaction.
 
 ```
- ./cleos transfer exchange scott  "1.0000 EOS" -j -d
+ ./cleos transfer exchange scott  "1.0000 SYS" -j -d
 {
   "expiration": "2018-04-29T01:58:12",
   "ref_block_num": 37282,
