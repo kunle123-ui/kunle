@@ -317,4 +317,4 @@ There are a number of `cleos` commands specific to accounts.
 `get transactions` | Retrieve all transactions with specific account name referenced in their scope
 `set contract` | Create or update the contract on an account
 `set account` | set or update blockchain account state
-`transfer` | Transfer EOS from account to account
+`transfer` | Transfer currency from account to account
