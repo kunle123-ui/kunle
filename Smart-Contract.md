@@ -433,7 +433,7 @@ In order to debug your smart contract, you will need to setup a local `nodeos` n
 private testnet or as an extension of networked testnet.
 
 When creating your smart contract for the first time, it is recommended to test and debug your smart contract on a private
-testnet first, since you have full control of the entire blockchain. This enables you to have unlimited amount of EOS
+testnet first, since you have full control of the entire blockchain. This enables you to have unlimited amount of currency
 needed, and you can just reset the state of the blockchain whenever you want. When it is ready for production, debugging
 on a public testnet can be done by connecting your local `nodeos` to the public testnet. You can then see the log of the
 testnet in your local `nodeos`.
