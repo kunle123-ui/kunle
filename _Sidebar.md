@@ -1,5 +1,5 @@
 ## General Resources
-- [EOS.IO Official Website](https://eos.io)
+- [EOSIO Official Website](https://eos.io)
 - [News & Updates](https://medium.com/eosio)
 - [White Paper](https://github.com/EOSIO/Documentation/blob/master/TechnicalWhitePaper.md)
 - [Roadmap](https://github.com/EOSIO/Documentation/blob/master/Roadmap.md)

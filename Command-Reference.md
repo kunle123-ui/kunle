@@ -477,8 +477,8 @@ The JSON object used in this command is actually composed of two different types
 ```javascript
 {
   "threshold"       : 100,    /*An integer that defines cumulative signature weight required for authorization*/
-  "keys"            : [],     /*An array made up of individual permissions defined with an EOS-style PUBLIC KEY*/
-  "accounts"        : []      /*An array made up of individual permissions defined with an EOS-style ACCOUNT*/
+  "keys"            : [],     /*An array made up of individual permissions defined with an EOSIO-style PUBLIC KEY*/
+  "accounts"        : []      /*An array made up of individual permissions defined with an EOSIO-style ACCOUNT*/
 }
 ```
 

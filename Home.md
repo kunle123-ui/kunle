@@ -15,7 +15,6 @@ Welcome to the EOSIO wiki. This resource is intended as a guide for developers l
   * [cleos](Programs-&-Tools#cleos)
   * [keosd](Programs-&-Tools#keosd)
   * [launcher](Programs-&-Tools#launcher)
-  * [snapshot](Programs-&-Tools#snapshot)
   * [eosiocpp](Programs-&-Tools#eosiocpp)
 - [Public Testnet]()  :no_entry_sign: Currently unavailable
 - [Accounts & Permissions](Accounts%20%26%20Permissions)

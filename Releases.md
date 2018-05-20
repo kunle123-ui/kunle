@@ -21,12 +21,13 @@
 | DAWN-2018-03-30-ALPHA           | 2018 Mar 30 | 1c1e93d  | ALPHA Pre-release for DAWN 3.0 |
 | EOSIO DAWN 3.0           | 2018 Apr 5 | d9ad8ee  | DAWN 3.0 Official Release |
 | EOSIO DAWN 4.0           | 2018 May 11 | 9be8910  | DAWN 4.0 Official Release |
+| EOSIO DAWN 4.1           | 2018 May 18 | cd97982  | DAWN 4.1 Official Release |
 
 [1] This release is not self-identifying
 
 NOTES: 
-* Software releases can be found [here](https://github.com/EOSIO/eos/releases "EOS.IO Releases").
-* Tags (bundles of code that go together for deployment, mostly between releases) can be found [here](https://github.com/EOSIO/eos/tags "EOS.IO Software Tags").
+* Software releases can be found [here](https://github.com/EOSIO/eos/releases "EOSIO Releases").
+* Tags (bundles of code that go together for deployment, mostly between releases) can be found [here](https://github.com/EOSIO/eos/tags "EOSIO Software Tags").
 * Tags can never provide a document that includes themselves. Therefore the above list, when located in Readme.md, cannot include the latest tag. This same list when found in a wiki can include the latest tag.
 
 [a] #hotfix Beginning in 2018, Hotfixes are tagged as "DAWN" and the year, month, and day of their release, formatted as DAWN-yyyy-mm-dd. If two hotfixes are on one day, the second has a lowercase 'a' appended, the third has a lowercase 'b' appended, etc., as in "DAWN-2018-03-03b". The Hotfix tags can be used by sophisticated developers to download the latest code to come out of each weekly sprint, and to access hotfixes that may be released mid-sprint. There may not be any Release Notes explaining a particular Hotfix release, or such notes may be terse. Documentation is not released on a Hotfix schedule; the public should not expect to find up-to-date documentation connected to any Hotfix tag. (Exception: Doxygen automated documentation will still be up to date with each tag.) . Any tag that is not an official release will also include the suffix "APLHA" to denote that this release may have unresolved bugs.

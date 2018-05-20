@@ -1,8 +1,8 @@
 **Table of Contents**
 - [Introduction](#introduction)
-- [How to generate/update the EOS documentation](#how-to-generateupdate-the-eos-documentation)
-- [How to view the EOS documentation](#how-to-view-the-eos-documentation)
-- [How to create doxygen style EOS documentation](#how-to-create-doxygen-style-eos-documentation)
+- [How to generate/update the EOSIO documentation](#how-to-generateupdate-the-eosio-documentation)
+- [How to view the EOSIO documentation](#how-to-view-the-eosio-documentation)
+- [How to create doxygen style EOSIO documentation](#how-to-create-doxygen-style-eosio-documentation)
 - [Doxygen Command List](#doxygen-command-list)
   * [brief](#@brief)
   * [class](#class)
@@ -31,7 +31,7 @@ It can be downloaded from git, ftp or from the web as source, installer or as zi
 http://www.stack.nl/~dimitri/doxygen/download.html
 
 
-## How to generate/update the EOS documentation
+## How to generate/update the EOSIO documentation
 After downloading and installing doxygen, it needs to be run in order to analyze all source code comments and build the corresponding documentation.
 
 To be configurable, doxygen uses a configuration file to determine all of its settings. The configuration file is a free-form ASCII text file, which consists of a list of assignment statements and a structure similar to that of a Makefile.
@@ -45,27 +45,27 @@ An alphabetical index of the tags that are supported in the configuration file i
 https://www.stack.nl/~dimitri/doxygen/manual/config.html
 
 
-For the EOS repository the configuration file is situated in the root directory of the repository (eos.doxygen).
+For the EOSIO repository the configuration file is situated in the root directory of the repository (eos.doxygen).
 
-So to generate or update the EOS documentation from command line, navigate to the root folder of the EOS repository and trigger the document generation as follows
+So to generate or update the EOSIO documentation from command line, navigate to the root folder of the EOSIO repository and trigger the document generation as follows
 
 ```
 doxygen build/eos.doxygen
 ```
-If you don't have build/eos.doxygen, you will need to build EOS first. Check this [guide](Local-Environment#2-building-eos) for the steps.
+If you don't have build/eos.doxygen, you will need to build EOSIO first. Check this [guide](Local-Environment#2-building-eos) for the steps.
 
 After the above command is executed, you will be able to find the updated documents inside `build/docs/html`
 
 
-## How to view the EOS documentation
+## How to view the EOSIO documentation
 
-The EOS doxygen configuration file is set up, so that the documentation will be created as a series of connected HTML files.
+The EOSIO doxygen configuration file is set up, so that the documentation will be created as a series of connected HTML files.
 
-The generated HTML documentation can be viewed via browser, whereas the document root is the index.html file in the docs subfolder of the EOS repository. A direct link can be found here:
+The generated HTML documentation can be viewed via browser, whereas the document root is the index.html file in the docs subfolder of the EOSIO repository. A direct link can be found here:
 https://eosio.github.io/eos/
 
 
-## How to create doxygen style EOS documentation
+## How to create doxygen style EOSIO documentation
 
 For information to be picked up by doxygen, it needs to be contained in a special comment block.
 
@@ -138,7 +138,7 @@ Special commands such as param and return in the above examples start either wit
 
 The list of commands recognised by doxygen is quite exhaustive; (An alphabetically sorted list of all commands can be found here: http://www.stack.nl/~dimitri/doxygen/manual/commands.html).
 
-However in the EOS documentation we are currently using a small subset of the above list. Below is a full list of commands used in the EOS documentation with explanation:
+However in the EOSIO documentation we are currently using a small subset of the above list. Below is a full list of commands used in the EOSIO documentation with explanation:
 
 Note:
 - \<sharp\> braces are used for single word arguments

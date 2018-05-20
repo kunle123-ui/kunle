@@ -1,4 +1,4 @@
-APIs that store and retrieve data on the blockchain EOS.IO
+APIs that store and retrieve data on the blockchain EOSIO
 
 ![enter image description here](https://eosio.github.io/eos/group__database.png)
 

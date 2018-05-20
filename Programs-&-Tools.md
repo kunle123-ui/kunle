@@ -5,7 +5,6 @@ Tools/Programs included in eosio resposity.
     * [cleos](#cleos)
     * [keosd](#keosd)
     * [launcher](#launcher)
-    * [snapshot](#snapshot)
 * [Tools](#tools)
     * [eosiocpp](#eosiocpp)
 
@@ -39,7 +38,7 @@ Subcommands:
   create                      Create various items, on and off the blockchain
   get                         Retrieve various items and information from the blockchain
   set                         Set or update blockchain state
-  transfer                    Transfer EOS from account to account
+  transfer                    Transfer token from account to account
   net                         Interact with local p2p network connections
   wallet                      Interact with local wallet
   benchmark                   Configure and execute benchmarks
@@ -82,10 +81,6 @@ An EOSIO wallet daemon that loads wallet related plugins, such as the HTTP inter
 ### launcher
 
 The launcher application simplifies the distribution of multiple nodeos nodes across a LAN or a wider network. It can be configured via CLI to compose per-node configuration files, distribute these files securely amongst the peer hosts and then start up the multiple instances of nodeos.
-
-### snapshot
-
-A submodule referencing `EOSIO/genesis` repository that contains a nodejs application for generating a snapshot from crowdsale contract, a web GUI for configuring a genesis block and other genesis related tools. 
 
 ## Tools
 
