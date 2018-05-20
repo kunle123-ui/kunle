@@ -207,7 +207,7 @@ token staking process cannot be unstaked and made liquid until after the minimum
 For this tutorial, we distribute 1 billion tokens among our member accounts and then stake those. To make the tutorial
 more realistic, we distribute the tokens using a Pareto distribution. The Pareto distribution models an 80-20
 rule, e.g., in this case, 80% of the tokens are held by 20% of the population. The examples here do not show how to
-generate the distribution, focusing instead on the commands to do the staking. The script <INSERT_NAME_HERE> that
+generate the distribution, focusing instead on the commands to do the staking. The script `bios-boot-tutorial.py` that
 accompanies this tutorial uses the Python NumPy (numpy) library to generate a Pareto distribution.
 
 ##### Create a staked account
