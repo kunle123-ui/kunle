@@ -167,7 +167,7 @@ executed transaction: 007507ad01de884377009d7dcf409bc41634e38da2feb6a117ceced855
 Create the `SYS` currency with a maximum value of 10 billion tokens. Then issue one billion tokens. You
 can replace `SYS` with your specific currency designation.
 ```
-$ cleos push action eosio.token create '[ "eosio", "10000000000.0000 SYS", 0, 0, 0]' -p eosio.token
+$ cleos push action eosio.token create '[ "eosio", "10000000000.0000 SYS" ]' -p eosio.token
 executed transaction: 0440461e0d8816b4a8fd9d47c1a6a53536d3c7af54abf53eace884f008429697  120 bytes  326 us
 #   eosio.token <= eosio.token::create          {"issuer":"eosio","maximum_supply":"10000000000.0000 SYS"}
 
