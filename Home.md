@@ -45,3 +45,4 @@ Welcome to the EOSIO wiki. This resource is intended as a guide for developers l
 - Testnet
   * [Single Host Multi-Node (Private) Testnet](Testnet-Single-Host-Multinode)
 - [Releases](Releases)
+- [Coding Standards](Coding-Standards)
