@@ -26,16 +26,14 @@ You can start your own single-node blockchain with this single command:
 
 ```
 $ nodeos -e -p eosio --plugin eosio::chain_api_plugin --plugin eosio::history_api_plugin 
-...
-eosio generated block 046b9984... #101527 @ 2018-04-01T14:24:58.000 with 0 trxs
-eosio generated block 5e527ee2... #101528 @ 2018-04-01T14:24:58.500 with 0 trxs
-
 ```
 
 This command sets many flags and loads some optional plugins which we will need for the rest of this tutorial. Assuming everything worked properly, you should see a block generation message every 0.5 seconds.  
 
 ```
-eosio generated block 046b9984... #101527 @ 2018-04-01T14:24:58.000 with 0 trxs
+...
+3165501ms thread-0   producer_plugin.cpp:944       produce_block        ] Produced block 00000a4c898956e0... #2636 @ 2018-05-25T16:52:45.500 signed by eosio [trxs: 0, lib: 2635, confirmed: 0]
+3166004ms thread-0   producer_plugin.cpp:944       produce_block        ] Produced block 00000a4d2d4a5893... #2637 @ 2018-05-25T16:52:46.000 signed by eosio [trxs: 0, lib: 2636, confirmed: 0]
 ```
 
 This means your local blockchain is live, producing blocks, and ready to be used.

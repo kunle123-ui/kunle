@@ -1,10 +1,10 @@
 # Bios Boot Sequence Tutorial 
 The description below covers the bios boot sequence to start a blockchain from a single "genesis" node, transitioning to a voted on set of producers.
 
-The script `bios-boot-tutorial.py` implements these steps in a single-server installation (all `nodeos` nodes running on the same server). The script can be run with no arguments directly from the `programs/bios-boot-tutorial` directory.
+The script `bios-boot-tutorial.py` implements these steps in a single-server installation (all `nodeos` nodes running on the same server). The script can be run with no arguments directly from the `tutorials/bios-boot-tutorial` directory.
 
 ```
-cd programs/bios-boot-tutorial
+cd tutorials/bios-boot-tutorial
 ./bios-boot-tutorial.py
 ```
 
@@ -13,7 +13,7 @@ The script logs the commands it executes in `./test.log`. This enables you to se
 ## Manual Execution of the Boot Sequence
 The remainder of this document covers the same set of steps as the `bios-boot-tutorial.py` script, but walks you through
 the commands step by step, enabling you to directly experience using the commands. The manual steps below do not try to
-bring up a full blockchain or do the same scope of work as the script. For example, the script generates almost 400 accounts,
+bring up a full blockchain or do the same scope of work as the script. For example, the script generates a few thousand accounts,
 30+ running producer nodes, etc. This would be too unwieldy to do manually!
 
 > _Note: In a live network, the steps involved require considerable coordination among independent parties who participate
@@ -107,24 +107,40 @@ Public key: EOS8VJybqtm41PMmXL1QUUDSfCrs9umYN4U1ZNa34JhPZ9mU5r2Cm
 #### Start the first `nodeos` node
 Start the genesis node using the generated key pair.
 ```
-$ nodeos --enable-stale-production --producer-name eosio --private-key '[ "EOS8VJybqtm41PMmXL1QUUDSfCrs9umYN4U1ZNa34JhPZ9mU5r2Cm","5JGxnezvp3N4V1NxBo8LPBvCrdR85bZqZUFvBZ8ACrbRC3ZWNYv" ]' --plugin eosio::producer_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin 
+$ nodeos -e -p eosio --private-key '[ "EOS8VJybqtm41PMmXL1QUUDSfCrs9umYN4U1ZNa34JhPZ9mU5r2Cm","5JGxnezvp3N4V1NxBo8LPBvCrdR85bZqZUFvBZ8ACrbRC3ZWNYv" ]' --plugin eosio::producer_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_api_plugin
 ```
-#### Set the `eosio.token`contract
-Create an account for the `eosio.token` contract.  We will generate a unique key pair for this account, but
+
+#### Create important system accounts
+There are several system accounts that are needed.  These are:
+```
+  eosio.bpay
+  eosio.msig
+  eosio.names
+  eosio.ram
+  eosio.ramfee
+  eosio.saving
+  eosio.stake
+  eosio.token
+  eosio.vpay
+```
+
+Repeat the following steps to create an account for each of the system accounts.  We will generate a unique key pair for this account, but
 we will use the same key for both the account owner and active keys.
 
 ``` 
-$ cleos create key  # for eosio.token
+$ cleos create key  # for eosio.bpay
 Private key: 5KAVVPzPZnbAx8dHz6UWVPFDVFtU1P5ncUzwHGQFuTxnEbdHJL4
 Public key: EOS84BLRbGbFahNJEpnnJHYCoW9QPbQEk2iHsHGGS6qcVUq9HhutG
 
 $ cleos wallet import 5KAVVPzPZnbAx8dHz6UWVPFDVFtU1P5ncUzwHGQFuTxnEbdHJL4
 imported private key for: EOS84BLRbGbFahNJEpnnJHYCoW9QPbQEk2iHsHGGS6qcVUq9HhutG
 
-$ cleos create account eosio eosio.token EOS84BLRbGbFahNJEpnnJHYCoW9QPbQEk2iHsHGGS6qcVUq9HhutG EOS84BLRbGbFahNJEpnnJHYCoW9QPbQEk2iHsHGGS6qcVUq9HhutG
-executed transaction: d8fc14255dd576359043882e03b9a813c7c13facd7ec33c2c34357b59ffa2746  200 bytes  215 us
-#         eosio <= eosio::newaccount            {"creator":"eosio","name":"eosio.token","owner":{"threshold":1,"keys":[{"key":"EOS84BLRbGbFahNJEpnnJ...
+$ cleos create account eosio eosio.bpay EOS84BLRbGbFahNJEpnnJHYCoW9QPbQEk2iHsHGGS6qcVUq9HhutG EOS84BLRbGbFahNJEpnnJHYCoW9QPbQEk2iHsHGGS6qcVUq9HhutG
+executed transaction: ca68bb3e931898cdd3c72d6efe373ce26e6845fc486b42bc5d185643ea7a90b1  200 bytes  280 us
+#         eosio <= eosio::newaccount            {"creator":"eosio","name":"eosio.bpay","owner":{"threshold":1,"keys":[{"key":"EOS84BLRbGbFahNJEpnnJH...
 ```
+
+#### Set the `eosio.token`contract
 Set the `eosio.token` contract. Note that this assumes that you built `eos` in the `~/Documents/eos` folder.
 ```
 $ cleos set contract eosio.token ~/Documents/eos/build/contracts/eosio.token
@@ -137,21 +153,6 @@ executed transaction: 17fa4e06ed0b2f52cadae2cd61dee8fb3d89d3e46d5b133333816a04d2
 ```
 
 #### Set the `eosio.msig`contract
-Create an account for the `eosio.msig` contract.  We will generate a unique key pair for this account, but
-we will use the same key for both the account owner and active keys.
-
-``` 
-$ cleos create key  # for eosio.msig
-Private key: 5J2zhmRG33uYKd2n5wEydxdiqp6ymVKL5o9qCqAqiK1J3iAaRtT
-Public key: EOS73N6SCJ4nENVcv5iCFwu3uMY3o83Vd6qgq41CJhNK9LYhBiWzc
-
-$ cleos wallet import 5J2zhmRG33uYKd2n5wEydxdiqp6ymVKL5o9qCqAqiK1J3iAaRtT
-imported private key for: EOS73N6SCJ4nENVcv5iCFwu3uMY3o83Vd6qgq41CJhNK9LYhBiWzc
-
-$ cleos create account eosio eosio.msig EOS73N6SCJ4nENVcv5iCFwu3uMY3o83Vd6qgq41CJhNK9LYhBiWzc EOS73N6SCJ4nENVcv5iCFwu3uMY3o83Vd6qgq41CJhNK9LYhBiWzc
-executed transaction: f321e9e47f6b1b3d43975dc6938272da4eee6b39eb36c33a12c9887e45496cfe  200 bytes  142 us
-#         eosio <= eosio::newaccount            {"creator":"eosio","name":"eosio.msig","owner":{"threshold":1,"keys":[{"key":"EOS73N6SCJ4nENVcv5iCFw...
-```
 Set the `eosio.msig` contract. Note that this assumes that you built EOSIO in the `~/Documents/eos` folder.
 ```
 $ cleos set contract eosio.msig ~/Documents/eos/build/contracts/eosio.msig

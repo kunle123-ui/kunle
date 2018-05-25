@@ -19,6 +19,13 @@ By default, `keosd` creates the folder `~/eosio-wallet` and populates it with a 
 
 By default, `keosd` stores wallets in the `~/eosio-wallet` folder.  Wallet files follow the naming convention `<wallet-name>.wallet`.  For example, the default wallet will be stored in a file named `default.wallet`.  As other wallets are created, similar files will be created for each.  For example, a wallet named "foo" will have a corresponding wallet file named `foo.wallet`.  The location of the wallet data folder can be specified on the command line using the --data-dir argument.
 
+`keosd` is started automatically by `cleos`.  It is possible, when doing development and testing, that `keosd` is started manually (not by `cleos`) and you end up with multiple `keosd` processes running.  When multiple instances of `keosd` are running on the same server, you might find that your `cleos` command is not finding the right set of keys.  To check whether multiple instances of `keosd` are running, and what ports they are running on, you can try something like the following to isolate the `keosd` processes and ports in use:
+```
+$ pgrep keosd | xargs printf " -p %d" | xargs lsof -Pani
+COMMAND   PID         USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+keosd   49590 tutorial        6u  IPv4 0x72cd8ccf8c2c2d03      0t0  TCP 127.0.0.1:8900 (LISTEN)
+keosd   62812 tutorial        7u  IPv4 0x72cd8ccf90428783      0t0  TCP 127.0.0.1:8899 (LISTEN)
+```
 
 ## Command Reference
 
