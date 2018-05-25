@@ -27,10 +27,7 @@ executed transaction: 528bdbce1181dc5fd72a24e4181e6587dace8ab43b2d7ac9b22b201799
 You can view the interface to `eosio.token` as defined by `contracts/eosio.token/eosio.token.hpp`:
 ```
    void create( account_name issuer,
-                asset        maximum_supply,
-                uint8_t      can_freeze,
-                uint8_t      can_recall,
-                uint8_t      can_whitelist );
+                asset        maximum_supply );
 
 
    void issue( account_name to, asset quantity, string memo );
@@ -45,17 +42,17 @@ To create a new token we must call the `create(...)` action with the proper argu
 
 The concise way to call this method, using positional arguments:
 ```
-$ cleos push action eosio.token create '[ "eosio", "1000000000.0000 SYS", 0, 0, 0]' -p eosio.token
-executed transaction: 0e49a421f6e75f4c5e09dd738a02d3f51bd18a0cf31894f68d335cd70d9c0e12  260 bytes  1000 cycles
-#   eosio.token <= eosio.token::create          {"issuer":"eosio","maximum_supply":"1000000000.0000 SYS","can_freeze":0,"can_recall":0,"can_whitelis...
+$ cleos push action eosio.token create '[ "eosio", "1000000000.0000 SYS"]' -p eosio.token
+executed transaction: 0e49a421f6e75f4c5e09dd738a02d3f51bd18a0cf31894f68d335cd70d9c0e12  120 bytes  1000 cycles
+#   eosio.token <= eosio.token::create          {"issuer":"eosio","maximum_supply":"1000000000.0000 SYS"}
 ```
 
 Alternatively, a more verbose way to call this method, using named arguments:
 
 ```
-$ cleos push action eosio.token create '{"issuer":"eosio", "maximum_supply":"1000000000.0000 SYS", "can_freeze":0, "can_recall":0, "can_whitelist":0}' -p eosio.token
-executed transaction: 0e49a421f6e75f4c5e09dd738a02d3f51bd18a0cf31894f68d335cd70d9c0e12  260 bytes  1000 cycles
-#   eosio.token <= eosio.token::create          {"issuer":"eosio","maximum_supply":"1000000000.0000 SYS","can_freeze":0,"can_recall":0,"can_whitelis...
+$ cleos push action eosio.token create '{"issuer":"eosio", "maximum_supply":"1000000000.0000 SYS"}' -p eosio.token
+executed transaction: 0e49a421f6e75f4c5e09dd738a02d3f51bd18a0cf31894f68d335cd70d9c0e12  120 bytes  1000 cycles
+#   eosio.token <= eosio.token::create          {"issuer":"eosio","maximum_supply":"1000000000.0000 SYS"}
 ```
 
 
