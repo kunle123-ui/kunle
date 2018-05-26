@@ -13,8 +13,7 @@ The script logs the commands it executes in `./test.log`. This enables you to se
 ## Manual Execution of the Boot Sequence
 The remainder of this document covers the same set of steps as the `bios-boot-tutorial.py` script, but walks you through
 the commands step by step, enabling you to directly experience using the commands. The manual steps below do not try to
-bring up a full blockchain or do the same scope of work as the script. For example, the script generates a few thousand accounts,
-30+ running producer nodes, etc. This would be too unwieldy to do manually!
+bring up a full blockchain or do the same scope of work as the script. For example, the script generates around 3000 accounts and around 30 running producer nodes, etc. This would be too unwieldy to do manually!
 
 > _Note: In a live network, the steps involved require considerable coordination among independent parties who participate
 in the network. It is likely that the boot sequence will be done collectively by a small group within the blockchain
@@ -189,9 +188,13 @@ executed transaction: 2150ed87e4564cd3fe98ccdea841dc9ff67351f9315b6384084e8572a3
 #         eosio <= eosio::setabi                {"account":"eosio","abi":{"types":[],"structs":[{"name":"buyrambytes","base":"","fields":[{"name":"p...
 ```
 
+#### Set `eosio.msig` as a privileged account
+```
+$ push action eosio setpriv '["eosio.msig", 1]' -p eosio@active
+```
+
 ### Stake tokens and expand the network
-If you've followed the tutorial steps above to this point, you now have a single node configuration configured with the
-key contracts:
+If you've followed the tutorial steps above to this point, you now have a single host, multi-node configuration configured with the key contracts:
 
 - eosio.token
 - eosio.msig
@@ -236,8 +239,12 @@ executed transaction: fb47254c316e736a26873cce1290cdafff07718f04335ea4faa4cb2e58
 #         eosio <= eosio::delegatebw            {"from":"eosio","receiver":"accountnum11","stake_net_quantity":"100000.0000 SYS","stake_cpu_quantity...
 ```
 
-##### Register as a producer
+### Select the producers
 Some set of the accounts created will be registered as producers. Choose some set of the staked accounts to be producers.
+
+#### Register as a producer
+Use the following command to register as a producer.  This makes the node a candidate to be a producer, but the node will not actually be a producer unless it is voted in.
+
 ```
 $ cleos system regproducer accountnum11 EOS8mUftJXepGzdQ2TaCduNuSPAfXJHf22uex4u41ab1EVv9EAhWt https://accountnum11.com/EOS8mUftJXepGzdQ2TaCduNuSPAfXJHf22uex4u41ab1EVv9EAhWt
 1487984ms thread-0   main.cpp:419                  create_action        ] result: {"binargs":"1082d4334f4d11320003fedd01e019c7e91cb07c724c614bbf644a36eff83a861b36723f29ec81dc9bdb4e68747470733a2f2f6163636f756e746e756d31312e636f6d2f454f53386d5566744a586570477a64513254614364754e7553504166584a48663232756578347534316162314556763945416857740000"} arg: {"code":"eosio","action":"regproducer","args":{"producer":"accountnum11","producer_key":"EOS8mUftJXepGzdQ2TaCduNuSPAfXJHf22uex4u41ab1EVv9EAhWt","url":"https://accountnum11.com/EOS8mUftJXepGzdQ2TaCduNuSPAfXJHf22uex4u41ab1EVv9EAhWt","location":0}} 
@@ -292,7 +299,7 @@ that the `genesis.json` file, e.g, see below, has been copied to the respective 
 In a separate window for each producer, run the following `nodeos` command, adjusting the command line arguments for
 each producer.
 ```
-$ nodeos --genesis-json ~/eosio_test/accountnum11/genesis.json --block-log-dir ~/eosio_test/accountnum11/blocks --config-dir ~/eosio_test/accountnum11/ --data-dir ~/eosio_test/accountnum11/ --http-server-address 127.0.0.1:8011 --p2p-listen-endpoint 127.0.0.1:9011 --enable-stale-production --producer-name accountnum11 --private-key '[ "EOS8mUftJXepGzdQ2TaCduNuSPAfXJHf22uex4u41ab1EVv9EAhWt","5K7EYY3j1YY14TSFVfqgtbWbrw3FA8BUUnSyFGgwHi8Uy61wU1o" ]' --plugin eosio::producer_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --p2p-peer-address localhost:9022  --p2p-peer-address localhost:9033  --p2p-peer-address localhost:9044 
+$ nodeos --genesis-json ~/eosio_test/accountnum11/genesis.json --block-log-dir ~/eosio_test/accountnum11/blocks --config-dir ~/eosio_test/accountnum11/ --data-dir ~/eosio_test/accountnum11/ --http-server-address 127.0.0.1:8011 --p2p-listen-endpoint 127.0.0.1:9011 --enable-stale-production --producer-name accountnum11 --private-key '[ "EOS8mUftJXepGzdQ2TaCduNuSPAfXJHf22uex4u41ab1EVv9EAhWt","5K7EYY3j1YY14TSFVfqgtbWbrw3FA8BUUnSyFGgwHi8Uy61wU1o" ]' --plugin eosio::producer_plugin --plugin eosio::chain_api_plugin --plugin eosio::http_plugin --plugin eosio::history_api_plugin --p2p-peer-address localhost:9022  --p2p-peer-address localhost:9033  --p2p-peer-address localhost:9044 
 ```
 Note that until all producers are up, connection error messages such as the following will be generated.
 ```
@@ -328,3 +335,22 @@ $ cleos system voteproducer prods accountnum23 accountnum11 accountnum33
 In this example, account `accountnum23` has voted for `accountnum11` and `accountnum33`. Block production does not begin
 until 15% of the available votes have been voted.
 
+#### Producers can claim rewards
+```
+$ cleos claim rewards accountnum33
+```
+
+#### Register proxies and proxy voting
+An account can register to be a proxy for voting purposes.  Other accounts can then delegate their votes to the proxy account.
+
+Register as a voting proxy. In this example, `proxyvoter11` is being set up to act as a proxy voter.
+```
+$ cleos system regproxy proxyvoter11
+```
+
+Now other accounts can delegate their votes to be voted by `proxyvoter11`:
+```
+$ cleos system voteproducer proxy accountnum24 proxyvoter11
+$ cleos system voteproducer proxy accountnum34 proxyvoter11
+```
+Here, accounts `accountnum24` and `accountnum34` have proxied their votes to `proxyvoter11`.
