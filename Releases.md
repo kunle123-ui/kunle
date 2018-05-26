@@ -22,7 +22,7 @@
 | EOSIO DAWN 3.0           | 2018 Apr 5 | d9ad8ee  | DAWN 3.0 Official Release |
 | EOSIO DAWN 4.0           | 2018 May 11 | 9be8910  | DAWN 4.0 Official Release |
 | EOSIO DAWN 4.1           | 2018 May 18 | cd97982  | DAWN 4.1 Official Release |
-| EOSIO DAWN 4.2           | 2018 May 25 | 00c7869. | DAWN 4.2 Official Release |
+| EOSIO DAWN 4.2           | 2018 May 25 | 00c7869  | DAWN 4.2 Official Release |
 
 [1] This release is not self-identifying
 
