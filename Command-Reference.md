@@ -19,7 +19,8 @@
 | Account - Create keys | $ cleos create key | [View](#create-keys) |
 | Account - Create account | $ cleos create account ${control_account} ${account_name} ${owner_public_key} ${active_public_key} | [View](#create-account) |
 | Account - See servants | $ cleos get servants ${account_name} | [View](#account-servants) |
-| Account - Check balance | $ cleos get account ${account_name} | [View](#check-account-balance) |
+| Account - Check balance | $ cleos get currency balance eosio.token ${account_name} | [View](#check-account-balance) |
+| Account - Get details | $ cleos get account ${account_name} | [View](#get-account-details) |
 | Permission - Create/Modify | $ cleos set account permission ${permission} ${account} ${permission_json} ${account_authority} | [View](#create-or-modify-permissions) |
 | Contract - Deploy | $ cleos set contract ../${contract}.wast ../${contract}.abi | [View](#deploy-contract) |
 | Contract - Query ABI | $ cleos get code -a ${contract}.abi ${contract} | [View](#query-contract-abi) |
@@ -370,6 +371,8 @@ Note: cleos does not save the generated private key.
 ### Create account
 You will need your EOSIO keys in order to create an account, you must either have your EOSIO keys registered on the Ethereum network or you can use the [create keys](#create-keys) function to create a new sets of keys 
 
+Note: If the system contract is loaded, then use ```cleos system newaccount``` instead of ```cleos create account```.
+
 ```base
 $ cleos create account inita tester EOS4toFS3YXEQCkuuw1aqDLrtHim86Gz9u3hBdcBw5KNPZcursVHq EOS7d9A3uLe6As66jzN8j44TXJUqJSK3bFjjEEqR4oTvNAB3iM9SA
 {
@@ -417,40 +420,36 @@ $ cleos get servants inita
 
 ### Check account balance
 ```base
-$ cleos get account tester
-{
-  "name": "tester",
-  "eos_balance": 0,
-  "staked_balance": 1,
-  "unstaking_balance": 0,
-  "last_unstaking_time": "1969-12-31T23:59:59",
-  "permissions": [{
-      "name": "active",
-      "parent": "owner",
-      "required_auth": {
-        "threshold": 1,
-        "keys": [{
-            "key": "EOS7d9A3uLe6As66jzN8j44TXJUqJSK3bFjjEEqR4oTvNAB3iM9SA",
-            "weight": 1
-          }
-        ],
-        "accounts": []
-      }
-    },{
-      "name": "owner",
-      "parent": "owner",
-      "required_auth": {
-        "threshold": 1,
-        "keys": [{
-            "key": "EOS4toFS3YXEQCkuuw1aqDLrtHim86Gz9u3hBdcBw5KNPZcursVHq",
-            "weight": 1
-          }
-        ],
-        "accounts": []
-      }
-    }
-  ]
-}
+$ cleos get currency balance eosio.token useraaaaaaaa
+10.0000 SYS
+```
+
+### Get account details
+
+```base
+$ cleos get account useraaaaaaaa
+privileged: false
+permissions: 
+     owner     1:    1 EOS69X3383RzBZj41k73CSjUNXM5MYGpnDxyPnWUKPEtYQmTBWz4D
+        active     1:    1 EOS69X3383RzBZj41k73CSjUNXM5MYGpnDxyPnWUKPEtYQmTBWz4D
+memory: 
+     quota:     6.676 Kb     used:     3.475 Kb   
+
+net bandwidth: (averaged over 3 days)
+     staked:   50335451.0469 SYS           (total stake delegated from account to self)
+     delegated:       0.0000 SYS           (total staked delegated to account from others)
+     used:               384 bytes
+     available:        38.46 Gb   
+     limit:            38.46 Gb   
+
+cpu bandwidth: (averaged over 3 days)
+     staked:   50335451.0469 SYS           (total stake delegated from account to self)
+     delegated:       0.0000 SYS           (total staked delegated to account from others)
+     used:             17.05 ms   
+     available:        0.676 hr   
+     limit:            0.676 hr   
+
+proxy:     producer111a
 ```
 
 ### Create or Modify Permissions
