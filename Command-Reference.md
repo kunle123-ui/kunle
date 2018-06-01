@@ -8,7 +8,7 @@
 | Query blockchain state | $ cleos get info | [View](#query-blockchain-state) |
 | Get transaction by id | $ cleos get transaction ${transaction_id} | [View](#get-transaction-by-transaction_id) |
 | Get actions by account | $ cleos get actions ${account} | [View](#get-actions-by-account) |
-| Transfer currency | $ cleos transfer ${from_account} ${to_account} ${quantity} | [View](#transfer-eos) |
+| Transfer currency | $ cleos transfer ${from_account} ${to_account} "${quantity} ${symbol}" | [View](#transfer-currency) |
 | Wallet - Create wallet | $ cleos wallet create {-n} ${wallet_name} | [View](#create-wallet) |
 | Wallet - List wallets | $ cleos wallet list | [View](#list-wallets) |
 | Wallet - Import key | $ cleos wallet import ${key} | [View](#import-key-to-wallet) |
@@ -216,52 +216,11 @@ $ cleos get actions useraaaaaaaa
 ### Transfer Currency
 
 ```
-$ cleos transfer inita tester 1000
-{
-  "transaction_id": "eb4b94b72718a369af09eb2e7885b3f494dd1d8a20278a6634611d5edd76b703",
-  "processed": {
-    "refBlockNum": 2206,
-    "refBlockPrefix": 221394282,
-    "expiration": "2017-09-05T08:03:58",
-    "scope": [
-      "inita",
-      "tester"
-    ],
-    "signatures": [
-      "1f22e64240e1e479eee6ccbbd79a29f1a6eb6020384b4cca1a958e7c708d3e562009ae6e60afac96f9a3b89d729a50cd5a7b5a7a647540ba1678831bf970e83312"
-    ],
-    "messages": [{
-        "code": "eos",
-        "type": "transfer",
-        "authorization": [{
-            "account": "inita",
-            "permission": "active"
-          }
-        ],
-        "data": {
-          "from": "inita",
-          "to": "tester",
-          "amount": 1000,
-          "memo": ""
-        },
-        "hex_data": "000000008040934b00000000c84267a1e80300000000000000"
-      }
-    ],
-    "output": [{
-        "notify": [{
-            "name": "tester",
-            "output": { ... }
-          },{
-            "name": "inita",
-            "output": { ... }
-          }
-        ],
-        "sync_transactions": [],
-        "async_transactions": []
-      }
-    ]
-  }
-}
+$ cleos transfer useraaaaaaaa useraaaaaaac "1.0000 SYS"
+executed transaction: ac989464a987e9061d4eabdfad0e5707a23ba769798a01f3ce010c5b3775b554  128 bytes  490 us
+#   eosio.token <= eosio.token::transfer        {"from":"useraaaaaaaa","to":"useraaaaaaac","quantity":"1.0000 SYS","memo":""}
+#  useraaaaaaaa <= eosio.token::transfer        {"from":"useraaaaaaaa","to":"useraaaaaaac","quantity":"1.0000 SYS","memo":""}
+#  useraaaaaaac <= eosio.token::transfer        {"from":"useraaaaaaaa","to":"useraaaaaaac","quantity":"1.0000 SYS","memo":""}
 ```
 
 ### Create wallet 
