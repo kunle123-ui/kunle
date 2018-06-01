@@ -13,14 +13,11 @@ with the following plugins:
   2. eosio::history_api_plugin
   3. eosio::chain_api_plugin
 
-By default, the history plugin will log the history of all accounts, but this is not
-the recommended configuration, as it will consume gigabytes of RAM in the
-medium term.  For a more optimized memory footprint, you should configure the history
-plugin to only log activity relevant to actions.  This can be achieved with
-the following config param placed in your config.ini or passed on the command line. Do not forget the trailing ":".
+By default, the history plugin will not log transactions. To log token transfers, use the ```filter-on``` option.
+This can be achieved with the following config param placed in your config.ini or passed on the command line. Do not forget the trailing ":".
 
 ```
-$ nodeos --filter-on eosio.token:deposit:
+$ nodeos --filter-on exchange:transfer:
 ```
 
 ## Replaying the Blockchain
@@ -29,7 +26,7 @@ If you have already synced the blockchain without the history plugin, then you m
 replay the blockchain to pickup any historical activity. Do not forget the trailing ":".
 
 ```
-$ nodeos --replay --filter-on eosio.token:deposit:
+$ nodeos --replay --filter-on exchange:transfer:
 ```
 
 You only need to replay once. Subsequent runs of `nodeos` should not use the replay flag, as
