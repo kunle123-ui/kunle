@@ -430,7 +430,7 @@ check [here](https://github.com/EOSIO/eos/blob/master/libraries/chain/contracts/
 # Debugging Smart Contracts
 
 In order to debug your smart contract, you will need to setup a local `nodeos` node. This local node can be run as separate
-private testnet or as an extension of networked testnet.
+private testnet or as an extension of networked testnet. This local node also needs to be run with the contracts-console option on, either `--contracts-console` via the command line or `contracts-console = true` via the config.ini
 
 When creating your smart contract for the first time, it is recommended to test and debug your smart contract on a private
 testnet first, since you have full control of the entire blockchain. This enables you to have unlimited amount of currency
