@@ -19,61 +19,64 @@ The core EOSIO daemon that can be configured with plugins to run a node. Example
 `cleos` is a command line tool that interfaces with the REST API exposed by `nodeos`. In order to use `cleos` you will need to have the end point (IP address and port number) to a `nodeos` instance and also configure `cleos` to load the 'eosio::chain_api_plugin'.  `cleos` contains documentation for all of its commands. For a list of all commands known to `cleos`, simply run it with no arguments:
 
 ```base
-$ cleos
-ERROR: RequiredError: Subcommand required
 Command Line Interface to EOSIO Client
-Usage: ./cleos [OPTIONS] SUBCOMMAND
+Usage: ./programs/cleos/cleos [OPTIONS] SUBCOMMAND
 
 Options:
   -h,--help                   Print this help message and exit
-  -H,--host TEXT=localhost    the host where nodeos is running
-  -p,--port UINT=8888         the port where nodeos is running
-  --wallet-host TEXT=localhost
-                              the host where keosd is running
-  --wallet-port UINT=8888     the port where keosd is running
-  -v,--verbose                output verbose messages on error
+  -u,--url TEXT=http://localhost:8888/
+                              the http/https URL where nodeos is running
+  --wallet-url TEXT=http://localhost:8900/
+                              the http/https URL where keosd is running
+  -r,--header                 pass specific HTTP header; repeat this option to pass multiple headers
+  -n,--no-verify              don't verify peer certificate when using HTTPS
+  -v,--verbose                output verbose actions on error
 
 Subcommands:
   version                     Retrieve version information
   create                      Create various items, on and off the blockchain
   get                         Retrieve various items and information from the blockchain
   set                         Set or update blockchain state
-  transfer                    Transfer token from account to account
+  transfer                    Transfer EOS from account to account
   net                         Interact with local p2p network connections
   wallet                      Interact with local wallet
-  benchmark                   Configure and execute benchmarks
-  push                        Push arbitrary transactions to the blockchain
+  sign                        Sign a transaction
+  push                        Push arbitrary transactions to the blockchain
+  multisig                    Multisig contract commands
+  system                      Send eosio.system contract action to the blockchain.
 ```
 
 To get help with any particular subcommand, run it with no arguments as well:
 ```base
-$ cleos create
-ERROR: RequiredError: Subcommand required
 Create various items, on and off the blockchain
 Usage: ./cleos create SUBCOMMAND
 
 Subcommands:
   key                         Create a new keypair and print the public and private keys
-  account                     Create a new account on the blockchain
-  producer                    Create a new producer on the blockchain
+  account                     Create an account, buy ram, stake for bandwidth for the account
 
-$ cleos create account
-ERROR: RequiredError: creator
-Create a new account on the blockchain
-Usage: ./cleos create account [OPTIONS] creator name OwnerKey ActiveKey
+
+Create an account, buy ram, stake for bandwidth for the account
+Usage: ./programs/cleos/cleos create account [OPTIONS] creator name OwnerKey [ActiveKey]
 
 Positionals:
-  creator TEXT                The name of the account creating the new account
-  name TEXT                   The name of the new account
-  OwnerKey TEXT               The owner public key for the account
-  ActiveKey TEXT              The active public key for the account
+  creator TEXT                The name of the account creating the new account (required)
+  name TEXT                   The name of the new account (required)
+  OwnerKey TEXT               The owner public key for the new account (required)
+  ActiveKey TEXT              The active public key for the new account
 
 Options:
-  -s,--skip-signature         Specify that unlocked wallet keys should not be used to sign transaction
+  -h,--help                   Print this help message and exit
   -x,--expiration             set the time in seconds before a transaction expires, defaults to 30s
   -f,--force-unique           force the transaction to be unique. this will consume extra bandwidth and remove any protections against accidently issuing the same transaction multiple times
-  ```
-
+  -s,--skip-sign              Specify if unlocked wallet keys should be used to sign transaction
+  -j,--json                   print result as json
+  -d,--dont-broadcast         don't broadcast transaction to the network (just print to stdout)
+  -r,--ref-block TEXT         set the reference block num or block id used for TAPOS (Transaction as Proof-of-Stake)
+  -p,--permission TEXT ...    An account and permission level to authorize, as in 'account@permission'
+  --max-cpu-usage-ms UINT     set an upper limit on the milliseconds of cpu usage budget, for the execution of the transaction (defaults to 0 which means no limit)
+  --max-net-usage UINT        set an upper limit on the net usage budget, in bytes, for the transaction (defaults to 0 which means no limit)
+```
 ### keosd
 
 An EOSIO wallet daemon that loads wallet related plugins, such as the HTTP interface and RPC API
@@ -114,194 +117,91 @@ Generated types.gen.hpp ...
 
 #### Declaring an action
 ```base
-#include <eoslib/types.hpp>
-#include <eoslib/string.hpp>
+#include <eosiolib/eosio.hpp>
 
-//@abi action
-struct action_name {
-  uint64_t    param1;
-  uint64_t    param2;
-  eosio::string param3;
+class example : public eosio::contract {
+   //@abi action
+   void exampleaction( uint64_t param1, uint64_t param2, std::string param3 ) {
+   }
 };
+
 {
   "types": [],
   "structs": [{
-      "name": "action_name",
+      "name": "exampleaction",
       "base": "",
-      "fields": {
-        "param1": "uint64",
-        "param2": "uint64",
-        "param3": "string"
-      }
+      "fields": [{
+           "name": "param1",
+           "type": "uint64"
+        },{
+           "name": "param2",
+           "type": "uint64"
+        },{        
+           "name": "param3",
+           "type": "string"
+        }
+      ]
     }
   ],
   "actions": [{
-      "action_name": "actionname",
-      "type": "action_name"
+      "name": "exampleaction",
+      "type": "exampleaction",
+      "ricardian_contract": ""
     }
   ],
-  "tables": []
-}
-```
-
-### Declaring multiple actions using the same interface.
-
-```
-#include <eoslib/types.hpp>
-#include <eoslib/string.hpp>
-
-//@abi action action1 action2
-struct action_name {
-  uint64_t param1;
-  uint64_t param2;
-  eosio::string   param3;
-};
-{
-  "types": [],
-  "structs": [{
-      "name": "action_name",
-      "base": "",
-      "fields": {
-        "param1": "uint64",
-        "param2": "uint64",
-        "param3": "string"
-      }
-    }
-  ],
-  "actions": [{
-      "action_name": "action1",
-      "type": "action_name"
-    },{
-      "action_name": "action2",
-      "type": "action_name"
-    }
-  ],
-  "tables": []
+  "tables": [],
+  "ricardian_clauses": [],
+  "abi_extensions": []
 }
 ```
 
 ### Declaring a table
 
 ```base
-#include <eoslib/types.hpp>
-#include <eoslib/string.hpp>
+#include <eosiolib/eosio.hpp>
 
-//@abi table
-struct my_table {
-  uint64_t key;
+//@abi table my_table
+struct my_record {
+  uint64_t    ssn;
+  std::string fullname;
+  uint64_t primary_key() const { return key; }
 };
 {
   "types": [],
   "structs": [{
+      "name": "my_record",
+      "base": "",
+      "fields": [{
+        "name": "ssn",
+        "type": "uint64"
+      },{
+        "name": "fullname",
+        "type": "string"
+      }
+      ]
+    }
+  ],
+  "actions": [],
+  "tables": [{
       "name": "my_table",
-      "base": "",
-      "fields": {
-        "key": "uint64"
-      }
-    }
-  ],
-  "actions": [],
-  "tables": [{
-      "table_name": "mytable",
       "index_type": "i64",
       "key_names": [
-        "key"
+        "ssn"
       ],
       "key_types": [
         "uint64"
       ],
-      "type": "my_table"
-    }
-  ]
-}
-```
-### Declaring a table with explicit index type
-
-*a struct with 3 uint64_t can be both i64 or i64i64i64
-```base
-#include <eoslib/types.hpp>
-
-//@abi table i64
-struct my_new_table {
-  uint64_t key;
-  uint64_t name;
-  uint64_t age;
-};
-{
-  "types": [],
-  "structs": [{
-      "name": "my_new_table",
-      "base": "",
-      "fields": {
-        "key": "uint64",
-        "name": "uint64",
-        "age": "uint64"
-      }
+      "type": "my_record"
     }
   ],
-  "actions": [],
-  "tables": [{
-      "table_name": "mynewtable",
-      "index_type": "i64",
-      "key_names": [
-        "key"
-      ],
-      "key_types": [
-        "uint64"
-      ],
-      "type": "my_new_table"
-    }
-  ]
-}
-```
-
-#### Declaring a table and an action that use the same struct.
-```base
-#include <eoslib/types.hpp>
-#include <eoslib/string.hpp>
-
-/*
- * @abi table
- * @abi action
- */ 
-struct my_type {
-  eosio::string key;
-  eosio::name value;
-};
-{
-  "types": [],
-  "structs": [{
-      "name": "my_type",
-      "base": "",
-      "fields": {
-        "key": "string",
-        "value": "name"
-      }
-    }
-  ],
-  "actions": [{
-      "action_name": "mytype",
-      "type": "my_type"
-    }
-  ],
-  "tables": [{
-      "table_name": "mytype",
-      "index_type": "str",
-      "key_names": [
-        "key"
-      ],
-      "key_types": [
-        "string"
-      ],
-      "type": "my_type"
-    }
-  ]
+  "ricardian_clauses": [],
+  "abi_extensions": []
 }
 ```
 
 ### Example of typedef exporting
 ```base
-#include <eoslib/types.hpp>
+#include <eosiolib/eosio.hpp>
 struct simple {
   uint64_t u64;
 };
@@ -309,10 +209,9 @@ struct simple {
 typedef simple simple_alias;
 typedef eosio::name name_alias;
 
+class examplecontract : eosio::contract {
 //@abi action
-struct action_one : simple_alias {
-  uint32_t u32;
-  name_alias name;
+   void actionone( uint32_t param1, name_alias param2, simple_alias param3 ) {}
 };
 {
   "types": [{
@@ -326,42 +225,51 @@ struct action_one : simple_alias {
   "structs": [{
       "name": "simple",
       "base": "",
-      "fields": {
-        "u64": "uint64"
-      }
+      "fields": [{
+        "type": "uint64",
+        "name": "u64"
+      }]
     },{
-      "name": "action_one",
-      "base": "simple_alias",
-      "fields": {
-        "u32": "uint32",
-        "name": "name_alias"
+      "name": "actionone",
+      "base": "",
+      "fields": [{
+        "type": "uint32",
+        "name": "param1"
+      },{
+        "type": "name_alias",
+        "name": "param2"
+      },{
+        "type": "simple_alias",
+        "name": "param3"
       }
+     ]
     }
   ],
   "actions": [{
-      "action_name": "actionone",
-      "type": "action_one"
+      "name": "actionone",
+      "type": "actionone",
+      "ricardian_contract": ""
     }
   ],
-  "tables": []
+  "tables": [],
+  "ricardian_clauses": [],
+  "abi_extensions": []
 }
 ```
 
-#### Using the generated serialization/deserialization functions
+#### Using the generated serialization/deserialization functions and explicit user defined apply
 ```base
-#include <eoslib/types.hpp>
-#include <eoslib/string.hpp>
+#include <eosiolib/eosio.hpp>
 
 struct simple {
   uint32_t u32;
-  fixed_string16 s16;
 };
 
 struct my_complex_type {
   uint64_t u64;
-  eosio::string str;
+  std::string str;
   simple simple;
-  bytes bytes;
+  eosio::bytes bytes;
   public_key pub;
 };
 
@@ -372,38 +280,22 @@ struct test_action {
   uint32_t u32;
   complex cplx;
 };
-void apply( uint64_t code, uint64_t action ) {
-   if( code == N(mycontract) ) {
-      if( action == N(testaction) ) {
-        auto msg = eosio::current_message<test_action>();
-        eosio::print("test_action content\n");
-        eosio::dump(msg);
-         
-        bytes b = eosio::raw::pack(msg);
-        printhex(b.data, b.len);
+
+extern "C" {
+   void apply( uint64_t code, uint64_t action, uint64_t receiver ) {
+      if( code == N(mycontract) ) {
+         if( action == N(testaction) ) {
+            eosio::print("test_action content\n");
+            test_action testact = eosio::unpack_action_data<test_action>();
+            eosio::print_f( "Test action : % %", testact.u32, testact.cplx.u64 );
+        }
      }
-  }
+   }
 }
+
 ```
 ### NOTE: table names and action names cannot use an underscore ("_").
 ### Calling contract with test values
 ```base
-cleos push message mycontract testaction '{"u32":"1000", "cplx":{"u64":"472", "str":"hello", "bytes":"B0CA", "pub":"EOS8CY2pCW5THmzvPTgEh5WLEAxgpVFXaPogPvgvVpVWCYMRdzmwx", "simple":{"u32":"164","s16":"small-string"}}}' -S mycontract
-```
-
-#### Will produce the following output in nodeos console
-```base
-test_action content
-u32:[1000]
-cplx:[
-  u64:[472]
-  str:[hello]
-  simple:[
-    u32:[164]
-    s16:[small-string]
-  ]
-  bytes:[b0ca]
-  pub:[03b41078f445628882fe8c1e629909cbbd67ff4b592b832264dac187ac730177f1]
-]
-e8030000d8010000000000000568656c6c6fa40000000c736d616c6c2d737472696e6702b0ca03b41078f445628882fe8c1e629909cbbd67ff4b592b832264dac187ac730177f1
+cleos push action testaccount testaction '{"u32":"1000", "cplx":{"u64":"472", "str":"hello", "bytes":"B0CA", "pub":"EOS8CY2pCW5THmzvPTgEh5WLEAxgpVFXaPogPvgvVpVWCYMRdzmwx", "simple":{"u32":"123"}}}' -p testaccount
 ```
