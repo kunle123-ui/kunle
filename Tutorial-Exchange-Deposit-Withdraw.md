@@ -20,7 +20,7 @@ plugin to only log activity relevant to actions.  This can be achieved with
 the following config param placed in your config.ini or passed on the command line. Do not forget the trailing ":".
 
 ```
-$ nodeos --filter-on youraccount eosio.token:deposit:
+$ nodeos --filter-on eosio.token:deposit:
 ```
 
 ## Replaying the Blockchain
@@ -29,7 +29,7 @@ If you have already synced the blockchain without the history plugin, then you m
 replay the blockchain to pickup any historical activity. Do not forget the trailing ":".
 
 ```
-$ nodeos --replay  --filter-on youraccount eosio.token:deposit:
+$ nodeos --replay --filter-on eosio.token:deposit:
 ```
 
 You only need to replay once. Subsequent runs of `nodeos` should not use the replay flag, as
