@@ -10,7 +10,7 @@
 | DPoS            |                | Delegated Proof of Stake. Also, "Democracy as Proof of Stake." DPoS is one of a collection of consensus algorithms, i.e. methods by which block producers can agree (reach consensus) on which transactions and which blocks are "real" and should be confirmed and treated as irreversible. |
 | Key pair		  | keys		   | A public key and its corresponding private key |
 | larimer         |                | 1/10000 of an EOS (token) `0.0001 EOS` |
-| Master Password | 			   | The password used to to unlock (decrypt) a wallet file |
+| Master Password | 			   | The password used to unlock (decrypt) a wallet file |
 | Action         |            | A change to the Blockchain. One or more actions make up a Transaction. |   
 | Non-Producing Node | | A full node running nodeos that is only watching and verifying for itself each block, and maintaining its own local full copy of the blockchain. A non-producing node that is in the "standby pool" can, through the process of being voted in, become a producing node. A producing node, if voted out, will become a non-producing node. Most non-producing nodes are not in the "standby pool". | 
 | Oracle          |                | "An oracle, in the context of blockchains and smart contracts, is an agent that finds and verifies real-world occurrences and submits this information to a blockchain to be used by smart contracts." *[Source](https://blockchainhub.net/blockchain-oracles/)* |
