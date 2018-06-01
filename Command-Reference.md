@@ -453,24 +453,24 @@ proxy:     producer111a
 ```
 
 ### Create or Modify Permissions
-To modify permissions of an account, you must have the authority over the account and the permission of which you are modifying. The `set account permission` command is subject to change so it's associated Class is not fully documented. 
+To modify permissions of an account, you must have the authority over the account and the permission of which you are modifying.
 
 The first example associates a new key to the active permissions of an account
 
-```bash
-$ cleos set account permission test active '{"threshold" : 1, "keys" : [{"permission":{"key":"EOS8X7Mp7apQWtL6T2sfSZzBcQNUqZB7tARFEm9gA9Tn9nbMdsvBB","permission":"active"},"weight":1}], "accounts" : [{"permission":{"actor":"acc2","permission":"active"},"weight":50}]}' owner
+```
+$ cleos set account permission test active '{"threshold": 1, "keys": [{"key": "EOS8X7Mp7apQWtL6T2sfSZzBcQNUqZB7tARFEm9gA9Tn9nbMdsvBB", "weight": 1}],"weight":1}]}' owner
 ```
 
 This second example modifies the same account permission, but removes the *key* set in the last example, and grants active authority of the **@test** account to another *account*. 
 
-```bash
-$ cleos set account permission test active '{"threshold" : 1, "keys" : [], "accounts" : [{"permission":{"actor":"sandwich","permission":"active"},"weight":1},{"permission":{"actor":"acc1","permission":"active"},"weight":50}]}' owner
+```
+$ cleos set account permission test active '{"threshold" : 1, "keys" : [], "accounts" : [{"permission":{"actor":"acc1","permission":"active"},"weight":1}]}' owner
 ```
 
 The third example demonstrates how to setup permissions for multisig
 
-```bash
-$ cleos set account permission test active '{"threshold" : 100, "keys" : [{"permission":{"key":"EOS8X7Mp7apQWtL6T2sfSZzBcQNUqZB7tARFEm9gA9Tn9nbMdsvBB","permission":"active"},"weight":25}], "accounts" : [{"permission":{"actor":"@sandwich","permission":"active"},"weight":75}]}' owner
+```
+$ cleos set account permission test active '{"threshold" : 100, "keys" : [], "accounts" : [{"permission":{"actor":"user1","permission":"active"},"weight":25}, {"permission":{"actor":"user2","permission":"active"},"weight":75}]}' owner
 ```
 
 The JSON object used in this command is actually composed of two different types of objects
@@ -485,25 +485,24 @@ The JSON object used in this command is actually composed of two different types
 }
 ```
 
-*...which includes one or more permissions objects*
+*...contains 0 or more objects in the keys array*
 
 ```javascript
-/*Set Permission with Key*/
 {
-  "permission" : {
-    "key"           : "EOS8X7Mp7apQWtL6T2sfSZzBcQNUqZB7tARFEm9gA9Tn9nbMdsvBB",
-    "permission"    : "active"
-  },
-  weight            : 25      /*Set the weight of a signature from this permission*/
+  "key"           : "EOS8X7Mp7apQWtL6T2sfSZzBcQNUqZB7tARFEm9gA9Tn9nbMdsvBB",
+  "weight"        : 25      /*Set the weight of a signature from this permission*/
 }
+```
 
-/*Set Permission with Account*/
+*...contains 0 or more objects in the accounts array*
+
+```javascript
 {
   "permission" : {
     "actor"       : "sandwich",
     "permission"  : "active"
   },
-  weight            : 75      /*Set the weight of a signature from this permission*/
+  "weight"      : 75      /*Set the weight of a signature from this permission*/
 }
 ```
 
