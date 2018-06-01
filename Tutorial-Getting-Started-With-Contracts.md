@@ -17,7 +17,7 @@ your own contracts.
 - Hello World Contract
 
 This tutorial assumes that you have installed EOSIO and that `nodeos` and 
-`cleos` are in your path. 
+`cleos` are in your path. See [EOSIO Setup Tutorial](https://github.com/EOSIO/eos/wiki/Local-Environment#2-building-eosio)
 
 
 ## Starting a Private Blockchain
