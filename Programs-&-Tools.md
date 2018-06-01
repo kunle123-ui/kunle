@@ -1,4 +1,4 @@
-Tools/Programs included in eosio resposity. 
+Tools/Programs included in eosio respository. 
 
 * [Programs](#programs)
     * [nodeos](#nodeos)
