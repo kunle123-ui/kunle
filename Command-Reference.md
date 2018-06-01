@@ -7,7 +7,7 @@
 | Connect to node | $ cleos --url ${node}:${port} | [View](#connect-to-node) |
 | Query blockchain state | $ cleos get info | [View](#query-blockchain-state) |
 | Get transaction by id | $ cleos get transaction ${transaction_id} | [View](#get-transaction-by-transaction_id) |
-| Get transactions by account | $ cleos get transaction ${account} | [View](#get-transaction-by-account) |
+| Get actions by account | $ cleos get actions ${account} | [View](#get-actions-by-account) |
 | Transfer currency | $ cleos transfer ${from_account} ${to_account} ${quantity} | [View](#transfer-eos) |
 | Wallet - Create wallet | $ cleos wallet create {-n} ${wallet_name} | [View](#create-wallet) |
 | Wallet - List wallets | $ cleos wallet list | [View](#list-wallets) |
@@ -183,22 +183,33 @@ $ cleos get transaction eb4b94b72718a369af09eb2e7885b3f494dd1d8a20278a6634611d5e
 }
 ```
 
-### Get Transaction by account
-We can also query list of transactions performed by certain account starting from recent one
+### Get Actions by account
+We can also query list of actions that have an account as a receiver. The only accounts queryable are those listed as the receiver in the ```--filter-on receiver:action:actor``` option.
 
 ```
-$ cleos get transactions inita
-[
-  {
-    "transaction_id": "eb4b94b72718a369af09eb2e7885b3f494dd1d8a20278a6634611d5edd76b703",
-    ...
-  },
-  {
-    "transaction_id": "6acd2ece68c4b86c1fa209c3989235063384020781f2c67bbb80bc8d540ca120",
-    ...
-  },
-  ...
-]
+$ cleos get actions eosio.token
+#  seq  when                              contract::action => receiver      trx id...   args
+================================================================================================================
+#  976   2018-06-01T19:54:05.000     eosio.token::transfer => eosio.token   1d1fe154... {"from":"useraaaaaaae","to":"useraaaaaaaa","quantity":"0.000...
+#  977   2018-06-01T19:54:05.000     eosio.token::transfer => eosio.token   a0c9e5bc... {"from":"useraaaaaaab","to":"useraaaaaaaa","quantity":"0.000...
+#  978   2018-06-01T19:54:05.000     eosio.token::transfer => eosio.token   3749d0d1... {"from":"useraaaaaaab","to":"useraaaaaaah","quantity":"0.000...
+#  979   2018-06-01T19:54:05.000     eosio.token::transfer => eosio.token   dda205b0... {"from":"useraaaaaaai","to":"useraaaaaaaj","quantity":"0.000...
+#  980   2018-06-01T19:54:05.000     eosio.token::transfer => eosio.token   14089e9b... {"from":"useraaaaaaab","to":"useraaaaaaae","quantity":"0.000...
+#  981   2018-06-01T19:54:05.000     eosio.token::transfer => eosio.token   6882cefc... {"from":"useraaaaaaaj","to":"useraaaaaaab","quantity":"0.000...
+...
+```
+
+```
+$ cleos get actions useraaaaaaaa
+#  seq  when                              contract::action => receiver      trx id...   args
+================================================================================================================
+#  133   2018-06-01T19:54:03.500     eosio.token::transfer => useraaaaaaaa  026eefc2... {"from":"useraaaaaaai","to":"useraaaaaaaa","quantity":"0.000...
+#  134   2018-06-01T19:54:03.500     eosio.token::transfer => useraaaaaaaa  c7ae0a26... {"from":"useraaaaaaaj","to":"useraaaaaaaa","quantity":"0.000...
+#  135   2018-06-01T19:54:04.000     eosio.token::transfer => useraaaaaaaa  35226dfb... {"from":"useraaaaaaaa","to":"useraaaaaaae","quantity":"0.000...
+#  136   2018-06-01T19:54:04.000     eosio.token::transfer => useraaaaaaaa  4388432a... {"from":"useraaaaaaaa","to":"useraaaaaaad","quantity":"0.000...
+#  137   2018-06-01T19:54:04.000     eosio.token::transfer => useraaaaaaaa  67476ebc... {"from":"useraaaaaaaf","to":"useraaaaaaaa","quantity":"0.000...
+#  138   2018-06-01T19:54:04.000     eosio.token::transfer => useraaaaaaaa  0c01a579... {"from":"useraaaaaaaa","to":"useraaaaaaad","quantity":"0.000...
+...
 ```
 
 ### Transfer Currency
