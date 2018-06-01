@@ -46,7 +46,8 @@ The EOSIO software supports the following environments:
 - Centos 7
 - Fedora 25 and higher (Fedora 27 recommended)
 - Mint 18
-- Ubuntu 16.04 (Ubuntu 16.10 recommended)
+- Ubuntu 16.04 LTS (Ubuntu 16.10 recommended)
+- Ubuntu 18.04 LTS
 - MacOS Darwin 10.12 and higher (MacOS 10.13.x recommended)
 
 ### Command Line Knowledge
