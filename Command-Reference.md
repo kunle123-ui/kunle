@@ -27,13 +27,6 @@
 | Contract - Query table | $ cleos get table ${field} ${contract} ${table} | [View](#querying-contract) |
 
 
-## nodeos command
-
-| Action | Syntax | Example |
-|--|--|--|
-| Skip signatures | $ nodeos --skip-transaction-signatures | [View](#skip-signatures) |
-
-
 ## eos-wallets command
 
 | Action | Syntax | Example |
@@ -733,19 +726,6 @@ $ cleos get table inita currency account
   ],
   "more": true
 }
-```
-
-### Skip signatures
-If you have nodeos running in your local, as an easy way for developers to test functionality without dealing with keys, nodeos can be run so that Transaction signatures are not required.
-
-```
-$ nodeos --skip-transaction-signatures
-```
-
-And then for any operation that requires signing, use the -s option
-
-```
-$ cleos ${command} ${subcommand} -s ${param}
 ```
 
 ### Using Separate Wallet App
