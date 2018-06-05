@@ -345,7 +345,7 @@ Producers can claim rewards **after** 150,000,000 tokens have been staked. Strat
 
 Use the following to claim rewards.
 ```
-$ cleos claim rewards accountnum33
+$ cleos system claimrewards accountnum33
 ```
 
 #### Register proxies and proxy voting
