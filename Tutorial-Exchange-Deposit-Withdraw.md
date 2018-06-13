@@ -211,7 +211,7 @@ $ cleos get actions tokenxchange 2 0 -j
 }
 ```
 
-Given this JSON, an action is irreversible (final) if its `"block_num" < "last_irreversible_block"`.  
+Given this JSON, an action is irreversible (final) if its `"block_num" <= "last_irreversible_block"`.  
 
 You can identify irreversible deposits by the following:
 
@@ -222,7 +222,7 @@ You can identify irreversible deposits by the following:
     actions[0].action_trace.to == "tokenxchange" && 
     actions[0].action_trace.memo == "KEY TO IDENTIFY INTERNAL ACCOUNT" && 
     actions[0].action_trace.receipt.receiver == "tokenxchange"  &&
-    actions[0].block_num < last_irreversible_block
+    actions[0].block_num <= last_irreversible_block
 ```
 
 ### WARNING
