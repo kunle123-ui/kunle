@@ -42,6 +42,7 @@ Welcome to the EOSIO wiki. This resource is intended as a guide for developers l
   * [Comprehensive Accounts & Wallets Tutorial](Tutorial-Comprehensive-Accounts-and-Wallets)
   * [Bios Boot Sequence](Tutorial-Bios-Boot-Sequence)
   * [Tic-Tac-Toe](Tutorial-Tic-Tac-Toe)
+  * [Upgrading System Contract](Tutorial-Upgrade-System-Contract)
 - Testnet
   * [Single Host Multi-Node (Private) Testnet](Testnet-Single-Host-Multinode)
 - [Releases](Releases)
