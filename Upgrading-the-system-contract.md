@@ -23,7 +23,7 @@ saving wast to original_system_contract.wast
 saving abi to original_system_contract.abi
 ```
 
-1. Generate the unsigned transaction which upgrades the system contract:
+2. Generate the unsigned transaction which upgrades the system contract:
 
 ```
 $ programs/cleos/cleos set contract -s -j -d eosio contracts/eosio.system | tail -n +4 > upgrade_system_contract_trx.json
@@ -63,12 +63,13 @@ and the last few lines should be:
 
 One of the top block producers should be chosen to lead the upgrade process. This lead producer should take their generated `upgrade_system_contract_trx.json`, rename it to `upgrade_system_contract_official_trx.json`, and do the following:
 
-1. Modify the `expiration` timestamp in `upgrade_system_contract_official_trx.json` to a time that is sufficiently far in the future to give enough time to collect all the necessary signatures, but not more than 9 hours from the time the transaction was generated. Also, keep in mind that the transaction will not be accepted into the blockchain if the expiration is more than 1 hour from the present time.
-2. Pass the `upgrade_system_contract_official_trx.json` file to all the other top 21 block producers.
+3. Modify the `expiration` timestamp in `upgrade_system_contract_official_trx.json` to a time that is sufficiently far in the future to give enough time to collect all the necessary signatures, but not more than 9 hours from the time the transaction was generated. Also, keep in mind that the transaction will not be accepted into the blockchain if the expiration is more than 1 hour from the present time.
+
+4. Pass the `upgrade_system_contract_official_trx.json` file to all the other top 21 block producers.
 
 Then each of the top 21 block producers should do the following:
 
-1. Compare their generated `upgrade_system_contract_official_trx.json` file with the `upgrade_system_contract_official_trx.json` provided by the lead producer. The only difference should be in `expiration`, `ref_block_num`, `ref_block_prefix`, for example:
+5. Compare their generated `upgrade_system_contract_official_trx.json` file with the `upgrade_system_contract_official_trx.json` provided by the lead producer. The only difference should be in `expiration`, `ref_block_num`, `ref_block_prefix`, for example:
 
 ```
 $ diff upgrade_system_contract_official_trx.json upgrade_system_contract_trx.json
@@ -82,7 +83,7 @@ $ diff upgrade_system_contract_official_trx.json upgrade_system_contract_trx.jso
 >   "ref_block_prefix": 195390844,
 ```
 
-1. If the comparison is good, each block producer should proceed with signing the official upgrade transaction with the keys necessary to satisfy their active permission. If the block producer only has a single key (i.e the "active key") in the active permission of their block producing account, then they only need to generate one signature using that active key. This signing process can be done offline for extra security.
+6. If the comparison is good, each block producer should proceed with signing the official upgrade transaction with the keys necessary to satisfy their active permission. If the block producer only has a single key (i.e the "active key") in the active permission of their block producing account, then they only need to generate one signature using that active key. This signing process can be done offline for extra security.
 
 First, the block producer should collect all the necessary information. Let us assume that the block producers active key pair is `(EOS5kBmh5kfo6c6pwB8j77vrznoAaygzoYvBsgLyMMmQ9B6j83i9c, 5JjpkhxAmEfynDgSn7gmEKEVcBqJTtu6HiQFf4AVgGv5A89LfG3)`. The block producer needs their active private key (`5JjpkhxAmEfynDgSn7gmEKEVcBqJTtu6HiQFf4AVgGv5A89LfG3` in this example), the `upgrade_system_contract_official_trx.json`, and the `chain_id` (`d0242fb30b71b82df9966d10ff6d09e4f5eb6be7ba85fd78f796937f1959315e` in this example) which can be retrieved through `cleos get info`.
 
@@ -103,7 +104,7 @@ The output should include the signature (in this case `"SIG_K1_JzABB9gzDGwUHaRmo
 
 When the lead producer collects 15 producer signatures, the lead producer should do the following:
 
-1. Make a copy of the `upgrade_system_contract_official_trx.json` and call it `upgrade_system_contract_official_trx_signed.json`, and then modify the `upgrade_system_contract_official_trx_signed.json` so that the `signatures` field includes all 15 collected signatures. So the tail end of `upgrade_system_contract_official_trx_signed.json` could look something like:
+7. Make a copy of the `upgrade_system_contract_official_trx.json` and call it `upgrade_system_contract_official_trx_signed.json`, and then modify the `upgrade_system_contract_official_trx_signed.json` so that the `signatures` field includes all 15 collected signatures. So the tail end of `upgrade_system_contract_official_trx_signed.json` could look something like:
 
 ```
 $ cat upgrade_system_contract_official_trx_signed.json | tail -n 20
@@ -129,7 +130,7 @@ $ cat upgrade_system_contract_official_trx_signed.json | tail -n 20
 }
 ```
 
-1. Push the signed transaction to the blockchain:
+8. Push the signed transaction to the blockchain:
 
 ```
 $ programs/cleos/cleos push transaction upgrade_system_contract_official_trx_signed.json
@@ -185,7 +186,7 @@ Please increase the expiration time of your transaction!
 
 That means the expiration time of the signed transaction has passed and this entire process has to restart from step 1.
 
-1. Assuming the transaction successfully executes, everyone can then verify that the new contract is in place:
+9. Assuming the transaction successfully executes, everyone can then verify that the new contract is in place:
 
 ```
 $ programs/cleos/cleos get code -c new_system_contract.wast -a new_system_contract.abi eosio
