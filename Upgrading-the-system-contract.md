@@ -1,5 +1,3 @@
-# Upgrading the system contract
-
 ## Indirect method using eosio.msig contract
 
 Cleos currently provides tools to propose an action with the eosio.msig contract, but it does not provide an easy interface to propose a custom transaction.
