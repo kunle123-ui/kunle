@@ -1,3 +1,7 @@
+**The wiki is deprecated and will be removed June 30th. Please check out the constantly improving [developers portal](http://developers.eos.io)**
+
+----
+
 ## Comprehensive Accounts & Wallets Tutorial
 
 **Note** _This tutorial is geared towards use on a **private single node testnet**, but will work on a public testnet with minor modifications._ 
