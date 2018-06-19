@@ -1,3 +1,7 @@
+**The wiki is deprecated and will be removed June 30th. Please check out the constantly improving [developers portal](http://developers.eos.io)**
+
+----
+
 ## Indirect method using eosio.msig contract
 
 Cleos currently provides tools to propose an action with the eosio.msig contract, but it does not provide an easy interface to propose a custom transaction.
