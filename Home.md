@@ -1,3 +1,7 @@
+**The wiki is deprecated and will be removed June 30th. Please check out the constantly improving [pdevelopers portal](http://developers.eos.io)**
+
+----
+
 Welcome to the EOSIO wiki. This resource is intended as a guide for developers looking to interact directly with EOSIO software. For a higher level explanation of EOSIO software, please go to the main [README](https://github.com/EOSIO/eos), or the [Documentation Repo](https://github.com/EOSIO/Documentation). Suggestions and contributions are welcome.
 
 ---
