@@ -1,3 +1,7 @@
+**The wiki is deprecated and will be removed June 30th. Please check out the constantly improving [developers portal](http://developers.eos.io)**
+
+----
+
 # Bios Boot Sequence Tutorial 
 The description below covers the bios boot sequence to start a blockchain from a single "genesis" node, transitioning to a voted on set of producers.
 
