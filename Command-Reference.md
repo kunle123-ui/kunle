@@ -1,4 +1,6 @@
-## cleos command
+**The wiki is deprecated and will be removed June 30th. Please check out the constantly improving [developers portal](http://developers.eos.io)**
+
+----
 
 | Action | Syntax | Example 
 |--|--|--|
