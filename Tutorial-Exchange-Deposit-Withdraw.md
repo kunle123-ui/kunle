@@ -1,3 +1,7 @@
+**The wiki is deprecated and will be removed June 30th. Please check out the constantly improving [developers portal](http://developers.eos.io)**
+
+----
+
 # Exchange Deposit and Withdrawal
 
 This tutorial is targeted toward exchanges that wish to automate deposit and withdrawal of standard-conforming EOSIO token contracts. The EOSIO blockchain's native token conforms to the standard. In this tutorial, the methods for depositing to and withdrawing from the exchange are shown, but perhaps more importantly for the process of automation, the means by which activity can be monitored and reported are shown.
