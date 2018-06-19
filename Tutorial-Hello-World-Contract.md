@@ -1,3 +1,7 @@
+**The wiki is deprecated and will be removed June 30th. Please check out the constantly improving [developers portal](http://developers.eos.io)**
+
+----
+
 ## Hello World Contract
 **This tutorial assumes that you have completed tutorials [Getting Started With Contracts](Tutorial-Getting-Started-With-Contracts) and [Eosio.token, Exchange, and Eosio.msig Contracts](Tutorial-eosio-token-Contract).**
 
