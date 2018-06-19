@@ -1,3 +1,7 @@
+**The wiki is deprecated and will be removed June 30th. Please check out the constantly improving [developers portal](http://developers.eos.io)**
+
+----
+
 A Multi-Index container abstraction of persistent data on EOSIO blockchains
 
 ## Table of Contents
