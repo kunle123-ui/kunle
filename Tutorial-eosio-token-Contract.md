@@ -1,3 +1,7 @@
+**The wiki is deprecated and will be removed June 30th. Please check out the constantly improving [developers portal](http://developers.eos.io)**
+
+----
+
 ## Eosio.token, Exchange, and Eosio.msig Contracts
 **This tutorial assumes that you have completed the tutorial [Getting Started With Contracts](Tutorial-Getting-Started-With-Contracts).**
 
