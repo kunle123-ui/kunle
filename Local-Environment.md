@@ -1,3 +1,7 @@
+**The wiki is deprecated and will be removed June 30th. Please check out the constantly improving [pdevelopers portal](http://developers.eos.io)**
+
+----
+
 ## Contents
 *  [Overview](Local-Environment#eosio-overview)
 *  [Getting the Code](Local-Environment#1-getting-the-code)
