@@ -1,23 +1,7 @@
-This is the software coding standards for the EOSIO Software.
+**The wiki is deprecated now. Please check out the constantly improving [Developer Portal](http://developers.eos.io)**.
 
-| Type	| Standardized Method	| Example |
-|-------|-----------------------|---------|
-| Structs	| lower case with _ between words including constants	|
-| Classes	| lower case with _ between words including constants	| 
-| Methods	| lower case with _ between words including constants	| 
-| Types	| lower case with _ between words including constants	| 
-| Template Arguments	| CamelCase, no spaces	| 
-| Macros	| UPPERCASE	| 
+----
 
-Comment Blocks	
+For info on Coding Standards please refer to [Coding Standards](https://developers.eos.io/eosio-home/docs/coding-standards) section of Developer Portal.
 
-    /*
-
-    Comment Block
-
-    */
-
-
-Inline Comments	`/**   Comments    **/`
-
-Indentation	Don't use tabs, use 3 spaces	
+----
