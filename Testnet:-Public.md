@@ -1,1 +1,7 @@
-**At this time, there is no Public Testnet for Dawn 3.0.  Check back later for updates.**
+**The wiki is deprecated now. Please check out the constantly improving [Developer Portal](http://developers.eos.io)**.
+
+----
+
+For info on Testnets please refer to [Testnets](https://developers.eos.io/eosio-nodeos/docs/testnets) section of Developer Portal.
+
+----
