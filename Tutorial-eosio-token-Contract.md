@@ -1,4 +1,4 @@
-**The wiki is deprecated now. Please check out the constantly improving [Developer Portal](http://developers.eos.io)**.
+**The wiki is deprecated now. Please check out the [Developer Portal](http://developers.eos.io)**.
 
 ----
 
